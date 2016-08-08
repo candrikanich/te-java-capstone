@@ -4,12 +4,24 @@
 
 BEGIN;
 
+CREATE SEQUENCE app_user_user_id_seq START 6
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+
 CREATE TABLE app_user (
 	user_name varchar(32) NOT NULL,
 	password varchar(32) NOT NULL,
 	salt varchar(256) NOT NULL,
-	user_id integer NOT NULL,
+	user_id integer DEFAULT nextval('app_user_user_id_seq'::regclass) NOT NULL,
 	CONSTRAINT pk_app_user_user_id PRIMARY KEY (user_id)
+);
+
+CREATE TABLE app_user_recipe (
+	user_id integer NOT NULL,
+	recipe_id integer NOT NULL,
+	CONSTRAINT pk_app_user_recipe_app_user_id_recipe_id PRIMARY KEY (user_id, recipe_id)
 );
 
 CREATE TABLE recipe (
@@ -18,7 +30,7 @@ CREATE TABLE recipe (
 	meal_type_id integer,
 	category_id integer,
 	instructions varchar(256),
-	CONSTRAINT pk_recipe_recipe_id PRIMARY KEY (recipe_id),
+	CONSTRAINT pk_recipe_recipe_id PRIMARY KEY (recipe_id)
 );
 
 CREATE TABLE recipe_ingredient (
@@ -82,5 +94,8 @@ ALTER TABLE ingredient_unit ADD FOREIGN KEY (ingredient_id) REFERENCES ingredien
 ALTER TABLE ingredient_unit ADD FOREIGN KEY (unit_id) REFERENCES unit(unit_id);
 ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (meal_plan_id) REFERENCES meal_plan(meal_plan_id);
 ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
+ALTER TABLE app_user_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
+ALTER TABLE app_user_recipe ADD FOREIGN KEY (user_id) REFERENCES app_user(user_id);
+
 
 COMMIT;
