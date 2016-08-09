@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.model.Ingredient;
+import com.techelevator.model.IngredientDAO;
 import com.techelevator.model.Recipe;
 import com.techelevator.model.RecipeDAO;
 import com.techelevator.model.UserDAO;
@@ -21,11 +23,13 @@ public class UserController {
 	
 	private UserDAO userDAO;
 	private RecipeDAO recipeDAO;
+	private IngredientDAO ingredientDAO;
 	
 	@Autowired
-	public UserController(UserDAO userDAO, RecipeDAO recipeDAO) {
+	public UserController(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO) {
 		this.userDAO = userDAO;
 		this.recipeDAO = recipeDAO; 
+		this.ingredientDAO = ingredientDAO;
 	}
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
 	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName) {
@@ -38,6 +42,8 @@ public class UserController {
 	public String displayRecipeDetailsByUser(ModelMap model, @RequestParam int recipeId,@PathVariable String userName){
 		Recipe r = recipeDAO.getRecipeById(recipeId);
 		model.put("recipe", r);
+		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(recipeId);
+		model.put("ingredients", ingredients);
 		return "recipeDetails";
 		
 	}

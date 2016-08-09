@@ -97,6 +97,8 @@ CREATE TABLE meal_plan (
 	CONSTRAINT pk_meal_plan_meal_plan_id PRIMARY KEY (meal_plan_id)
 );
 
+
+
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);
 ALTER TABLE ingredient_unit ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);

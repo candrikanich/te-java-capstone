@@ -22,4 +22,16 @@ INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (1,3);
 INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (2,4);
 INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (2,5);
 
+INSERT INTO ingredient (ingredient_name) VALUES ('egg');
+INSERT INTO ingredient (ingredient_name) VALUES ('sugar');
+INSERT INTO ingredient (ingredient_name) VALUES ('flour');
+INSERT INTO ingredient (ingredient_name) VALUES ('yeast');
+INSERT INTO ingredient (ingredient_name) VALUES ('saltORpepper');
+
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(1,2);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(1,3);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(2,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(2,2);
+
 COMMIT;
