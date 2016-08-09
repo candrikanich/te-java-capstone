@@ -39,7 +39,7 @@ public class UserController {
 		return "recipeList";
 	}
 	@RequestMapping(path="/users/{userName}/recipeDetails", method=RequestMethod.GET)
-	public String displayRecipeDetailsByUser(ModelMap model, @RequestParam int recipeId,@PathVariable String userName){
+	public String displayRecipeDetails(ModelMap model, @RequestParam int recipeId,@PathVariable String userName){
 		Recipe r = recipeDAO.getRecipeById(recipeId);
 		model.put("recipe", r);
 		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(recipeId);

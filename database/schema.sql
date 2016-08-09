@@ -33,8 +33,6 @@ CREATE SEQUENCE recipe_recipe_id_seq
 CREATE TABLE recipe (
 	recipe_id integer DEFAULT nextval('recipe_recipe_id_seq'::regclass) NOT NULL,
 	recipe_name varchar(32) NOT NULL,
-	meal_type_id integer,
-	category_id integer,
 	instructions varchar(256),
 	CONSTRAINT pk_recipe_recipe_id PRIMARY KEY (recipe_id)
 );
@@ -42,7 +40,6 @@ CREATE TABLE recipe (
 CREATE TABLE recipe_ingredient (
 	recipe_id integer NOT NULL,
 	ingredient_id integer NOT NULL,
-	ingredient_quantity integer,
 	CONSTRAINT pk_recipe_ingredient_recipe_id_ingredient_id PRIMARY KEY (recipe_id, ingredient_id)
 );
 
@@ -55,7 +52,6 @@ CREATE SEQUENCE ingredient_ingredient_id_seq
 CREATE TABLE ingredient (
 	ingredient_id integer DEFAULT NEXTVAL('ingredient_ingredient_id_seq'::regclass) NOT NULL,
 	ingredient_name varchar(32) NOT NULL,
-	unit_of_measurement varchar(32) NOT NULL,
 	CONSTRAINT pk_ingredient_ingredient_id PRIMARY KEY (ingredient_id)
 );
 
