@@ -38,7 +38,7 @@
 					<c:url var="homepageHref" value="/" />
 					<li><a href="${homepageHref }">Home</a></li>
 					<c:if test="${not empty currentUser}">
-						<c:url var="myRecipesHref" value="/receipsList"/>
+						<c:url var="myRecipesHref" value="/users/${currentUser}/recipeList"/>
 						<li><a href="${myRecipesHref }">My Recipes</a></li>
 						<c:url var="myMealPlanHref" value="#"/>
 						<li><a href="${myMealPlanHref }" >My Meal Plan</a></li>

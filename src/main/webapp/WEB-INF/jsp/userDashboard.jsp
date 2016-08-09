@@ -5,7 +5,7 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
  
  <h1> User Dashboard </h1>
- 
+ <c:
  
  
 <c:import url="/WEB-INF/jsp/footer.jsp" />

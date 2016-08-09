@@ -15,6 +15,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 		private JdbcTemplate jdbcTemplate; 
 		
+		
 		@Autowired 
 		public JDBCRecipeDAO(DataSource dataSource) {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -46,7 +47,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 		@Override
 		public List<Recipe> getAllRecipes() {
-			
+			return null;
 		}
 
 		@Override
