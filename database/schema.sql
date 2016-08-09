@@ -96,32 +96,7 @@ CREATE TABLE meal_plan (
 	meal_plan_end_date date NOT NULL,
 	CONSTRAINT pk_meal_plan_meal_plan_id PRIMARY KEY (meal_plan_id)
 );
-CREATE SEQUENCE recipe_category_recipe_category_id_seq 
-	INCREMENT BY 1
-	NO MAXVALUE
-	NO MINVALUE
-	CACHE 1;
-	
-CREATE TABLE recipe_category (
-	recipe_category_id integer DEFAULT NEXTVAL('recipe_category_recipe_category_id_seq') NOT NULL,
-	recipe_category_name varchar(32) NOT NULL,
-	recipe_category_description varchar(128),
-	CONSTRAINT pk_recipe_category_recipe_category_id PRIMARY KEY (recipe_category_id)
-);
-CREATE SEQUENCE meal_type_meal_type_id_seq 
-	INCREMENT BY 1
-	NO MAXVALUE
-	NO MINVALUE
-	CACHE 1;
 
-CREATE TABLE meal_type (
-	meal_type_id integer DEFAULT NEXTVAL('meal_type_meal_type_id_seq':: regclass) NOT NULL,
-	meal_type_name varchar(32) NOT NULL,
-	CONSTRAINT pk_meal_type_meal_type_id PRIMARY KEY (meal_type_id)
-);
-
-ALTER TABLE recipe ADD FOREIGN KEY (meal_type_id) REFERENCES meal_type(meal_type_id);
-ALTER TABLE recipe ADD FOREIGN KEY (category_id) REFERENCES recipe_category(recipe_category_id);
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);
 ALTER TABLE ingredient_unit ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);
