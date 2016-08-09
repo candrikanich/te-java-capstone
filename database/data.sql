@@ -10,5 +10,10 @@ INSERT INTO app_user (user_name, password, salt) VALUES ('woz', '3OVAF52wRJaH34J
 INSERT INTO app_user (user_name, password, salt) VALUES ('ellison', 'xdtB3l+U+XLK7L4qemdL4w==', 'L6bgOH3ffWWGWv0S5Rtudu7FtGXn/I4hYksEEmO8vjTVh74zbvsYQtC58gWO4VvopGfE1CScD3VPLMxCgeaIpWy4WJW1bicjgA5mW8AKWYoMudYSDciNrWbjxH41JgIbWtz3mXo7JTQXU7sGyqTZRw7lghbaSrW09jovEfSc63U=');
 INSERT INTO app_user (user_name, password, salt) VALUES ('kildall', 'Dy9UfeLCtUW2PrJlMVhfJw==', 'jrojMvgS+XDQq7NZqF/gXaDTzlR8/bLbLvg4q/TeerQqL/V1/8qt4WN8zQTZCttuwJ78JY4TJSgAbq50MKDD85pzLQ1XbZtWWc8nqV+IzNaKExNcPIbXY8Ol5EGkW4RY0zbv/QAJm0u9+z41NQOY4/ctm4YBSVV+aoOGMkgE7ME=');
 
+INSERT INTO recipe (recipe_name, instructions) VALUES ('mac n cheese', 'test instructions');
+INSERT INTO recipe (recipe_name, instructions) VALUES ('roast beef', 'test instructions');
+INSERT INTO recipe (recipe_name, instructions) VALUES ('pork loin', 'test instructions');
+INSERT INTO recipe (recipe_name, instructions) VALUES ('cheerios', 'test instructions');
+INSERT INTO recipe (recipe_name, instructions) VALUES ('ramen', 'test instructions');
 
 COMMIT;

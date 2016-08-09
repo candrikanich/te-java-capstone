@@ -4,7 +4,7 @@
 
 BEGIN;
 
-CREATE SEQUENCE app_user_user_id_seq START 6
+CREATE SEQUENCE app_user_user_id_seq
 	INCREMENT BY 1
 	NO MAXVALUE
 	NO MINVALUE
@@ -24,8 +24,14 @@ CREATE TABLE app_user_recipe (
 	CONSTRAINT pk_app_user_recipe_app_user_id_recipe_id PRIMARY KEY (user_id, recipe_id)
 );
 
+CREATE SEQUENCE recipe_recipe_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+
 CREATE TABLE recipe (
-	recipe_id integer NOT NULL,
+	recipe_id integer DEFAULT nextval('recipe_recipe_id_seq'::regclass) NOT NULL,
 	recipe_name varchar(32) NOT NULL,
 	meal_type_id integer,
 	category_id integer,
@@ -40,8 +46,14 @@ CREATE TABLE recipe_ingredient (
 	CONSTRAINT pk_recipe_ingredient_recipe_id_ingredient_id PRIMARY KEY (recipe_id, ingredient_id)
 );
 
+CREATE SEQUENCE ingredient_ingredient_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+	
 CREATE TABLE ingredient (
-	ingredient_id integer NOT NULL,
+	ingredient_id integer DEFAULT NEXTVAL('ingredient_ingredient_id_seq'::regclass) NOT NULL,
 	ingredient_name varchar(32) NOT NULL,
 	unit_of_measurement varchar(32) NOT NULL,
 	CONSTRAINT pk_ingredient_ingredient_id PRIMARY KEY (ingredient_id)
@@ -54,8 +66,14 @@ CREATE TABLE ingredient_unit (
 	CONSTRAINT pk_ingredient_unit_ingredient_id_unit_id PRIMARY KEY (ingredient_id, unit_id)
 );
 
+CREATE SEQUENCE unit_unit_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+
 CREATE TABLE unit (
-	unit_id integer NOT NULL,
+	unit_id integer DEFAULT NEXTVAL('unit_unit_id_seq':: regclass) NOT NULL,
 	unit_name varchar,
 	CONSTRAINT pk_unit_unit_id PRIMARY KEY (unit_id)
 );
@@ -66,22 +84,38 @@ CREATE TABLE meal_plan_recipe (
 	CONSTRAINT pk_meal_plan_recipe_meal_plan_id_recipe_id PRIMARY KEY (meal_plan_id, recipe_id)
 );
 
+CREATE SEQUENCE meal_plan_meal_plan_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+
 CREATE TABLE meal_plan (
-	meal_plan_id integer NOT NULL,
+	meal_plan_id integer DEFAULT NEXTVAL('meal_plan_meal_plan_id_seq':: regclass) NOT NULL,
 	meal_plan_start_date date NOT NULL,
 	meal_plan_end_date date NOT NULL,
 	CONSTRAINT pk_meal_plan_meal_plan_id PRIMARY KEY (meal_plan_id)
 );
-
+CREATE SEQUENCE recipe_category_recipe_category_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+	
 CREATE TABLE recipe_category (
-	recipe_category_id integer NOT NULL,
+	recipe_category_id integer DEFAULT NEXTVAL('recipe_category_recipe_category_id_seq') NOT NULL,
 	recipe_category_name varchar(32) NOT NULL,
 	recipe_category_description varchar(128),
 	CONSTRAINT pk_recipe_category_recipe_category_id PRIMARY KEY (recipe_category_id)
 );
+CREATE SEQUENCE meal_type_meal_type_id_seq 
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
 
 CREATE TABLE meal_type (
-	meal_type_id integer NOT NULL,
+	meal_type_id integer DEFAULT NEXTVAL('meal_type_meal_type_id_seq':: regclass) NOT NULL,
 	meal_type_name varchar(32) NOT NULL,
 	CONSTRAINT pk_meal_type_meal_type_id PRIMARY KEY (meal_type_id)
 );

@@ -6,7 +6,7 @@ public class AuthControllerTest {
 		private AuthenticationController controller;
 		
 		@Test
-		public void display_login() {
+		public void () {
 			
 		}
 	}
