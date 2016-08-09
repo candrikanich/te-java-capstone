@@ -8,7 +8,7 @@
   <ol class="user_recipe_list">
   	<c:forEach items="${recipes}" var="recipe">
   		<div class="recipe">
-  			<c:url var="recipeHref" value="/users/{currentUser}/recipeDetails">
+  			<c:url var="recipeHref" value="/users/${currentUser}/recipeDetails">
   				<c:param name="recipeId">${recipe.recipeId}</c:param>
   			</c:url>
   			<a href="${recipeHref}" >
