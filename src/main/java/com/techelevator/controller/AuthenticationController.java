@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.UserDAO;
-
+@Transactional
 @Controller
 @SessionAttributes({"currentUser", "CSRF_TOKEN"})
 public class AuthenticationController {
