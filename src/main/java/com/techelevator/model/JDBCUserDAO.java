@@ -17,7 +17,7 @@ public class JDBCUserDAO implements UserDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	private PasswordHasher passwordHasher;
-
+	
 	
 	@Autowired
 	public JDBCUserDAO(DataSource dataSource, PasswordHasher passwordHasher) {
@@ -25,12 +25,16 @@ public class JDBCUserDAO implements UserDAO {
 		this.passwordHasher = passwordHasher;
 	}
 	@Override
-	public Integer getUserIdByUsername(String username) {
+	public int getUserIdByUsername(String userName) {
 		String sqlForUserId = "SELECT user_id"+
-							  "FROM app_user" +
-							  "WHERE user.username = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForUserId, username);
-		return results.getInt("user_id"); 
+							  " FROM app_user" +
+							  " WHERE user_name = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForUserId, userName);
+		int userId = 0; 
+		while( results.next()) {
+			userId=results.getInt("user_id"); 
+		}
+		return userId;
 	}
 
 	@Override

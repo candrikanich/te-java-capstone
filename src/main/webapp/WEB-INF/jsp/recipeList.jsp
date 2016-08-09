@@ -3,14 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
 <c:import url="/WEB-INF/jsp/header.jsp" />
-  <h1> ${param.username}'s Recipes</h1>
+  <h1> ${currentUser}'s Recipes</h1>
   
   <ol class="user_recipe_list">
   	<c:forEach items="${recipes}" var="recipe">
   		<div class="recipe">
-  			<h3>
+  			<c:url var="recipeHref" value="/users/{currentUser}/recipeDetails">
+  				<c:param name="recipeId">${recipe.recipeId}</c:param>
+  			</c:url>
+  			<a href="${recipeHref}" >
   				<c:out value="${recipe.recipeName}"/>
-  			</h3>
+  			</a>
+  			
   		</div>
   	</c:forEach>
   </ol>

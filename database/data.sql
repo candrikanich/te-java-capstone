@@ -16,4 +16,10 @@ INSERT INTO recipe (recipe_name, instructions) VALUES ('pork loin', 'test instru
 INSERT INTO recipe (recipe_name, instructions) VALUES ('cheerios', 'test instructions');
 INSERT INTO recipe (recipe_name, instructions) VALUES ('ramen', 'test instructions');
 
+INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (1,1);
+INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (1,2);
+INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (1,3);
+INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (2,4);
+INSERT INTO app_user_recipe (user_id, recipe_id) VALUES (2,5);
+
 COMMIT;

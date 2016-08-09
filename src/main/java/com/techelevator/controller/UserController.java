@@ -23,9 +23,9 @@ public class UserController {
 	private RecipeDAO recipeDAO;
 	
 	@Autowired
-	public UserController(UserDAO userDAO) {
+	public UserController(UserDAO userDAO, RecipeDAO recipeDAO) {
 		this.userDAO = userDAO;
-		
+		this.recipeDAO = recipeDAO; 
 	}
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
 	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName) {
@@ -33,6 +33,13 @@ public class UserController {
 		List<Recipe> recipes = recipeDAO.getRecipesByUserId(userId);
 		model.put("recipes", recipes);
 		return "recipeList";
+	}
+	@RequestMapping(path="/users/{userName}/recipeDetails", method=RequestMethod.GET)
+	public String displayRecipeDetailsByUser(ModelMap model, @RequestParam int recipeId,@PathVariable String userName){
+		Recipe r = recipeDAO.getRecipeById(recipeId);
+		model.put("recipe", r);
+		return "recipeDetails";
+		
 	}
 
 	@RequestMapping(path="/users", method=RequestMethod.POST)

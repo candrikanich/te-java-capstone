@@ -22,11 +22,25 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		}
 
 		@Override
+		public Recipe getRecipeById(int recipeId) {
+			String sqlSearchForRecipeById = "SELECT *" +
+									  " FROM recipe"+
+									  " WHERE recipe_id = ?";
+			SqlRowSet results= jdbcTemplate.queryForRowSet(sqlSearchForRecipeById, recipeId);
+			Recipe recipeById = new Recipe(); 
+			while( results.next()) {
+				recipeById.setRecipeId(results.getInt("recipe_id"));
+				recipeById.setRecipeName(results.getString("recipe_name"));
+				recipeById.setInstructions(results.getString("instructions"));
+			}
+			return recipeById;
+		}
+		@Override
 		public List<Recipe> getRecipesByUserId(int userId) {
 			String sqlSelectRecipeByUser = "SELECT *"+
-										   " FROM Recipe"+
-										   " WHERE recipe_id IN ( SELECT user_recipe.recipe_id FROM user_recipe"+
-										   " WHERE user_recipe.user_recipe = ?)";
+										   " FROM recipe"+
+										   " WHERE recipe_id IN ( SELECT app_user_recipe.recipe_id FROM app_user_recipe"+
+										   " WHERE app_user_recipe.user_id = ?)";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUser, userId);
 			List<Recipe> recipesByUser = new ArrayList<Recipe>();
 			while( results.next() ) {

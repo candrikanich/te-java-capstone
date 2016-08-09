@@ -11,4 +11,6 @@ public interface RecipeDAO {
 	public List<Recipe> getAllRecipes(); 
 	
 	public List<Recipe> getRecipeByType();
+
+	Recipe getRecipeById(int recipeId);
 }
