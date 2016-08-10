@@ -33,7 +33,7 @@ CREATE SEQUENCE recipe_recipe_id_seq
 CREATE TABLE recipe (
 	recipe_id integer DEFAULT nextval('recipe_recipe_id_seq'::regclass) NOT NULL,
 	recipe_name varchar(32) NOT NULL,
-	instructions varchar(256),
+	instructions varchar,
 	CONSTRAINT pk_recipe_recipe_id PRIMARY KEY (recipe_id)
 );
 

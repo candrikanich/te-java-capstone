@@ -9,4 +9,6 @@ public interface UserDAO {
 	public void updatePassword(String userName, String password);
 
 	public int getUserIdByUsername(String username);
+	
+	public User getCurrentUser(String userName, String password);
 }

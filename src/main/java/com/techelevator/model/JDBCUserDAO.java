@@ -61,6 +61,28 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
+	
+	@Override
+	public User getCurrentUser(String userName, String password) {
+		User currentUser = new User();
+		
+		String sqlSearchForUser = "SELECT * "+
+			      "FROM app_user "+
+			      "WHERE UPPER(user_name) = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+		
+		if(results.next()) {
+			String storedSalt = results.getString("salt");
+			String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
+			
+			currentUser.setUserId(results.getInt("user_id"));
+			currentUser.setUserName(results.getString("user_name"));
+			currentUser.setHash(hashedPassword);
+			currentUser.setSalt(storedSalt);
+		} 
+		
+		return currentUser;
+	}
 
 	@Override
 	public void updatePassword(String userName, String password) {
