@@ -5,7 +5,7 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
   <h1> ${currentUser}'s Recipes</h1>
   
-  <ol class="user_recipe_list">
+  <ul class="user_recipe_list">
   	<c:forEach items="${recipes}" var="recipe">
   		<div class="recipe">
   			<c:url var="recipeHref" value="/users/${currentUser}/recipeDetails">
@@ -17,7 +17,7 @@
   			
   		</div>
   	</c:forEach>
-  </ol>
+  </ul>
  
  
  

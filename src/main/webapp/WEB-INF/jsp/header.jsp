@@ -48,7 +48,7 @@
 					</button>
 					
 				  <c:url var="homepageHref" value="/" />	
-			      <a class="navbar-brand" href="homepageHref">Meal Planner 5000</a>
+			      <a class="navbar-brand" href="${homepageHref}">Meal Planner 5000</a>
 			    </div>
 			    
 				<div class="collapse navbar-collapse" id="myNavbar">
