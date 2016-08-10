@@ -8,7 +8,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			<title>Meal Planner 5000</title>
 			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-			<link rel="stylesheet" href="css/styles.css">
+			<link rel="stylesheet" href="http://localhost:8080/capstone/css/styles.css">
 		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
@@ -46,7 +46,9 @@
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span> 
 					</button>
-			      <a class="navbar-brand" href="#myStory">Meal Planner 5000</a>
+					
+				  <c:url var="homepageHref" value="/" />	
+			      <a class="navbar-brand" href="homepageHref">Meal Planner 5000</a>
 			    </div>
 			    
 				<div class="collapse navbar-collapse" id="myNavbar">
