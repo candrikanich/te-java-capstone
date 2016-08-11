@@ -78,20 +78,25 @@ public class UserController {
 		return "userDashboard";
 	}
 	
-	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.GET)
+	@RequestMapping(path="/users/{userName}/addNewRecipe", method=RequestMethod.GET)
 	public String displaySaveRecipeForm(@PathVariable String userName, ModelMap model) {
 		model.put("allIngredients", ingredientDAO.getAllIngredients());
-		return "saveRecipe";
+		return "addNewRecipe";
 	}
 	
-	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.POST)
-	public String saveRecipe(@RequestParam String recipeName, 
-							 @RequestParam String instructions) {
+	@RequestMapping(path="/users/{userName}/addNewRecipe", method=RequestMethod.POST)
+	public String addNewRecipe(@RequestParam String recipeName, 
+							 @RequestParam String instructions,
+							 @RequestParam int userId) {
 		Recipe recipe = new Recipe();
 		recipe.setRecipeName(recipeName);
 		recipe.setInstructions(instructions);
 		
-		return "saveRecipe";
+		recipeDAO.addNewRecipe(recipe, userId);
+		
+		String query = "?userId=" + userId;
+		
+		return "redirect:/users/{userName}/recipeList"+query;
 	}
 	
 }

@@ -19,7 +19,9 @@
   	</c:forEach>
   </ul>
 	
-	<c:url var="saveRecipeHref" value="/users/${currentUser.userName}/saveRecipe" />
+	<c:url var="saveRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" >
+		<c:param name="userId">${currentUser.userId}</c:param>
+	</c:url>
 	<a href="${saveRecipeHref}">
 		<button type="submit" class="btn btn-lg">Add a New Recipe</button>
 	</a>

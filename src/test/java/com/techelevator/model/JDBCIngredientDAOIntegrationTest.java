@@ -51,7 +51,7 @@ public class JDBCIngredientDAOIntegrationTest {
 		Recipe r = new Recipe();
 		r.setRecipeId(recipeId);
 		r.setRecipeName(recipeName);
-		recipeDAO.saveRecipe(r);
+		recipeDAO.addNewRecipe(r);
 	}
 	
 	private void createIngredient(int ingredientId, String ingredientName) {

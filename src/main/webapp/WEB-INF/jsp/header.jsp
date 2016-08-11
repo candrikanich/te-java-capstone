@@ -64,13 +64,13 @@
 							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList">
 								<c:param name="userId">${currentUser.userId}</c:param>
 							</c:url>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myResume"><a id="btn-showMyResume" href="${myRecipesHref}"><span class="glyphicon glyphicon-list-alt">&nbsp;</span>My Recipes</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes"><a id="btn-showMyRecipes" href="${myRecipesHref}"><span class="glyphicon glyphicon-list-alt">&nbsp;</span>My Recipes</a></li>
 							
 							<c:url var="myMealPlanHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myProjects"><a id="btn-showMyProjects" href="${myMealPlanHref}"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>My Meal Plan</a></li>  		        
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan"><a id="btn-showMyMealPlan" href="${myMealPlanHref}"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>My Meal Plan</a></li>  		        
 							
 							<c:url var="myGroceryListHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="contactMe"><a id="btn-showContactMe" href="${myGroceryListHref}"><span class="glyphicon glyphicon-send">&nbsp;</span>My Grocery List</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList"><a id="btn-showGroceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-send">&nbsp;</span>My Grocery List</a></li>
 							</ul>
 
 						</c:if>

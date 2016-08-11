@@ -51,7 +51,7 @@ public class JDBCRecipeDAOIntegrationTest {
 		recipe.setRecipeId(10);
 		recipe.setRecipeName("Hamburger");
 		recipe.setInstructions("Test Instruction for hamburger");
-		recipeDAO.saveRecipe(recipe);
+		recipeDAO.addNewRecipe(recipe);
 		
 		
 		assertEquals("Hamburger", recipeDAO.getRecipeById(10).getRecipeName());

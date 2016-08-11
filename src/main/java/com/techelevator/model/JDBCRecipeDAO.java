@@ -61,16 +61,15 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		}
 
 		@Override
-		public void saveRecipe(Recipe recipe) {
+		public void addNewRecipe(Recipe recipe, int userId) {
 			if (recipe.getRecipeId() == 0) {
 				int id = getNextRecipeId();
 				recipe.setRecipeId(id);
 				jdbcTemplate.update("INSERT INTO recipe(recipe_id, recipe_name, instructions) VALUES (?, ?, ?)", 
 						id, recipe.getRecipeName(), recipe.getInstructions());
-			} else {
-				jdbcTemplate.update("INSERT INTO recipe(recipe_id, recipe_name, instructions) VALUES (?, ?, ?)", 
-						recipe.getRecipeId(), recipe.getRecipeName(), recipe.getInstructions());
-			}
+				jdbcTemplate.update("INSERT INTO app_user_recipe(user_id, recipe_id) VALUES (?, ?)", 
+						userId, recipe.getRecipeId());
+			} 
 		}
 
 		@Override
@@ -98,7 +97,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		}
 		
 		private int getNextRecipeId() {
-			SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT nextval('receipe_recipe_id_seq')");
+			SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT nextval('recipe_recipe_id_seq')");
 			result.next();
 			int id = result.getInt(1);
 			return id;
