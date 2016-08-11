@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<label for="ingredient">Ingredients: </label>
 				<select class="form-control" id="ingredientList">
-					<c:forEach items="${ingredients}" var="ingredient">
+					<c:forEach items="${allIngredients}" var="ingredient">
 						<option value="${ingredient.ingredientName}">${ingredient.ingredientName}</option>	
 					</c:forEach>
 				</select>
@@ -26,7 +26,7 @@
 				<label for="instructions">Instructions: </label>
 				<textarea id="instructions" name="instructions" class="form-control"></textarea>	
 			</div>
-			<button type="submit" class="btn btn-default">Save Recipe</button>
+			<button type="submit" class="btn btn-default">Add Recipe</button>
 		</form>
 	</div>
 

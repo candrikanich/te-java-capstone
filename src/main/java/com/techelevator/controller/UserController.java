@@ -79,7 +79,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.GET)
-	public String displaySaveRecipeForm(@PathVariable String userName) {
+	public String displaySaveRecipeForm(@PathVariable String userName, ModelMap model) {
+		model.put("allIngredients", ingredientDAO.getAllIngredients());
 		return "saveRecipe";
 	}
 	

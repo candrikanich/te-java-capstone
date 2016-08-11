@@ -20,12 +20,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
-	public String showHomePage() {
+	public String showHomePage(ModelMap model) {
 		return "index";
 	}
 	
-	@ModelAttribute
-	public void populateIngredientList(ModelMap model) {
-		model.put("ingredients", ingredientDAO.getAllIngredients());
-	}
 }
