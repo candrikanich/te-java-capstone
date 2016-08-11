@@ -11,10 +11,10 @@ public interface RecipeDAO {
 	public List<Recipe> getAllRecipes(); 
 	
 	public List<Recipe> getRecipeByType();
-
-	Recipe getRecipeById(int recipeId);
 	
 	public void saveRecipeIngredients(int recipeId, int ingredientId);
 	
 	public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId);
+	
+	
 }

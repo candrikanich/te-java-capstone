@@ -20,40 +20,42 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
 		}
 
-		@Override
-		public Recipe getRecipeById(int recipeId) {
-			String sqlSearchForRecipeById = "SELECT * " +
-									  		"FROM recipe "+
-									  		"WHERE recipe_id = ?";
-			SqlRowSet results= jdbcTemplate.queryForRowSet(sqlSearchForRecipeById, recipeId);
-			Recipe recipeById = new Recipe(); 
-			while(results.next()) {
-				mapRowToRecipe(results);
-			}
-			return recipeById;
-		}
+//		@Override
+//		public Recipe getRecipeById(int recipeId) {
+//			String sqlSearchForRecipeById = "SELECT * " +
+//									  		"FROM recipe "+
+//									  		"WHERE recipe_id = ?";
+//			SqlRowSet results= jdbcTemplate.queryForRowSet(sqlSearchForRecipeById, recipeId);
+//			Recipe recipeById = new Recipe(); 
+//			while(results.next()) {
+//				mapRowToRecipe(results);
+//			}
+//			return recipeById;
+//		}
 		
 		@Override
 		public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId) {
-			String sqlSelectRecipeByUserAndRecipe = "SELECT *"+
+			String sqlSelectRecipeByUserAndRecipe = "SELECT * "+
 					   								" FROM recipe"+
 					   								" WHERE recipe_id IN (SELECT app_user_recipe.recipe_id FROM app_user_recipe"+
 					   								" WHERE app_user_recipe.user_id = ? AND app_user_recipe.recipe_id = ?)";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUserAndRecipe, userId, recipeId);
-			return mapRowToRecipe(results);
+			Recipe recipeByUserAndId = new Recipe();
+			while(results.next()) { 
+				recipeByUserAndId = mapRowToRecipe(results);
+			} return recipeByUserAndId;
 		}
 		
 		@Override
 		public List<Recipe> getRecipesByUserId(int userId) {
-			String sqlSelectRecipeByUser = "SELECT *"+
+			String sqlSelectRecipeByUser = "SELECT * "+
 										   "FROM recipe "+
 										   "WHERE recipe_id IN ( SELECT app_user_recipe.recipe_id FROM app_user_recipe "+
 										   "WHERE app_user_recipe.user_id = ?)";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUser, userId);
 			List<Recipe> recipesByUser = new ArrayList<Recipe>();
 			while(results.next()) {
-				Recipe r = mapRowToRecipe(results);
-				recipesByUser.add(r);
+				recipesByUser.add(mapRowToRecipe(results));
 			}
 			return recipesByUser;
 		}
@@ -89,11 +91,9 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		
 		private Recipe mapRowToRecipe(SqlRowSet results) {
 			Recipe r = new Recipe();
-			while (results.next()) {
 				r.setRecipeId(results.getInt("recipe_id"));
 				r.setRecipeName(results.getString("recipe_name"));
 				r.setInstructions(results.getString("instructions"));
-			}
 			return r;
 		}
 		
