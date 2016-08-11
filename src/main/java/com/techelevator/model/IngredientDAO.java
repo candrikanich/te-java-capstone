@@ -10,4 +10,6 @@ public interface IngredientDAO {
 	
 	public String getIngredientByName();
 	
+	public void saveIngredient(Ingredient ingredient);
+	
 }

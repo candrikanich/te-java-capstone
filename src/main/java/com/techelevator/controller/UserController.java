@@ -32,8 +32,7 @@ public class UserController {
 		this.ingredientDAO = ingredientDAO;
 	}
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
-	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName) {
-		int userId = userDAO.getUserIdByUsername(userName);
+	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
 		List<Recipe> recipes = recipeDAO.getRecipesByUserId(userId);
 		model.put("recipes", recipes);
 		return "recipeList";
@@ -63,6 +62,33 @@ public class UserController {
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm() {
 		return "newUser";
+	}
+	
+	@RequestMapping(path="/users/{userName}/changePassword", method=RequestMethod.GET)
+	public String displayChangePasswordForm(Map<String, Object> model, @PathVariable String userName) {
+		model.put("userName", userName);
+		return "changePassword";
+	}
+	
+	@RequestMapping(path="/users/{userName}/changePassword", method=RequestMethod.POST)
+	public String changePassword(@PathVariable String userName, @RequestParam String password) {
+		userDAO.updatePassword(userName, password);
+		return "userDashboard";
+	}
+	
+	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.GET)
+	public String displaySaveRecipeForm() {
+		return "saveRecipe";
+	}
+	
+	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.POST)
+	public String saveRecipe(@RequestParam String recipeName, 
+							 @RequestParam String instructions) {
+		Recipe recipe = new Recipe();
+		recipe.setRecipeName(recipeName);
+		recipe.setInstructions(instructions);
+		
+		return "saveRecipe";
 	}
 	
 }

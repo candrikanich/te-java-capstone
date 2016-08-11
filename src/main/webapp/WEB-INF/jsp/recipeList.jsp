@@ -8,8 +8,9 @@
   <ul class="user_recipe_list">
   	<c:forEach items="${recipes}" var="recipe">
   		<div class="recipe">
-  			<c:url var="recipeHref" value="/users/${currentUser}/recipeDetails">
+  			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
   				<c:param name="recipeId">${recipe.recipeId}</c:param>
+  				<c:param name="recipeId">${currentUser.userId}</c:param>
   			</c:url>
   			<a href="${recipeHref}" >
   				<c:out value="${recipe.recipeName}"/>
