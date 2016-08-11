@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-@Component
 
+@Component
 public class JDBCIngredientDAO implements IngredientDAO {
+	
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
@@ -27,24 +28,27 @@ public class JDBCIngredientDAO implements IngredientDAO {
 									  "FROM recipe_ingredient WHERE recipe_ingredient.recipe_id = ? )";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForIngredientById, recipeId);
 		List<Ingredient> ingredientsById = new ArrayList<Ingredient>();
-			while(results.next()){
-				Ingredient i = new Ingredient();
-				i.setIngredientId(results.getInt("ingredient_id"));
-				i.setIngredientName(results.getString("ingredient_name"));
-				ingredientsById.add(i);
-			}
-			return ingredientsById;
-		}
+		ingredientsById = mapRowSetToIngredients(results);
+		return ingredientsById;
+	}
+	
+	@Override 
+	public List<Ingredient> getAllIngredients() {
+		String sqlSelectAllIngredients = "SELECT * "+
+				  					  	 "FROM ingredient";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllIngredients);
+		List<Ingredient> allIngredients = new ArrayList<>();
+		allIngredients = mapRowSetToIngredients(results);
+		return allIngredients;
+	}
 
 	@Override
 	public String getIngredientById() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getIngredientByName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -64,16 +68,12 @@ public class JDBCIngredientDAO implements IngredientDAO {
 	private List<Ingredient> mapRowSetToIngredients(SqlRowSet results) {
 		ArrayList<Ingredient> ingredientList = new ArrayList<>();
 		while(results.next()) {
-			ingredientList.add(mapRowToIngredient(results));
+			Ingredient i = new Ingredient();
+			i.setIngredientId(results.getInt("ingredient_id"));
+			i.setIngredientName(results.getString("ingredient_name"));
+			ingredientList.add(i);
 		}
 		return ingredientList;
-	}
-	
-	private Ingredient mapRowToIngredient(SqlRowSet results) {
-		Ingredient i = new Ingredient();
-		i.setIngredientId(results.getInt("ingredient_id"));
-		i.setIngredientName(results.getString("ingredient_name"));
-		return i;
 	}
 	
 	private int getNextIngredientId() {

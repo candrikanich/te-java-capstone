@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="col-md-5">
-		<form action="${formAction}" method="POST" id="changePasswordForm">
+		<form action="${formAction}" method="POST">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 			<div class="form-group">
 				<label for="recipeName">Recipe Name: </label>
@@ -16,11 +16,15 @@
 			</div>
 			<div class="form-group">
 				<label for="ingredient">Ingredients: </label>
-				<input type="text" id="ingredient" name="ingredient" class="form-control" />	
+				<select class="form-control" id="ingredientList">
+					<c:forEach items="${ingredients}" var="ingredient">
+						<option value="${ingredient.ingredientName}">${ingredient.ingredientName}</option>	
+					</c:forEach>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="instructions">Instructions: </label>
-				<input type="text" id="instructions" name="instructions" class="form-control" />	
+				<textarea id="instructions" name="instructions" class="form-control"></textarea>	
 			</div>
 			<button type="submit" class="btn btn-default">Save Recipe</button>
 		</form>

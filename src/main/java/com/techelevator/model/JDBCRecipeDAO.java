@@ -15,7 +15,6 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 		private JdbcTemplate jdbcTemplate; 
 		
-		
 		@Autowired 
 		public JDBCRecipeDAO(DataSource dataSource) {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -23,15 +22,13 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 		@Override
 		public Recipe getRecipeById(int recipeId) {
-			String sqlSearchForRecipeById = "SELECT *" +
-									  " FROM recipe"+
-									  " WHERE recipe_id = ?";
+			String sqlSearchForRecipeById = "SELECT * " +
+									  		"FROM recipe "+
+									  		"WHERE recipe_id = ?";
 			SqlRowSet results= jdbcTemplate.queryForRowSet(sqlSearchForRecipeById, recipeId);
 			Recipe recipeById = new Recipe(); 
-			while( results.next()) {
-				recipeById.setRecipeId(results.getInt("recipe_id"));
-				recipeById.setRecipeName(results.getString("recipe_name"));
-				recipeById.setInstructions(results.getString("instructions"));
+			while(results.next()) {
+				mapRowToRecipe(results);
 			}
 			return recipeById;
 		}
@@ -49,16 +46,13 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		@Override
 		public List<Recipe> getRecipesByUserId(int userId) {
 			String sqlSelectRecipeByUser = "SELECT *"+
-										   " FROM recipe"+
-										   " WHERE recipe_id IN ( SELECT app_user_recipe.recipe_id FROM app_user_recipe"+
-										   " WHERE app_user_recipe.user_id = ?)";
+										   "FROM recipe "+
+										   "WHERE recipe_id IN ( SELECT app_user_recipe.recipe_id FROM app_user_recipe "+
+										   "WHERE app_user_recipe.user_id = ?)";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUser, userId);
 			List<Recipe> recipesByUser = new ArrayList<Recipe>();
-			while( results.next() ) {
-				Recipe r = new Recipe();
-				r.setRecipeId(results.getInt("recipe_id"));
-				r.setRecipeName(results.getString("recipe_name"));
-				r.setInstructions(results.getString("instructions"));
+			while(results.next()) {
+				Recipe r = mapRowToRecipe(results);
 				recipesByUser.add(r);
 			}
 			return recipesByUser;
@@ -84,7 +78,6 @@ public class JDBCRecipeDAO implements RecipeDAO {
 
 		@Override
 		public List<Recipe> getRecipeByType() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
