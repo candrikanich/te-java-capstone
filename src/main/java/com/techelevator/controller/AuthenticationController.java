@@ -41,10 +41,12 @@ public class AuthenticationController {
 						ModelMap model, 
 						HttpSession session,
 						HttpServletRequest request) {
-		if(userDAO.searchForUsernameAndPassword(userName, password)) {
+		
+		User currentUser = userDAO.searchForUsernameAndPassword(userName, password);
+		
+		if(currentUser != null) {
 			session.invalidate(); 
-			
-			model.put("currentUser", userDAO.getCurrentUser(userName, password));
+			model.put("currentUser", currentUser);
 			model.put("CSRF_TOKEN", generateCSRFToken());
 			
 			if (isValidRedirect(request, destination)) {

@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.techelevator.model.User;
+
 public class AuthorizationFilter implements Filter {
 
 	@Override
@@ -51,7 +53,12 @@ public class AuthorizationFilter implements Filter {
 	}
 
 	private String getUserFromSession(HttpServletRequest httpRequest) {
-		return (String)httpRequest.getSession().getAttribute("currentUser");
+		User currentUser = (User)httpRequest.getSession().getAttribute("currentUser");
+		if(currentUser != null) {
+			return currentUser.getUserName();
+		} else {
+			return null;
+		}
 	}
 
 	private String getUserFromRequest(HttpServletRequest httpRequest) {

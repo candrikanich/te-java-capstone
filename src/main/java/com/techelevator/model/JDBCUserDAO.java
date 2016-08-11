@@ -46,42 +46,32 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean searchForUsernameAndPassword(String userName, String password) {
+	public User searchForUsernameAndPassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM app_user "+
 							      "WHERE UPPER(user_name) = ?";
-		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
-		if(results.next()) {
-			String storedSalt = results.getString("salt");
-			String storedPassword = results.getString("password");
-			String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
-			return storedPassword.equals(hashedPassword);
+		User currentUser = new User();
+		boolean userExists = results.next();
+		
+		if(userExists) {
+			if (passwordInputMatchesStoredPassword(results, password)) {
+				currentUser.setUserId(results.getInt("user_id"));
+				currentUser.setUserName(results.getString("user_name"));
+			} else {
+				currentUser = null;
+			}
 		} else {
-			return false;
+			currentUser = null;
 		}
+		return currentUser;
 	}
 	
-	@Override
-	public User getCurrentUser(String userName, String password) {
-		User currentUser = new User();
-		
-		String sqlSearchForUser = "SELECT * "+
-			      "FROM app_user "+
-			      "WHERE UPPER(user_name) = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
-		
-		if(results.next()) {
-			String storedSalt = results.getString("salt");
-			String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
-			
-			currentUser.setUserId(results.getInt("user_id"));
-			currentUser.setUserName(results.getString("user_name"));
-			currentUser.setHash(hashedPassword);
-			currentUser.setSalt(storedSalt);
-		} 
-		
-		return currentUser;
+	private boolean passwordInputMatchesStoredPassword(SqlRowSet results, String password) {
+		String storedSalt = results.getString("salt");
+		String storedPassword = results.getString("password");
+		String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
+		return storedPassword.equals(hashedPassword);
 	}
 
 	@Override

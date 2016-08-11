@@ -26,7 +26,6 @@
 				
 			});
 			
-			
 		</script>
 	</head>
 	<body>
@@ -62,7 +61,9 @@
 						
 						<c:if test="${not empty currentUser}">
 						
-							<c:url var="myRecipesHref" value="/users/${currentUser}/recipeList"/>
+							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList">
+								<c:param name="userId">${currentUser.userId}</c:param>
+							</c:url>
 							<li data-toggle="collapse" data-target=".navbar-collapse" class="myResume"><a id="btn-showMyResume" href="${myRecipesHref}"><span class="glyphicon glyphicon-list-alt">&nbsp;</span>My Recipes</a></li>
 							
 							<c:url var="myMealPlanHref" value="#"/>
@@ -92,7 +93,7 @@
 								<form id="logoutForm" action="${logoutAction}" method="POST">
 									<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 								</form>
-								<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
+								<c:url var="changePasswordHref" value="/users/${currentUser.userName}/changePassword" />
 								<li><a href="${changePasswordHref}">Change Password</a></li>
 								<li data-toggle="collapse" data-target=".navbar-collapse"><a id="logoutLink" href="#"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
 							</c:otherwise>
