@@ -77,7 +77,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{userName}/saveRecipe", method=RequestMethod.GET)
-	public String displaySaveRecipeForm() {
+	public String displaySaveRecipeForm(@PathVariable String userName) {
 		return "saveRecipe";
 	}
 	

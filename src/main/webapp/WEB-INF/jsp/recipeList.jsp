@@ -18,5 +18,10 @@
   		</div>
   	</c:forEach>
   </ul>
+	
+	<c:url var="saveRecipeHref" value="/users/${currentUser.userName}/saveRecipe" />
+	<a href="${saveRecipeHref}">
+		<button type="submit" class="btn btn-lg">Add a New Recipe</button>
+	</a>
  
 <c:import url="/WEB-INF/jsp/footer.jsp" />
