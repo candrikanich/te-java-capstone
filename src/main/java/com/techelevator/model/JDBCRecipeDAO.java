@@ -35,6 +35,17 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			}
 			return recipeById;
 		}
+		
+		@Override
+		public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId) {
+			String sqlSelectRecipeByUserAndRecipe = "SELECT *"+
+					   								" FROM recipe"+
+					   								" WHERE recipe_id IN (SELECT app_user_recipe.recipe_id FROM app_user_recipe"+
+					   								" WHERE app_user_recipe.user_id = ? AND app_user_recipe.recipe_id = ?)";
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUserAndRecipe, userId, recipeId);
+			return mapRowToRecipe(results);
+		}
+		
 		@Override
 		public List<Recipe> getRecipesByUserId(int userId) {
 			String sqlSelectRecipeByUser = "SELECT *"+
@@ -85,9 +96,11 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		
 		private Recipe mapRowToRecipe(SqlRowSet results) {
 			Recipe r = new Recipe();
-			r.setRecipeId(results.getInt("recipe_id"));
-			r.setRecipeName(results.getString("recipe_name"));
-			r.setInstructions(results.getString("instructions"));
+			while (results.next()) {
+				r.setRecipeId(results.getInt("recipe_id"));
+				r.setRecipeName(results.getString("recipe_name"));
+				r.setInstructions(results.getString("instructions"));
+			}
 			return r;
 		}
 		
@@ -97,6 +110,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			int id = result.getInt(1);
 			return id;
 		}
+
 		
 		
 		

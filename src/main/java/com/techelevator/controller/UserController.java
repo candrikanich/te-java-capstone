@@ -38,10 +38,12 @@ public class UserController {
 		return "recipeList";
 	}
 	@RequestMapping(path="/users/{userName}/recipeDetails", method=RequestMethod.GET)
-	public String displayRecipeDetails(ModelMap model, @RequestParam int recipeId,@PathVariable String userName){
-		Recipe r = recipeDAO.getRecipeById(recipeId);
+	public String displayRecipeDetails(ModelMap model, @RequestParam int recipeId, @RequestParam int userId, 
+										@PathVariable String userName){
+		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
+		//Recipe r = recipeDAO.getRecipeById(recipeId);
 		model.put("recipe", r);
-		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(recipeId);
+		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(r.getRecipeId());
 		model.put("ingredients", ingredients);
 		return "recipeDetails";
 		
