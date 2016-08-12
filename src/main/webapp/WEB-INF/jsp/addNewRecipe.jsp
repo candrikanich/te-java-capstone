@@ -19,25 +19,23 @@
 				<div class="form-group">
 					<label for="ingredient">Ingredients: </label>
 					
-					<select class="form-control" id="ingredientList">
+					<select class="form-control" name="ingredientId" id="ingredient">
 						<c:forEach items="${allIngredients}" var="ingredient">
-							<option value="${ingredient.ingredientName}">${ingredient.ingredientName}</option>	
+							<option value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
 						</c:forEach>
 					</select>
-					<span id="quantitySpan">
 						<label for="quantity"> Quantity: </label>
-						<select class="" id="quantityList">	
-							<c:forEach items="${allQuantities}" var="quantityList">
-								<option value="${ingredient.quantity}">${ingredient.quantity}</option>
+						<select class="form-control" name="quantityId" id="quantity">	
+							<c:forEach items="${allQuantities}" var="quantity">
+								<option value="${quantity.quantityId}">${quantity.quantityName}</option>
 							</c:forEach>
 						</select>
-					</span>
-					<span id="unitSpan">	
 						<label for="unit"> Unit: </label>
-						<c:forEach items="${allIngredients}" var="unitList">
-							<option value="${ingredient.unit}">${ingredient.unit}</option>
-						</c:forEach>
-					</span>
+						<select class="form-control" name="unitId" id="unit">
+							<c:forEach items="${allUnits}" var="unit">
+								<option value="${unit.unitId}">${unit.unitName}</option>
+							</c:forEach>
+						</select>
 				</div>
 				<div class="form-group">
 					<label for="instructions">Instructions: </label>

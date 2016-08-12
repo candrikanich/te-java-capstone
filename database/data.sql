@@ -60,29 +60,13 @@ INSERT INTO ingredient (ingredient_name) VALUES ('ramen noodles');
 INSERT INTO ingredient (ingredient_name) VALUES ('hot water');
 INSERT INTO ingredient (ingredient_name) VALUES ('crackers');
 
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(1,1);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(2,1);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(3,1);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(4,1);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(5,2);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(6,2);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(7,2);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(8,3);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(9,3);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(10,3);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(11,4);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(3,4);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(12,5);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(13,5);
-INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(14,5);
-
 INSERT INTO unit (unit_id, unit_name) VALUES(1, 'cups');
 INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tsp');
 INSERT INTO unit (unit_id, unit_name) VALUES(3, 'TB');
 INSERT INTO unit (unit_id, unit_name) VALUES(4, 'oz');
 
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(1, .25);
-INSERT INTO quantity (quantity_id, quantity_number) VALUES(1, .33);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(2, .33);
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(3, .5);
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(4, .66);
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(5, .75);
@@ -94,11 +78,20 @@ INSERT INTO quantity (quantity_id, quantity_number) VALUES(10, 1.66);
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(11, 1.75);
 INSERT INTO quantity (quantity_id, quantity_number) VALUES(12, 2);
 
-
-
-
-
-
-
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(1,1,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(2,1,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(3,1,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(4,1,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(5,2,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(6,2,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(7,2,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(8,3,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(9,3,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(10,3,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(11,4,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(3,4,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(12,5,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(13,5,1,1);
+INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(14,5,1,1);
 
 COMMIT;

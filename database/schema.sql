@@ -41,7 +41,7 @@ CREATE TABLE recipe_ingredient (
 	recipe_id integer NOT NULL,
 	ingredient_id integer NOT NULL,
 	unit_id integer NOT NULL,
-	quantity_id integer NOT NULL,
+	quantity_id integer,
 	CONSTRAINT pk_recipe_ingredient_recipe_id_ingredient_id PRIMARY KEY (recipe_id, ingredient_id, unit_id)
 );
 
@@ -76,9 +76,9 @@ CREATE SEQUENCE quantity_quantity_id_seq
 	CACHE 1;
 	
 CREATE TABLE quantity (
-	qunatity_id integer DEFAULT NEXTVAL('quantity_quantity_id_seq'::regClass) NOT NULL,
+	quantity_id integer DEFAULT NEXTVAL('quantity_quantity_id_seq'::regClass) NOT NULL,
 	quantity_number decimal NOT NULL,
-	CONSTRAINT pk_quantity_quantity_id PRIMARY KEY( quantity_id)
+	CONSTRAINT pk_quantity_quantity_id PRIMARY KEY(quantity_id)
 );
 
 CREATE TABLE meal_plan_recipe (
@@ -103,8 +103,6 @@ CREATE TABLE meal_plan (
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);
 ALTER TABLE recipe_ingredient ADD FOREIGN KEY (unit_id) REFERENCES unit(unit_id);
-ALTER TABLE ingredient_unit ADD FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id);
-ALTER TABLE ingredient_unit ADD FOREIGN KEY (unit_id) REFERENCES unit(unit_id);
 ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (meal_plan_id) REFERENCES meal_plan(meal_plan_id);
 ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE app_user_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);

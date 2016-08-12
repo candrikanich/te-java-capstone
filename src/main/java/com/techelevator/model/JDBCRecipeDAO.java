@@ -61,15 +61,15 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		}
 
 		@Override
-		public void addNewRecipe(Recipe recipe, int userId) {
-			if (recipe.getRecipeId() == 0) {
+		public void addNewRecipe(Recipe recipe, int userId, int ingredientId, int unitId) {
 				int id = getNextRecipeId();
 				recipe.setRecipeId(id);
 				jdbcTemplate.update("INSERT INTO recipe(recipe_id, recipe_name, instructions) VALUES (?, ?, ?)", 
 						id, recipe.getRecipeName(), recipe.getInstructions());
 				jdbcTemplate.update("INSERT INTO app_user_recipe(user_id, recipe_id) VALUES (?, ?)", 
 						userId, recipe.getRecipeId());
-			} 
+				jdbcTemplate.update("INSERT INTO recipe_ingredient(recipe_id, ingredient_id, unit_id) VALUES (?, ?, ?)", 
+						recipe.getRecipeId(), ingredientId, unitId);
 		}
 
 		@Override

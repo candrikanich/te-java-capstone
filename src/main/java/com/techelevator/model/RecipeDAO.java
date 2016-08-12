@@ -6,7 +6,7 @@ public interface RecipeDAO {
 
 	public List<Recipe>	getRecipesByUserId(int userId);
 	
-	public void addNewRecipe(Recipe recipe, int userId);
+	public void addNewRecipe(Recipe recipe, int userId, int ingredientId, int unitId);
 	
 	public List<Recipe> getAllRecipes(); 
 	
@@ -15,6 +15,5 @@ public interface RecipeDAO {
 	public void saveRecipeIngredients(int recipeId, int ingredientId);
 	
 	public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId);
-	
-	
+		
 }
