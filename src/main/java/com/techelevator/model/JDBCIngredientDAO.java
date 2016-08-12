@@ -41,7 +41,21 @@ public class JDBCIngredientDAO implements IngredientDAO {
 		allIngredients = mapRowSetToIngredients(results);
 		return allIngredients;
 	}
-
+	@Override
+	public List<Ingredient> getAllQuantities(int ingredientId) {
+		String sqlForAllQuantities = "SELECT quantity "+
+									 "FROM recipe_ingredient "
+									 "WHERE ingredient_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForAllQuantities);
+		List<Ingredient> allQuantities = new ArrayList<>();
+		while( results.next() ){
+			Ingredient i = new Ingredient();
+			i.setQuantity(results.getInt("quantity"));
+			allQuantities.add(i);
+		}
+		return allQuantities;
+	}
+	
 	@Override
 	public String getIngredientById() {
 		return null;

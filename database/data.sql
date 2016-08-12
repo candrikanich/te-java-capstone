@@ -76,6 +76,12 @@ INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(12,5);
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(13,5);
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id) VALUES(14,5);
 
+INSERT INTO unit (unit_id, unit_name) VALUES(1, 'cups');
+INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tsp');
+INSERT INTO unit (unit_id, unit_name) VALUES(3, 'TB');
+INSERT INTO unit (unit_id, unit_name) VALUES(4, 'oz');
+
+
 
 
 COMMIT;

@@ -14,4 +14,9 @@ public interface IngredientDAO {
 
 	public List<Ingredient> getAllIngredients();
 	
+	public List<Ingredient> getAllQuantities();
+	
+	public List<Ingredient> getAllUnits();
+	
+	
 }
