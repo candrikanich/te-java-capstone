@@ -4,8 +4,6 @@ public class Recipe {
 	
 	private String recipeName;
 	private int recipeId;
-	private int mealTypeId;
-	private int categoryId;
 	private String instructions;
 	
 	public String getRecipeName() {
@@ -19,18 +17,6 @@ public class Recipe {
 	}
 	public void setRecipeId(int recipeId) {
 		this.recipeId = recipeId;
-	}
-	public int getMealTypeId() {
-		return mealTypeId;
-	}
-	public void setMealTypeId(int mealTypeId) {
-		this.mealTypeId = mealTypeId;
-	}
-	public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
 	}
 	public String getInstructions() {
 		return instructions;
