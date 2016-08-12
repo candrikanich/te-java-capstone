@@ -78,8 +78,8 @@ CREATE SEQUENCE quantity_quantity_id_seq
 CREATE TABLE quantity (
 	quantity_id integer DEFAULT NEXTVAL('quantity_quantity_id_seq'::regClass) NOT NULL,
 	quantity_name varchar(16) NOT NULL,
-	quantity_value decimal NOT NULL
-	CONSTRAINT pk_quantity_quantity_id PRIMARY KEY(quantity_id)
+	quantity_value decimal NOT NULL,
+	CONSTRAINT pk_quantity_quantity_id PRIMARY KEY (quantity_id)
 );
 
 CREATE TABLE meal_plan_recipe (
