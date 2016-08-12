@@ -19,23 +19,44 @@
 				<div class="form-group">
 					<label for="ingredient">Ingredients: </label>
 					
-					<select class="form-control" name="ingredientId" id="ingredient">
+					<select class="form-control" name="ingredientId1" id="ingredient">
 						<c:forEach items="${allIngredients}" var="ingredient">
 							<option value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
 						</c:forEach>
 					</select>
 						<label for="quantity"> Quantity: </label>
-						<select class="form-control" name="quantityId" id="quantity">	
+						<select class="form-control" name="quantityId1" id="quantity">	
 							<c:forEach items="${allQuantities}" var="quantity">
 								<option value="${quantity.quantityId}">${quantity.quantityName}</option>
 							</c:forEach>
 						</select>
 						<label for="unit"> Unit: </label>
-						<select class="form-control" name="unitId" id="unit">
+						<select class="form-control" name="unitId1" id="unit">
 							<c:forEach items="${allUnits}" var="unit">
 								<option value="${unit.unitId}">${unit.unitName}</option>
 							</c:forEach>
 						</select>
+				</div>
+				<div class="form-group">
+					<label for="ingredient">Ingredients: </label>
+					
+					<select class="form-control" name="ingredientId2" id="ingredient">
+						<c:forEach items="${allIngredients}" var="ingredient">
+							<option value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
+						</c:forEach>
+					</select>
+					<label for="quantity"> Quantity: </label>
+					<select class="form-control" name="quantityId2" id="quantity">	
+						<c:forEach items="${allQuantities}" var="quantity">
+							<option value="${quantity.quantityId}">${quantity.quantityName}</option>
+						</c:forEach>
+					</select>
+					<label for="unit"> Unit: </label>
+					<select class="form-control" name="unitId2" id="unit">
+						<c:forEach items="${allUnits}" var="unit">
+							<option value="${unit.unitId}">${unit.unitName}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="instructions">Instructions: </label>

@@ -6,7 +6,9 @@ public interface RecipeDAO {
 
 	public List<Recipe>	getRecipesByUserId(int userId);
 	
-	public void addNewRecipe(Recipe recipe, int userId, int ingredientId, int unitId);
+	public void addNewRecipe(Recipe recipe, int userId);
+	
+	public void addIngredientsToRecipe(int recipeId, int ingredientId, int unitId, int quantityId);
 	
 	public List<Recipe> getAllRecipes(); 
 	

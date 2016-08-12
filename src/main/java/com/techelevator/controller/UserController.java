@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Ingredient;
 import com.techelevator.model.IngredientDAO;
+import com.techelevator.model.QuantityDAO;
 import com.techelevator.model.Recipe;
 import com.techelevator.model.RecipeDAO;
 import com.techelevator.model.UnitDAO;
@@ -26,13 +27,15 @@ public class UserController {
 	private RecipeDAO recipeDAO;
 	private IngredientDAO ingredientDAO;
 	private UnitDAO unitDAO;
+	private QuantityDAO quantityDAO;
 	
 	@Autowired
-	public UserController(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO, UnitDAO unitDAO) {
+	public UserController(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO, UnitDAO unitDAO, QuantityDAO quantityDAO) {
 		this.userDAO = userDAO;
 		this.recipeDAO = recipeDAO; 
 		this.ingredientDAO = ingredientDAO;
 		this.unitDAO = unitDAO;
+		this.quantityDAO = quantityDAO;
 	}
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
 	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
@@ -85,6 +88,7 @@ public class UserController {
 	public String displaySaveRecipeForm(@PathVariable String userName, ModelMap model) {
 		model.put("allIngredients", ingredientDAO.getAllIngredients());
 		model.put("allUnits", unitDAO.getAllUnits());
+		model.put("allQuantities", quantityDAO.getAllQuantities());
 		return "addNewRecipe";
 	}
 	
@@ -92,13 +96,17 @@ public class UserController {
 	public String addNewRecipe(@RequestParam String recipeName, 
 							 @RequestParam String instructions,
 							 @RequestParam int userId,
-							 @RequestParam int ingredientId,
-							 @RequestParam int unitId) {
+							 @RequestParam int ingredientId1,
+							 @RequestParam int unitId1,
+							 @RequestParam (required=false) int quantityId1,
+							 @RequestParam int ingredientId2,
+							 @RequestParam int unitId2,
+							 @RequestParam (required=false) int quantityId2) {
 		Recipe recipe = new Recipe();
 		recipe.setRecipeName(recipeName);
 		recipe.setInstructions(instructions);
 		
-		recipeDAO.addNewRecipe(recipe, userId, ingredientId, unitId);
+		recipeDAO.addNewRecipe(recipe, userId);
 		
 		String query = "?userId=" + userId;
 		
