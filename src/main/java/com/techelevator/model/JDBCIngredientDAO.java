@@ -42,9 +42,24 @@ public class JDBCIngredientDAO implements IngredientDAO {
 		return allIngredients;
 	}
 	@Override
+	public List<Ingredient> getAllUnits() {
+		String sqlForAllUnits = "SELECT unit_name"+
+								"FROM unit "+					//fix subquery
+								"WHERE unit_id IN()= ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForAllUnits);
+		List<Ingredient> allUnits = new ArrayList<>();
+		while( results.next()){
+			Ingredient i = new Ingredient();
+			i.setUnit(results.getString("unit"));
+			allUnits.add(i);
+		}
+		return allUnits;
+	}
+	
+	@Override
 	public List<Ingredient> getAllQuantities(int ingredientId) {
 		String sqlForAllQuantities = "SELECT quantity "+
-									 "FROM recipe_ingredient "+
+									 "FROM recipe_ingredient "+  		//fix query add subquery
 									 "WHERE ingredient_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForAllQuantities);
 		List<Ingredient> allQuantities = new ArrayList<>();
@@ -96,6 +111,7 @@ public class JDBCIngredientDAO implements IngredientDAO {
 		int id = result.getInt(1);
 		return id;
 	}
+
 
 	
 }

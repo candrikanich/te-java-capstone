@@ -18,20 +18,26 @@
 				</div>
 				<div class="form-group">
 					<label for="ingredient">Ingredients: </label>
+					
 					<select class="form-control" id="ingredientList">
 						<c:forEach items="${allIngredients}" var="ingredient">
 							<option value="${ingredient.ingredientName}">${ingredient.ingredientName}</option>	
 						</c:forEach>
 					</select>
-					<select class="" id="wquantityList">	
-						<c:forEach items="${allQuantities}" var="quantity">
-							<option value="${ingredient.quantity}">${ingredient.quantity}</option>
-						</c:forEach>
-					</select>
-						<c:forEach items="${allIngredients}" var="unit">
+					<span id="quantitySpan">
+						<label for="quantity"> Quantity: </label>
+						<select class="" id="quantityList">	
+							<c:forEach items="${allQuantities}" var="quantityList">
+								<option value="${ingredient.quantity}">${ingredient.quantity}</option>
+							</c:forEach>
+						</select>
+					</span>
+					<span id="unitSpan">	
+						<label for="unit"> Unit: </label>
+						<c:forEach items="${allIngredients}" var="unitList">
 							<option value="${ingredient.unit}">${ingredient.unit}</option>
 						</c:forEach>
-					
+					</span>
 				</div>
 				<div class="form-group">
 					<label for="instructions">Instructions: </label>
