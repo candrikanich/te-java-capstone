@@ -22,13 +22,16 @@
 						<c:forEach items="${allIngredients}" var="ingredient">
 							<option value="${ingredient.ingredientName}">${ingredient.ingredientName}</option>	
 						</c:forEach>
+					</select>
+					<select class="" id="wquantityList">	
 						<c:forEach items="${allQuantities}" var="quantity">
 							<option value="${ingredient.quantity}">${ingredient.quantity}</option>
 						</c:forEach>
+					</select>
 						<c:forEach items="${allIngredients}" var="unit">
 							<option value="${ingredient.unit}">${ingredient.unit}</option>
 						</c:forEach>
-					</select>
+					
 				</div>
 				<div class="form-group">
 					<label for="instructions">Instructions: </label>

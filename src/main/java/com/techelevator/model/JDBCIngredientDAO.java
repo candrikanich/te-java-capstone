@@ -44,13 +44,13 @@ public class JDBCIngredientDAO implements IngredientDAO {
 	@Override
 	public List<Ingredient> getAllQuantities(int ingredientId) {
 		String sqlForAllQuantities = "SELECT quantity "+
-									 "FROM recipe_ingredient "
+									 "FROM recipe_ingredient "+
 									 "WHERE ingredient_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForAllQuantities);
 		List<Ingredient> allQuantities = new ArrayList<>();
 		while( results.next() ){
 			Ingredient i = new Ingredient();
-			i.setQuantity(results.getInt("quantity"));
+			i.setQuantity(results.getDouble("quantity"));
 			allQuantities.add(i);
 		}
 		return allQuantities;
