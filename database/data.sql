@@ -81,6 +81,23 @@ INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tsp');
 INSERT INTO unit (unit_id, unit_name) VALUES(3, 'TB');
 INSERT INTO unit (unit_id, unit_name) VALUES(4, 'oz');
 
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(1, .25);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(1, .33);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(3, .5);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(4, .66);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(5, .75);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(6, 1);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(7, 1.25);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(8, 1.33);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(9, 1.5);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(10, 1.66);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(11, 1.75);
+INSERT INTO quantity (quantity_id, quantity_number) VALUES(12, 2);
+
+
+
+
+
 
 
 

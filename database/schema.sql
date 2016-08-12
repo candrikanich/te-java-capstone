@@ -41,7 +41,7 @@ CREATE TABLE recipe_ingredient (
 	recipe_id integer NOT NULL,
 	ingredient_id integer NOT NULL,
 	unit_id integer NOT NULL,
-	quantity decimal NOT NULL,
+	quantity_id integer NOT NULL,
 	CONSTRAINT pk_recipe_ingredient_recipe_id_ingredient_id PRIMARY KEY (recipe_id, ingredient_id, unit_id)
 );
 
@@ -67,6 +67,18 @@ CREATE TABLE unit (
 	unit_id integer DEFAULT NEXTVAL('unit_unit_id_seq':: regclass) NOT NULL,
 	unit_name varchar,
 	CONSTRAINT pk_unit_unit_id PRIMARY KEY (unit_id)
+);
+
+CREATE SEQUENCE quantity_quantity_id_seq
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
+	
+CREATE TABLE quantity (
+	qunatity_id integer DEFAULT NEXTVAL('quantity_quantity_id_seq'::regClass) NOT NULL,
+	quantity_number decimal NOT NULL,
+	CONSTRAINT pk_quantity_quantity_id PRIMARY KEY( quantity_id)
 );
 
 CREATE TABLE meal_plan_recipe (
