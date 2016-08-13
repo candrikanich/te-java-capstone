@@ -5,6 +5,9 @@
  
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<div class="page-header">
+	<h2>Login to Meal Planner 5000</h2>
+</div>
 
  <script type="text/javascript">
 	$(document).ready(function () {

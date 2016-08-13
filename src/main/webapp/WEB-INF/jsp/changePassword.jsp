@@ -5,6 +5,10 @@
 <c:url var="pwValidationSrc" value="/js/passwordValidation.js" />
 <script src="${pwValidationSrc}"></script>
 
+<div class="page-header">
+	<h2>Change your password</h2>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 	

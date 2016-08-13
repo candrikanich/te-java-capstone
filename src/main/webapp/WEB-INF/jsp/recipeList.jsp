@@ -3,21 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
 <c:import url="/WEB-INF/jsp/header.jsp" />
-  <h1> ${currentUser.userName}'s Recipes</h1>
-  
-  <ul class="user_recipe_list">
+
+<div class="page-header">
+	<h2>${currentUser.userName}'s Recipes</h2>
+	<p>Use this form to add recipes to your library for meal planning.</p>
+</div>
+ 
+  <div class="user_recipe_list list-group">
   	<c:forEach items="${recipes}" var="recipe">
-  		<div class="recipe">
+  		<a class="recipe list-group-item" href="${recipeHref}" >
   			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
   				<c:param name="recipeId">${recipe.recipeId}</c:param>
   				<c:param name="userId">${currentUser.userId}</c:param>
   			</c:url>
-  			<a href="${recipeHref}" >
-  				<c:out value="${recipe.recipeName}"/>
-  			</a>
-  		</div>
+  			<c:out value="${recipe.recipeName}"/>
+  		</a>
   	</c:forEach>
-  </ul>
+  </div>
 	
 	<c:url var="saveRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" >
 		<c:param name="userId">${currentUser.userId}</c:param>

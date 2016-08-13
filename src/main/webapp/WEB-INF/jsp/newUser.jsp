@@ -5,6 +5,11 @@
 <c:url var="pwValidationSrc" value="/js/passwordValidation.js" />
 <script src="${pwValidationSrc}"></script>
 
+<div class="page-header">
+	<h2>Sign Up to Meal Planner 5000</h2>
+	<p>The best way to plan meals</p>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 	

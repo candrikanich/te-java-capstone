@@ -11,12 +11,16 @@ header h1 {
 }
 
 h1,
+h2,
 h3,
 ol li,
 ul.user_recipe_list,
-select option {
+select option,
+a.recipe {
 	text-transform: capitalize;
 }
+
+span.badge {margin: 0 0 0 8px;}
 
 footer {
 	background-color: #e5e5e5;

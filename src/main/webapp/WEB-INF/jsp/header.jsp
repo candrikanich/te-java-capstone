@@ -6,16 +6,18 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			<title>Meal Planner 5000</title>
-			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-			<link rel="stylesheet" href="http://localhost:8080/capstone/css/styles.css">
-		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
-		    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		    <script>src="http://localhost:8080/captstone/js/search.js"</script>
-			
-			<script type="text/javascript">
+		<title>Meal Planner 5000</title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://localhost:8080/capstone/css/styles.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	    <script>src="http://localhost:8080/captstone/js/search.js"</script>
+		
+		<script type="text/javascript">
 			$(document).ready(function() {
 				
 				$("#logoutLink").click(function(event){
@@ -27,6 +29,12 @@
 				
 			});
 			
+			$(document).ready(function(){
+			    $('[data-toggle="popover"]').popover(); 
+			});
+		</script>
+		
+		
 		</script>
 	</head>
 	<body>
@@ -34,6 +42,7 @@
 		<header class="container-fluid">
 			<div class="row">
 				<h1>Meal Planner 5000</h1>
+				<p>The best way to plan meals</p>
 			</div>
 		</header>
 		
@@ -54,7 +63,7 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 					  
-					  	<c:url var="homepageHref" value="/" />
+					  	<c:url var="homepageHref" value="/users/${currentUser.userName}" />
 						<li data-toggle="collapse" data-target=".navbar-collapse" class="myStory active">
 							<a id="btn-showMyStory" href="${homepageHref}">
 						    	<span class="glyphicon glyphicon-home">&nbsp;</span>Home</a>
@@ -65,13 +74,14 @@
 							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList">
 								<c:param name="userId">${currentUser.userId}</c:param>
 							</c:url>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes"><a id="btn-showMyRecipes" href="${myRecipesHref}"><span class="glyphicon glyphicon-th-list">&nbsp;</span>My Recipes</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes"><a id="btn-showMyRecipes" href="${myRecipesHref}"><span class="glyphicon glyphicon-th-list">&nbsp;</span>My Recipes<span class="badge">5</span></a></li>
 							
 							<c:url var="myMealPlanHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan"><a id="btn-showMyMealPlan" href="${myMealPlanHref}"><span class="glyphicon glyphicon-calendar">&nbsp;</span>My Meal Plan</a></li>  		        
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan"><a id="btn-showMyMealPlan" href="${myMealPlanHref}"><span class="glyphicon glyphicon-calendar">&nbsp;</span>My Meal Plan<span class="badge">3</span></a></li>  		        
 							
 							<c:url var="myGroceryListHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList"><a id="btn-showGroceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>My Grocery List</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList">
+								<a id="btn-showGroceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>My Grocery List<span class="badge">Coming Soon!</span></a></li>
 							</ul>
 
 						</c:if>

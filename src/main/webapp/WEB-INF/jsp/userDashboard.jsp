@@ -4,7 +4,9 @@
     
 <c:import url="/WEB-INF/jsp/header.jsp" />
  
- <h1> User Dashboard </h1>
+<div class="page-header">
+	<h2>Meal Planner 5000 Dashboard</h2>
+</div>
  
  
  
