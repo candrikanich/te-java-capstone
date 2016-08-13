@@ -13,6 +13,7 @@
 		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 		    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 		    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		    <script>src="http://localhost:8080/captstone/js/search.js"</script>
 			
 			<script type="text/javascript">
 			$(document).ready(function() {
@@ -56,7 +57,7 @@
 					  	<c:url var="homepageHref" value="/" />
 						<li data-toggle="collapse" data-target=".navbar-collapse" class="myStory active">
 							<a id="btn-showMyStory" href="${homepageHref}">
-						    	<span class="glyphicon glyphicon-bullhorn">&nbsp;</span>Home</a>
+						    	<span class="glyphicon glyphicon-home">&nbsp;</span>Home</a>
 						</li>
 						
 						<c:if test="${not empty currentUser}">
@@ -64,13 +65,13 @@
 							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList">
 								<c:param name="userId">${currentUser.userId}</c:param>
 							</c:url>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes"><a id="btn-showMyRecipes" href="${myRecipesHref}"><span class="glyphicon glyphicon-list-alt">&nbsp;</span>My Recipes</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes"><a id="btn-showMyRecipes" href="${myRecipesHref}"><span class="glyphicon glyphicon-th-list">&nbsp;</span>My Recipes</a></li>
 							
 							<c:url var="myMealPlanHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan"><a id="btn-showMyMealPlan" href="${myMealPlanHref}"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>My Meal Plan</a></li>  		        
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan"><a id="btn-showMyMealPlan" href="${myMealPlanHref}"><span class="glyphicon glyphicon-calendar">&nbsp;</span>My Meal Plan</a></li>  		        
 							
 							<c:url var="myGroceryListHref" value="#"/>
-							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList"><a id="btn-showGroceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-send">&nbsp;</span>My Grocery List</a></li>
+							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList"><a id="btn-showGroceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>My Grocery List</a></li>
 							</ul>
 
 						</c:if>
@@ -94,7 +95,7 @@
 									<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 								</form>
 								<c:url var="changePasswordHref" value="/users/${currentUser.userName}/changePassword" />
-								<li><a href="${changePasswordHref}">Change Password</a></li>
+								<li><a href="${changePasswordHref}"><span class="glyphicon glyphicon-random">&nbsp;</span>Change Password</a></li>
 								<li data-toggle="collapse" data-target=".navbar-collapse"><a id="logoutLink" href="#"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
 							</c:otherwise>
 						</c:choose>

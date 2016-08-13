@@ -13,7 +13,8 @@ header h1 {
 h1,
 h3,
 ol li,
-ul.user_recipe_list {
+ul.user_recipe_list,
+select option {
 	text-transform: capitalize;
 }
 

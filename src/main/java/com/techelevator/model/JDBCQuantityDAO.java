@@ -34,7 +34,7 @@ private List<Quantity> mapRowSetToQuantity(SqlRowSet results) {
 	while(results.next()) {
 		Quantity q = new Quantity();
 		q.setQuantityId(results.getInt("quantity_id"));
-		q.setQuantityName(results.getString("quantity_name"));
+		q.setquantityName(results.getString("quantity_name"));
 		quantityList.add(q);
 	}
 	return quantityList;

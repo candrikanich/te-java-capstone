@@ -9,7 +9,7 @@ public class Quantity {
 	public int getQuantityId() {
 		return quantityId;
 	}
-	public String getQuantityName() {
+	public String getquantityName() {
 		return quantityName;
 	}
 	public double getQuantityValue() {
@@ -18,7 +18,7 @@ public class Quantity {
 	public void setQuantityId(int quantityId) {
 		this.quantityId = quantityId;
 	}
-	public void setQuantityName(String quantityName) {
+	public void setquantityName(String quantityName) {
 		this.quantityName = quantityName;
 	}
 	public void setQuantityValue(double quantityValue) {

@@ -105,11 +105,7 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		@Override
 		public void addIngredientsToRecipe(int recipeId, int ingredientId, int unitId, int quantityId) {
 			jdbcTemplate.update("INSERT INTO recipe_ingredient(recipe_id, ingredient_id, unit_id, quantity_id) VALUES (?, ?, ?, ?)", 
-					recipeId, ingredientId, unitId, quantityId);
-			
+					recipeId, ingredientId, unitId, quantityId);			
 		}
 
-		
-		
-		
 }
