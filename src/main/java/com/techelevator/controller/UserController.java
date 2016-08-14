@@ -59,7 +59,7 @@ public class UserController {
 		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
 		//Recipe r = recipeDAO.getRecipeById(recipeId);
 		model.put("recipe", r);
-		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(r.getRecipeId());
+		List<Ingredient> ingredients = ingredientDAO.getIngredientDetailsByRecipeId(r.getRecipeId());
 		model.put("ingredients", ingredients);
 		return "recipeDetails";
 	}

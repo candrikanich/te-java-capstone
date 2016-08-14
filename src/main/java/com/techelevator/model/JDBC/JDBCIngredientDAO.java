@@ -24,15 +24,33 @@ public class JDBCIngredientDAO implements IngredientDAO {
 	}
 	
 	@Override
-	public List<Ingredient> getIngredientsByRecipeId(int recipeId) {
-		String sqlForIngredientById = "SELECT * "+
-									  "FROM ingredient "+
-									  "WHERE ingredient_id IN ( SELECT recipe_ingredient.ingredient_id "+
-									  "FROM recipe_ingredient WHERE recipe_ingredient.recipe_id = ? )";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForIngredientById, recipeId);
-		List<Ingredient> ingredientsById = new ArrayList<Ingredient>();
-		ingredientsById = mapRowSetToIngredients(results);
-		return ingredientsById;
+	public List<Ingredient> getIngredientDetailsByRecipeId(int recipeId) {
+		String sqlForRecipeIngredientsById = "SELECT recipe_ingredient.recipe_id, ingredient.ingredient_name, "
+				+ "unit.unit_name, quantity.quantity_value FROM recipe_ingredient "
+				+ "JOIN ingredient ON recipe_ingredient.ingredient_id = ingredient.ingredient_id "
+				+ "JOIN unit ON recipe_ingredient.unit_id = unit.unit_id "
+				+ "JOIN quantity ON recipe_ingredient.quantity_id = quantity.quantity_id "
+				+ "WHERE recipe_ingredient.recipe_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForRecipeIngredientsById, recipeId);
+		ArrayList<Ingredient> ingredientList = new ArrayList<>();
+		while(results.next()) {
+			Ingredient i = new Ingredient();
+			i.setIngredientName(results.getString("ingredient_name"));
+			i.setUnit(results.getString("unit_name"));
+			i.setQuantity(results.getDouble("quantity_value"));
+			ingredientList.add(i);
+		}
+		return ingredientList;
+		
+		
+//		String sqlForIngredientById = "SELECT * "+
+//									  "FROM ingredient "+
+//									  "WHERE ingredient_id IN ( SELECT recipe_ingredient.ingredient_id "+
+//									  "FROM recipe_ingredient WHERE recipe_ingredient.recipe_id = ? )";
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForIngredientById, recipeId);
+//		List<Ingredient> ingredientsById = new ArrayList<Ingredient>();
+//		ingredientsById = mapRowSetToIngredients(results);
+//		return ingredientsById;
 	}
 	
 	@Override 

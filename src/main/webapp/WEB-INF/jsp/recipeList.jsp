@@ -14,12 +14,12 @@
 	<!-- LIST GROUP OF USER RECIPES -->
 	<div class="user_recipe_list list-group col-md-5">
 		<c:forEach items="${recipes}" var="recipe">
-			<a class="recipe list-group-item" href="${recipeHref}">
 			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
 				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
-			<c:out value="${recipe.recipeName}"/>
+			<a class="recipe list-group-item" href="${recipeHref}">
+				<c:out value="${recipe.recipeName}"/>
 			</a>
 		</c:forEach>
 	</div>

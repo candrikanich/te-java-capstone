@@ -6,7 +6,6 @@
 
 <div class="page-header">
 	<h2><c:out value="${recipe.recipeName}"/></h2>
-	<p>Use this form to add recipes to your library for meal planning.</p>
 </div>
  	
  	<h3>Ingredients</h3>

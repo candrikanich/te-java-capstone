@@ -6,7 +6,7 @@ import com.techelevator.model.Ingredient;
 
 public interface IngredientDAO {
 	
-	public List<Ingredient> getIngredientsByRecipeId(int recipeId);
+	public List<Ingredient> getIngredientDetailsByRecipeId(int recipeId);
 	
 	public String getIngredientById();
 	
