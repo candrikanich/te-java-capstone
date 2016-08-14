@@ -3,7 +3,8 @@ package com.techelevator.model;
 public class Ingredient {
 	private String ingredientName;
 	private int ingredientId;
-	private double quantity; 
+	private double quantityValue; 
+	private String quantityName;
 	private String unit; 
 	
 	public String getIngredientName() {
@@ -19,10 +20,10 @@ public class Ingredient {
 		this.ingredientId = ingredientId;
 	}
 	public double getQuantity() {
-		return quantity; 
+		return quantityValue; 
 	}
 	public void setQuantity(double quantity) {
-		this.quantity=quantity; 
+		this.quantityValue=quantity; 
 	}
 	public String getUnit(){
 		return unit; 
@@ -30,4 +31,10 @@ public class Ingredient {
 	public void setUnit(String unit){
 		this.unit = unit;
 		}
+	public String getQuantityName() {
+		return quantityName;
+	}
+	public void setQuantityName(String quantityName) {
+		this.quantityName = quantityName;
+	}
 }

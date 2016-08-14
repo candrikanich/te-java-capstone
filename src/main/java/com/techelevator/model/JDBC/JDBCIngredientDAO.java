@@ -26,7 +26,7 @@ public class JDBCIngredientDAO implements IngredientDAO {
 	@Override
 	public List<Ingredient> getIngredientDetailsByRecipeId(int recipeId) {
 		String sqlForRecipeIngredientsById = "SELECT recipe_ingredient.recipe_id, ingredient.ingredient_name, "
-				+ "unit.unit_name, quantity.quantity_value FROM recipe_ingredient "
+				+ "unit.unit_name, quantity.quantity_name FROM recipe_ingredient "
 				+ "JOIN ingredient ON recipe_ingredient.ingredient_id = ingredient.ingredient_id "
 				+ "JOIN unit ON recipe_ingredient.unit_id = unit.unit_id "
 				+ "JOIN quantity ON recipe_ingredient.quantity_id = quantity.quantity_id "
@@ -37,12 +37,12 @@ public class JDBCIngredientDAO implements IngredientDAO {
 			Ingredient i = new Ingredient();
 			i.setIngredientName(results.getString("ingredient_name"));
 			i.setUnit(results.getString("unit_name"));
-			i.setQuantity(results.getDouble("quantity_value"));
+			i.setQuantityName(results.getString("quantity_Name"));
 			ingredientList.add(i);
 		}
 		return ingredientList;
 		
-		
+//		---Previous code to be removed
 //		String sqlForIngredientById = "SELECT * "+
 //									  "FROM ingredient "+
 //									  "WHERE ingredient_id IN ( SELECT recipe_ingredient.ingredient_id "+
