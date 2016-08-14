@@ -6,12 +6,24 @@
 
 <div class="page-header">
 	<h2>${currentUser.userName}'s Recipes</h2>
-	<p>Use this form to add recipes to your library for meal planning.</p>
 </div>
- 
-  <div class="user_recipe_list list-group">
+
+<div class="row">
+
+<script>
+$("#btn-recipe").click(showResume);
+
+function showResume() {
+	hideAllViews();
+	$("#myResume").fadeIn();
+	$("li.myResume").addClass("active");
+	$("iframe").attr("src").append("${recipeId}")
+};
+</script>
+
+  <div class="user_recipe_list list-group col-md-5">
   	<c:forEach items="${recipes}" var="recipe">
-  		<a class="recipe list-group-item" href="${recipeHref}" >
+  		<a class="recipe list-group-item" id="btn-recipe">
   			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
   				<c:param name="recipeId">${recipe.recipeId}</c:param>
   				<c:param name="userId">${currentUser.userId}</c:param>
@@ -20,11 +32,19 @@
   		</a>
   	</c:forEach>
   </div>
+  
+  <div class="col-md-7">
+  	<iframe src="${recipeHref}" id="recipeDetail">
+  		Click for recipe detail
+  	</iframe>
+  </div>
+  
+ </div> 
 	
-	<c:url var="saveRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" >
+	<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" >
 		<c:param name="userId">${currentUser.userId}</c:param>
 	</c:url>
-	<a href="${saveRecipeHref}">
+	<a href="${addNewRecipeHref}">
 		<button type="submit" class="btn btn-lg">Add a New Recipe</button>
 	</a>
  
