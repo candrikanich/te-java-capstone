@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
 	<head>
+	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 		<title>Meal Planner 5000</title>
 		
 		<!-- STYLESHEETS -->
@@ -19,10 +21,9 @@
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-	    <script src="http://localhost:8080/capstone/js/siteScripts.js"></script>
 		
 		<!-- CUSTOM SCRIPTS -->
-		
+		<script src="http://localhost:8080/capstone/js/siteScripts.js"></script>
 
 	</head>
 	<body>
@@ -105,5 +106,5 @@
 		<section id="mainContent" class="container">
 			<div class="row">
 				<div class="col-md-12">
-				
+
 <!-- END HEADER JSP -->

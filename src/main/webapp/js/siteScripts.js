@@ -37,4 +37,14 @@ $(document).ready(function (e) {
 		$("li.active").removeClass();
 	}
 	
+//	DYNAMICALLY ADD NEW INGREDIENT OPTIONS
+	
+	$(".btn-add").click(function(){
+		$(".recipeIngredientRow").clone().appendTo(".groupRows").addClass(function(i) { return 'ingredient' + (i + 1) }).removeClass("recipeIngredientRow");
+	});
+	
+	$(".btn-remove").click(function(){
+		$(this).remove(".rowRemove");
+	});
+			
 });
