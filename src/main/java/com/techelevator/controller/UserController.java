@@ -17,6 +17,8 @@ import com.techelevator.model.IngredientDAO;
 import com.techelevator.model.QuantityDAO;
 import com.techelevator.model.Recipe;
 import com.techelevator.model.RecipeDAO;
+import com.techelevator.model.RecipeIngredientDAO;
+import com.techelevator.model.RecipeIngredientRecord;
 import com.techelevator.model.UnitDAO;
 import com.techelevator.model.UserDAO;
 @Transactional
@@ -28,14 +30,21 @@ public class UserController {
 	private IngredientDAO ingredientDAO;
 	private UnitDAO unitDAO;
 	private QuantityDAO quantityDAO;
+	private RecipeIngredientDAO recipeIngredientDAO;
 	
 	@Autowired
-	public UserController(UserDAO userDAO, RecipeDAO recipeDAO, IngredientDAO ingredientDAO, UnitDAO unitDAO, QuantityDAO quantityDAO) {
+	public UserController(UserDAO userDAO, 
+						  RecipeDAO recipeDAO, 
+						  IngredientDAO ingredientDAO, 
+						  UnitDAO unitDAO, 
+						  QuantityDAO quantityDAO,
+						  RecipeIngredientDAO recipeIngredientDAO) {
 		this.userDAO = userDAO;
 		this.recipeDAO = recipeDAO; 
 		this.ingredientDAO = ingredientDAO;
 		this.unitDAO = unitDAO;
 		this.quantityDAO = quantityDAO;
+		this.recipeIngredientDAO = recipeIngredientDAO;
 	}
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
 	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
@@ -43,6 +52,7 @@ public class UserController {
 		model.put("recipes", recipes);
 		return "recipeList";
 	}
+	
 	@RequestMapping(path="/users/{userName}/recipeDetails", method=RequestMethod.GET)
 	public String displayRecipeDetails(ModelMap model, @RequestParam int recipeId, @RequestParam int userId, 
 										@PathVariable String userName){
@@ -52,7 +62,6 @@ public class UserController {
 		List<Ingredient> ingredients = ingredientDAO.getIngredientsByRecipeId(r.getRecipeId());
 		model.put("ingredients", ingredients);
 		return "recipeDetails";
-		
 	}
 
 	@RequestMapping(path="/users", method=RequestMethod.POST)
@@ -63,7 +72,6 @@ public class UserController {
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
 	public String displayDashboard(Map<String, Object> model, @PathVariable String userName) {
-		
 		return "userDashboard";
 	}
 	
@@ -93,24 +101,62 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{userName}/addNewRecipe", method=RequestMethod.POST)
-	public String addNewRecipe(@RequestParam String recipeName, 
-							 @RequestParam String instructions,
-							 @RequestParam int userId,
-							 @RequestParam int ingredientId1,
-							 @RequestParam int unitId1,
-							 @RequestParam (required=false) int quantityId1,
-							 @RequestParam int ingredientId2,
-							 @RequestParam int unitId2,
-							 @RequestParam (required=false) int quantityId2) {
+	public String addNewRecipe(@RequestParam Map<String, String> allRequestParams, ModelMap model) {
+//							 @RequestParam String recipeName, 
+//							 @RequestParam String instructions,
+//							 @RequestParam int userId,
+//							 @RequestParam int ingredientId1,
+//							 @RequestParam int unitId1,
+//							 @RequestParam (required=false) int quantityId1,
+//							 @RequestParam int ingredientId2,
+//							 @RequestParam int unitId2,
+//							 @RequestParam (required=false) int quantityId2) {
+//		Recipe recipe = new Recipe();
+//		recipe.setRecipeName(recipeName);
+//		recipe.setInstructions(instructions);
+//		recipeDAO.addNewRecipe(recipe, userId);
+//		String query = "?userId=" + userId;
+//		return "redirect:/users/{userName}/recipeList"+query;
+		
+		String recipeName = allRequestParams.get("recipeName");
+		String instructions = allRequestParams.get("instructions");
+		int userId = Integer.valueOf(allRequestParams.get("userId"));
+		
 		Recipe recipe = new Recipe();
 		recipe.setRecipeName(recipeName);
 		recipe.setInstructions(instructions);
-		
 		recipeDAO.addNewRecipe(recipe, userId);
+		int recipeId = recipe.getRecipeId();
+		
+		for(int i = 0; i < 20; i++) {
+			// if requestParam + that index exists (e.g. "ingredientId1", then create a RecipeIngredientRecord out of it
+			RecipeIngredientRecord record = new RecipeIngredientRecord();
+			boolean recordExists = allRequestParams.containsKey("ingredientId" + i) &&
+								   allRequestParams.containsKey("unitId" + i);
+			boolean quantityExists = allRequestParams.containsKey("quantityId" + i);
+			
+			if(recordExists) {
+				int ingredientId = Integer.valueOf(allRequestParams.get("ingredientId" + i));
+				int unitId = Integer.valueOf(allRequestParams.get("unitId" + i));
+				record.setIngredientId(ingredientId);
+				record.setUnitId(unitId);
+				
+				if(quantityExists) {
+					int quantityId = Integer.valueOf(allRequestParams.get("quantityId" + i));
+					record.setQuantityId(quantityId);
+				}
+				recipeIngredientDAO.addRecipeIngredientRecordToRecipe(record, recipeId);
+			}
+		}
 		
 		String query = "?userId=" + userId;
-		
-		return "redirect:/users/{userName}/recipeList"+query;
+		return "redirect:/users/{userName}/recipeList" + query;
+	}
+	
+	
+	@RequestMapping(value = {"/search/", "/search"}, method = RequestMethod.GET)
+	public String search(@RequestParam Map<String,String> allRequestParams, ModelMap model) {
+	return "viewName";
 	}
 	
 }

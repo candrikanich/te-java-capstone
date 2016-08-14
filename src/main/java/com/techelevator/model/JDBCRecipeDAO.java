@@ -80,12 +80,6 @@ public class JDBCRecipeDAO implements RecipeDAO {
 		public List<Recipe> getRecipeByType() {
 			return null;
 		}
-
-		@Override
-		public void saveRecipeIngredients(int recipeId, int ingredientId) {
-			jdbcTemplate.update("INSERT INTO recipe_ingredient) VALUES (?, ?)", recipeId, ingredientId);
-			
-		}
 		
 		private Recipe mapRowToRecipe(SqlRowSet results) {
 			Recipe r = new Recipe();

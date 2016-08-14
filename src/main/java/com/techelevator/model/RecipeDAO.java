@@ -14,8 +14,6 @@ public interface RecipeDAO {
 	
 	public List<Recipe> getRecipeByType();
 	
-	public void saveRecipeIngredients(int recipeId, int ingredientId);
-	
 	public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId);
 		
 }
