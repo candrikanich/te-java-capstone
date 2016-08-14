@@ -41,7 +41,7 @@
 	});
 </script>
 
-<c:url var="formAction" value="/users" />
+<c:url var="formAction" value="/users/new" />
 <form method="POST" action="${formAction}">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 	<div class="row">
