@@ -9,11 +9,11 @@
 </div>
  	
  	<h3>Ingredients</h3>
- 	<ol>
+ 	<ul class="list-group">
 	 	<c:forEach items="${ingredients}" var="ingredient">
-	 		<li><c:out value="${ingredient.quantityName}"/>&nbsp;<c:out value="${ingredient.unit}"/>&nbsp;<c:out value="${ingredient.ingredientName}"/></li>
+	 		<li class="list-group-item"><c:out value="${ingredient.quantityName}"/>&nbsp;<c:out value="${ingredient.unit}"/>&nbsp;<c:out value="${ingredient.ingredientName}"/></li>
 	 	</c:forEach>
- 	</ol>
+ 	</ul>
  	
  	<h3>Instructions</h3>
  	<p><c:out value="${recipe.instructions}"/> </p>
