@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Ingredient;
-import com.techelevator.model.IngredientDAO;
-import com.techelevator.model.QuantityDAO;
 import com.techelevator.model.Recipe;
-import com.techelevator.model.RecipeDAO;
-import com.techelevator.model.RecipeIngredientDAO;
 import com.techelevator.model.RecipeIngredientRecord;
-import com.techelevator.model.UnitDAO;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.DAO.IngredientDAO;
+import com.techelevator.model.DAO.QuantityDAO;
+import com.techelevator.model.DAO.RecipeDAO;
+import com.techelevator.model.DAO.RecipeIngredientDAO;
+import com.techelevator.model.DAO.UnitDAO;
+import com.techelevator.model.DAO.UserDAO;
 @Transactional
 @Controller
 public class UserController {

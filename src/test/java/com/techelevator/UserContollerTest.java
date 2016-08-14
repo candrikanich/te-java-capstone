@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
 import com.techelevator.controller.UserController;
-import com.techelevator.model.IngredientDAO;
-import com.techelevator.model.RecipeDAO;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.DAO.IngredientDAO;
+import com.techelevator.model.DAO.RecipeDAO;
+import com.techelevator.model.DAO.UserDAO;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;

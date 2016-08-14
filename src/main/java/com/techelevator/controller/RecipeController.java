@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.techelevator.model.IngredientDAO;
-import com.techelevator.model.RecipeDAO;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.DAO.IngredientDAO;
+import com.techelevator.model.DAO.RecipeDAO;
+import com.techelevator.model.DAO.UserDAO;
 
 @Transactional
 @Controller

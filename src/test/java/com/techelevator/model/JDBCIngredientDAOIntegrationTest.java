@@ -11,6 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techelevator.model.DAO.IngredientDAO;
+import com.techelevator.model.DAO.RecipeDAO;
+
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration("/test-config.xml")
 @Transactional

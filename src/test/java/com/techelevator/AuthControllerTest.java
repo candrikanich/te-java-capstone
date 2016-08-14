@@ -25,7 +25,7 @@ import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
 import com.techelevator.controller.AuthenticationController;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.DAO.UserDAO;
 
 public class AuthControllerTest {
 		

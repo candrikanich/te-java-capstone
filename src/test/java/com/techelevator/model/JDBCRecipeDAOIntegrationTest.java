@@ -12,6 +12,9 @@ import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+import com.techelevator.model.DAO.RecipeDAO;
+import com.techelevator.model.JDBC.JDBCRecipeDAO;
+
 public class JDBCRecipeDAOIntegrationTest {
 	
 

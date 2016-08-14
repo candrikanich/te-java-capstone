@@ -1,4 +1,6 @@
-package com.techelevator.model;
+package com.techelevator.model.DAO;
+
+import com.techelevator.model.User;
 
 public interface UserDAO {
 
