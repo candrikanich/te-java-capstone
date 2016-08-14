@@ -12,7 +12,7 @@
  	<h3>Ingredients</h3>
  	<ol>
 	 	<c:forEach items="${ingredients}" var="ingredient">
-	 		<li><c:out value="${ingredient.ingredientName}"/></li>
+	 		<li><c:out value="${ingredient.quantity}"/>&nbsp;<c:out value="${ingredient.unit}"/>&nbsp;<c:out value="${ingredient.ingredientName}"/></li>
 	 	</c:forEach>
  	</ol>
  	
