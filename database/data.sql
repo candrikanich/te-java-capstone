@@ -60,10 +60,14 @@ INSERT INTO ingredient (ingredient_name) VALUES ('ramen noodles');
 INSERT INTO ingredient (ingredient_name) VALUES ('hot water');
 INSERT INTO ingredient (ingredient_name) VALUES ('crackers');
 
-INSERT INTO unit (unit_id, unit_name) VALUES(1, 'cups');
-INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tsp');
-INSERT INTO unit (unit_id, unit_name) VALUES(3, 'TB');
-INSERT INTO unit (unit_id, unit_name) VALUES(4, 'oz');
+INSERT INTO unit (unit_id, unit_name) VALUES(1, 'teaspoon');
+INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tablespoon');
+INSERT INTO unit (unit_id, unit_name) VALUES(3, 'ounces');
+INSERT INTO unit (unit_id, unit_name) VALUES(4, 'cup');
+INSERT INTO unit (unit_id, unit_name) VALUES(5, 'quart');
+INSERT INTO unit (unit_id, unit_name) VALUES(6, 'pint');
+INSERT INTO unit (unit_id, unit_name) VALUES(7, 'pinch');
+INSERT INTO unit (unit_id, unit_name) VALUES(8, 'dash');
 
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(1, '1/4', .25);
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(2, '1/3', .33);
@@ -77,6 +81,8 @@ INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(9, '1 1
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(10, '1 2/3', 1.66);
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(11, '1 3/4', 1.75);
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(12, '2', 2);
+INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(13, '3', 3);
+INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(14, '4', 4);
 
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(1,1,1,1);
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(2,1,1,1);
