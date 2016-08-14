@@ -46,6 +46,7 @@ public class UserController {
 		this.quantityDAO = quantityDAO;
 		this.recipeIngredientDAO = recipeIngredientDAO;
 	}
+	
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
 	public String displayRecipeListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
 		List<Recipe> recipes = recipeDAO.getRecipesByUserId(userId);
@@ -63,10 +64,9 @@ public class UserController {
 		model.put("ingredients", ingredients);
 		return "recipeDetails";
 	}
-
-	@RequestMapping(path="/users", method=RequestMethod.POST)
-	public String createUser(@RequestParam String userName, @RequestParam String password) {
-		userDAO.saveUser(userName, password);
+	
+	@RequestMapping(path="/users", method=RequestMethod.GET)
+	public String showLoginPage() {
 		return "redirect:/login";
 	}
 	
@@ -78,6 +78,12 @@ public class UserController {
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm() {
 		return "newUser";
+	}
+	
+	@RequestMapping(path="/users/new", method=RequestMethod.POST)
+	public String createUser(@RequestParam String userName, @RequestParam String password) {
+		userDAO.saveUser(userName, password);
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(path="/users/{userName}/changePassword", method=RequestMethod.GET)
