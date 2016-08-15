@@ -25,12 +25,12 @@
 	</div>
   
   	<!-- TESTING IDEA TO GET RECIPE DETAILS TO APPEAR HERE -->
-	<div class="col-md-7">
+	<!-- <div class="col-md-7">
 		<p>TESTING IDEA: when user clicks on recipe link on left, details appear here:</p>
 		<iframe id="recipeDetail">
 			Click for recipe detail
 		</iframe>
-	</div>
+	</div> -->
   
  </div> 
 	
