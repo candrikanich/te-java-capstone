@@ -8,7 +8,7 @@
 </div>
 
 <c:url var="formAction" value="/users/${userName}/addNewRecipe">
-	<c:param name="userId" value="${currentUser.userId}" />
+	<c:param name="userId" value="${param.userId}" />
 </c:url>
 
 	<!-- RECIPE FORM: 1 ROW / 8 COL -->
@@ -67,7 +67,7 @@
 						
 						<div class="col-md-1">
 							<label>&nbsp;</label>
-							<button type="button" class="btn btn-default btn-remove"><span class="glyphicon glyphicon-minus-sign"></span></button>
+							<button type="button" style="display: none" class="btn btn-default btn-remove"><span class="glyphicon glyphicon-minus-sign"></span></button>
 						</div>
 						
 					</div>
