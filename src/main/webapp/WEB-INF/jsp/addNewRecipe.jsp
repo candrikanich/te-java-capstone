@@ -8,7 +8,7 @@
 </div>
 
 <c:url var="formAction" value="/users/${userName}/addNewRecipe">
-	<c:param name="userId" value="${param.userId}" />
+	<c:param name="userId" value="${currentUser.userId}" />
 </c:url>
 
 	<!-- RECIPE FORM: 1 ROW / 8 COL -->

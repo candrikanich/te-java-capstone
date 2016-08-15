@@ -23,6 +23,7 @@ import com.techelevator.model.DAO.RecipeDAO;
 import com.techelevator.model.DAO.RecipeIngredientDAO;
 import com.techelevator.model.DAO.UnitDAO;
 import com.techelevator.model.DAO.UserDAO;
+
 @Transactional
 @Controller
 public class UserController {
@@ -181,6 +182,13 @@ public class UserController {
 		return "mealPlanDetails";
 	}
 	
+	@RequestMapping(path="/users/{userName}/createNewMealPlan", method=RequestMethod.GET)
+	public String displayCreateMealPlanForm(@PathVariable String userName, ModelMap model, @RequestParam int userId) {
+		
+		List<Recipe> userRecipes = recipeDAO.getRecipesByUserId(userId);
+		model.put("userRecipes", userRecipes);
+		return "createNewMealPlan";
+	}
 	
 	@RequestMapping(value = {"/search/", "/search"}, method = RequestMethod.GET)
 	public String search(@RequestParam Map<String,String> allRequestParams, ModelMap model) {

@@ -8,8 +8,8 @@
 	<p>Use this form to add Meal Plans to your library for meal planning.</p>
 </div>
 
-<c:url var="formAction" value="/users/${userName}/addNewMealPlan">
-	<c:param name="userId" value="${param.userId}" />
+<c:url var="formAction" value="/users/${userName}/createNewMealPlan">
+	<c:param name="userId" value="${currentUser.userId}" />
 </c:url>
 
 	<!-- ROW FOR FORM -->
@@ -21,8 +21,11 @@
 				
 				<!-- GIVE IT A NAME -->
 				<div class="form-group form-group-lg">
-					<label for="mealPlanName">Meal Plan Name: </label>
-					<input type="text" id="mealPlanName" name="mealPlanName" class="form-control" />	
+					<label for="mealPlanStartDate">Meal Plan Start Date: </label>
+					<input type="date" id="mealPlanStartDate" name="mealPlanStartDate" class="form-control" />	
+					
+					<label for="mealPlanEndDate">Meal Plan End Date: </label>
+					<input type="date" id="mealPlanEndDate" name="mealPlanEndDate" class="form-control" />	
 				</div>
 				
 				<!-- ROW FOR EACH MEAL DAY -->
@@ -61,7 +64,7 @@
 					
 				</div>
 				
-				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add Meal Plan</button>
+				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Create Meal Plan</button>
 			
 			</form>
 		</div>
