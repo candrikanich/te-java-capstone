@@ -28,6 +28,8 @@ public class JDBCRecipeIngredientDAO implements RecipeIngredientDAO {
 
 	@Override
 	public void addRecipeIngredientRecordToRecipe(RecipeIngredientRecord record, int recipeId) {
+		jdbcTemplate.update("INSERT INTO recipe_ingredient(recipe_id, ingredient_id, unit_id, quantity_id)"
+				+ " VALUES (?, ?, ?, ? )", recipeId, record.getIngredientId(), record.getUnitId(), record.getQuantityId());
 		
 	}
 	

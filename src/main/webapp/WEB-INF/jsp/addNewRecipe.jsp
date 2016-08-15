@@ -37,7 +37,7 @@
 					
 						<div class="col-md-5">
 							<label for="ingredient">Ingredient </label>	
-							<select class="form-control input-sm" name="ingredientId" id="ingredient">
+							<select class="form-control input-sm" name="ingredientId0" id="ingredient">
 									<option value="#">Choose an ingredient</option>
 								<c:forEach items="${allIngredients}" var="ingredient">
 									<option value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
@@ -47,7 +47,7 @@
 						
 						<div class="col-md-3">
 							<label for="quantity">Quantity: </label>
-							<select class="form-control input-sm" name="quantityId" id="quantity">	
+							<select class="form-control input-sm" name="quantityId0" id="quantity">	
 								<option value="#">Choose...</option>
 								<c:forEach items="${allQuantities}" var="quantity">
 									<option value="${quantity.quantityId}">${quantity.quantityName}</option>
@@ -57,7 +57,7 @@
 						
 						<div class="col-md-3">
 							<label for="unit">Unit:</label>
-							<select class="form-control input-sm" name="unitId" id="unit">
+							<select class="form-control input-sm" name="unitId0" id="unit">
 								<option value="#">Choose...</option>
 								<c:forEach items="${allUnits}" var="unit">
 									<option value="${unit.unitId}">${unit.unitName}</option>
@@ -113,10 +113,10 @@
 						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
 						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span></button>
 						</div>	
-					</div>
+					</div> --%>
 		
 					
-				</div> --%>
+				</div> 
 				<div class="form-group form-group-lg">
 					<label for="instructions">Instructions: </label>
 					<textarea id="instructions" name="instructions" class="form-control"></textarea>	
