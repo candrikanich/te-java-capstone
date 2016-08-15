@@ -62,17 +62,17 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 
 		private MealPlan mapRowToMealPlan(SqlRowSet result) {
 			MealPlan m = new MealPlan();
-				m.setMealPlanId(result.getInt("MealPlan_id"));
+				m.setMealPlanId(result.getInt("meal_plan_id"));
 				LocalDate startDate = result.getDate("meal_plan_start_date").toLocalDate();
-				m.setStartDate(startDate);
+				m.setMealPlanStartDate(startDate);
 				LocalDate endDate = result.getDate("meal_plan_end_date").toLocalDate();
-				m.setEndDate(endDate);
+				m.setMealPlanEndDate(endDate);
 				m.setUserId(result.getInt("user_id"));
 			return m;
 		}
 		
 		private int getNextMealPlanId() {
-			SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT nextval('MealPlan_MealPlan_id_seq')");
+			SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT nextval('meal_plan_meal_plan_id_seq')");
 			result.next();
 			int id = result.getInt(1);
 			return id;

@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class MealPlan {
 
 	private int mealPlanId;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private LocalDate mealPlanStartDate;
+	private LocalDate mealPlanEndDate;
 	private int userId;
 	
 	public int getMealPlanId() {
@@ -15,17 +15,17 @@ public class MealPlan {
 	public void setMealPlanId(int mealPlanId) {
 		this.mealPlanId = mealPlanId;
 	}
-	public LocalDate getStartDate() {
-		return startDate;
+	public LocalDate getMealPlanStartDate() {
+		return mealPlanStartDate;
 	}
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
+	public void setMealPlanStartDate(LocalDate mealPlanStartDate) {
+		this.mealPlanStartDate = mealPlanStartDate;
 	}
-	public LocalDate getEndDate() {
-		return endDate;
+	public LocalDate getMealPlanEndDate() {
+		return mealPlanEndDate;
 	}
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
+	public void setMealPlanEndDate(LocalDate mealPlanEndDate) {
+		this.mealPlanEndDate = mealPlanEndDate;
 	}
 	public int getUserId() {
 		return userId;
@@ -33,6 +33,4 @@ public class MealPlan {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
-	
 }
