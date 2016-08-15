@@ -24,7 +24,8 @@
 		
 		<!-- CUSTOM SCRIPTS -->
 		<script src="http://localhost:8080/capstone/js/siteScripts.js"></script>
-
+		<script src="http://localhost:8080/capstone/js/createMealPlanScripts.js"></script>
+		
 	</head>
 	<body>
 		

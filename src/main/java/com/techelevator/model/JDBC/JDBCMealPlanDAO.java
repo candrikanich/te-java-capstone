@@ -50,6 +50,26 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 			return mealPlansByUser;
 		}
 		
+		@Override
+		public List<Recipe> getRecipesByMealPlanId(int mealPlanId) {
+			String sqlSelectRecipesByMealPlanId =  "SELECT * " +
+												   "FROM recipe " +
+												   "WHERE recipe.recipe_id IN (" +
+													   "SELECT meal_plan_recipe.recipe_id " +
+													   "FROM meal_plan_recipe " +
+													   "WHERE meal_plan_recipe.meal_plan_id = ?)";
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipesByMealPlanId, mealPlanId);
+			List<Recipe> recipesByMealPlanId = new ArrayList<Recipe>();
+			while(results.next()) {
+				Recipe r = new Recipe();
+				r.setRecipeId(results.getInt("recipe_id"));
+				r.setRecipeName(results.getString("recipe_name"));
+				r.setInstructions(results.getString("instructions"));
+				recipesByMealPlanId.add(r);
+			}
+			return recipesByMealPlanId;
+		}
+		
 //		@Override
 //		public void addNewMealPlan(MealPlan MealPlan, int userId) {
 //				int id = getNextMealPlanId();
@@ -58,7 +78,6 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 //						id, MealPlan.getMealPlanName(), MealPlan.getInstructions());
 //				jdbcTemplate.update("INSERT INTO app_user_MealPlan(user_id, MealPlan_id) VALUES (?, ?)", 
 //						userId, MealPlan.getMealPlanId());
-//				
 //		}
 
 		private MealPlan mapRowToMealPlan(SqlRowSet result) {
@@ -77,27 +96,6 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 			result.next();
 			int id = result.getInt(1);
 			return id;
-		}
-
-		@Override
-		public List<Recipe> getRecipesByMealPlanId(int mealPlanId) {
-			
-			String sqlSelectRecipesByMealPlanId =  "SELECT * " +
-												   "FROM recipe " +
-												   "WHERE recipe.recipe_id IN (" +
-													   "SELECT meal_plan_recipe.recipe_id " +
-													   "FROM meal_plan_recipe " +
-													   "WHERE meal_plan_recipe.meal_plan_id = ?)";
-			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipesByMealPlanId, mealPlanId);
-			List<Recipe> recipesByMealPlanId = new ArrayList<Recipe>();
-			while(results.next()) {
-				Recipe r = new Recipe();
-				r.setRecipeId(results.getInt("recipe_id"));
-				r.setRecipeName(results.getString("recipe_name"));
-				r.setInstructions(results.getString("instructions"));
-				recipesByMealPlanId.add(r);
-			}
-			return recipesByMealPlanId;
 		}
 
 //		@Override

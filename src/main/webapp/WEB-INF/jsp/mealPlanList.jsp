@@ -25,7 +25,7 @@
   
  </div> 
 	
-	<c:url var="addMealPlanHref" value="/users/${currentUser.userName}/addNewMealPlan" >
+	<c:url var="addMealPlanHref" value="/users/${currentUser.userName}/createNewMealPlan" >
 		<c:param name="userId">${currentUser.userId}</c:param>
 	</c:url>
 	<a href="${addMealPlanHref}">
