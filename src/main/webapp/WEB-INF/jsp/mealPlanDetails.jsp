@@ -6,8 +6,27 @@
 
 <!-- PAGE HEADER - BOOTSTRAP -->
 <div class="page-header">
-	<h2><c:out value="${mealPlan.mealPlanName}"/></h2>
+	<h2>Meal Plan for <c:out value="${mealPlan.mealPlanStartDate}"/> &ndash; <c:out value="${mealPlan.mealPlanEndDate}"/></h2>
 </div>
+ 	
+
+ 	<h3>Recipes</h3>
+ 	<ul class="list-group">
+	 	<c:forEach items="${mealPlanRecipes}" var="recipe">
+		 	<c:url var="mealPlanRecipeHref" value="/users/${currentUser.userName}/recipeDetails">
+				<c:param name="recipeId">${recipe.recipeId}</c:param>
+				<c:param name="userId">${currentUser.userId}</c:param>
+			</c:url>
+		 	<a href="${mealPlanRecipeHref}" class="list-group-item">
+		 		<li class="list-group-item"><c:out value="${recipe.recipeName}"/></li>
+		 	</a>
+	 	</c:forEach>
+ 	</ul>
+ 	
+ 	
+ 	<hr />
+ 	
+ 	<h4>This is sample data</h4>
  	
  	<p>For each day in the meal plan, show the day # and the recipe name with link to the recipe detail<p>
 

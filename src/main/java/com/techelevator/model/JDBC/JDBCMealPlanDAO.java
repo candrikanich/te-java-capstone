@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.MealPlan;
+import com.techelevator.model.Recipe;
 import com.techelevator.model.DAO.MealPlanDAO;
 
 @Component
@@ -28,7 +29,7 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 		public MealPlan getMealPlanByUserIdAndMealPlanId(int userId, int mealPlanId) {
 			String sqlSelectMealPlanByUserAndMealPlan = "SELECT * "+
 					   								"FROM meal_plan "+
-					   								"WHERE user_id =  ? AND meal_plan_id = ?)";
+					   								"WHERE user_id =  ? AND meal_plan_id = ?";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectMealPlanByUserAndMealPlan, userId, mealPlanId);
 			MealPlan mealPlanByUserAndId = new MealPlan();
 			while(results.next()) { 
@@ -76,6 +77,27 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 			result.next();
 			int id = result.getInt(1);
 			return id;
+		}
+
+		@Override
+		public List<Recipe> getRecipesByMealPlanId(int mealPlanId) {
+			
+			String sqlSelectRecipesByMealPlanId =  "SELECT * " +
+												   "FROM recipe " +
+												   "WHERE recipe.recipe_id IN (" +
+													   "SELECT meal_plan_recipe.recipe_id " +
+													   "FROM meal_plan_recipe " +
+													   "WHERE meal_plan_recipe.meal_plan_id = ?)";
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipesByMealPlanId, mealPlanId);
+			List<Recipe> recipesByMealPlanId = new ArrayList<Recipe>();
+			while(results.next()) {
+				Recipe r = new Recipe();
+				r.setRecipeId(results.getInt("recipe_id"));
+				r.setRecipeName(results.getString("recipe_name"));
+				r.setInstructions(results.getString("instructions"));
+				recipesByMealPlanId.add(r);
+			}
+			return recipesByMealPlanId;
 		}
 
 //		@Override

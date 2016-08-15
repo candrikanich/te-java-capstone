@@ -171,6 +171,16 @@ public class UserController {
 		return "mealPlanList";
 	}
 	
+	@RequestMapping(path="/users/{userName}/mealPlanDetails", method=RequestMethod.GET)
+	public String displayMealPlanDetails(ModelMap model, @RequestParam int mealPlanId, @RequestParam int userId, 
+										@PathVariable String userName){
+		MealPlan m = mealPlanDAO.getMealPlanByUserIdAndMealPlanId(userId, mealPlanId);
+		model.put("mealPlan", m);
+		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(m.getMealPlanId());
+		model.put("mealPlanRecipes", recipes);
+		return "mealPlanDetails";
+	}
+	
 	
 	@RequestMapping(value = {"/search/", "/search"}, method = RequestMethod.GET)
 	public String search(@RequestParam Map<String,String> allRequestParams, ModelMap model) {
