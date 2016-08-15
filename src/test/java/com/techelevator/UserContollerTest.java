@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
-import com.techelevator.controller.UserController;
+import com.techelevator.controller.UserAccountController;
 import com.techelevator.model.DAO.IngredientDAO;
 import com.techelevator.model.DAO.RecipeDAO;
 import com.techelevator.model.DAO.UserDAO;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 public class UserContollerTest {
 	
-	private UserController controller;
+	private UserAccountController controller;
 	private UserDAO userDAO;
 	private RecipeDAO recipeDAO;
 	private IngredientDAO ingredientDAO;
@@ -37,7 +37,7 @@ public class UserContollerTest {
 		recipeDAO = mock(RecipeDAO.class);
 		ingredientDAO = mock(IngredientDAO.class);
 		model = mock(ModelMap.class);
-		controller = new UserController(userDAO, recipeDAO, ingredientDAO);
+		controller = new UserAccountController(userDAO, recipeDAO, ingredientDAO);
 	}
 	
 	@Test

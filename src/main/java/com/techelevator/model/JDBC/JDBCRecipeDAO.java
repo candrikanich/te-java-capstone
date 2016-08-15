@@ -23,25 +23,12 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
 		}
 
-//		@Override
-//		public Recipe getRecipeById(int recipeId) {
-//			String sqlSearchForRecipeById = "SELECT * " +
-//									  		"FROM recipe "+
-//									  		"WHERE recipe_id = ?";
-//			SqlRowSet results= jdbcTemplate.queryForRowSet(sqlSearchForRecipeById, recipeId);
-//			Recipe recipeById = new Recipe(); 
-//			while(results.next()) {
-//				mapRowToRecipe(results);
-//			}
-//			return recipeById;
-//		}
-		
 		@Override
 		public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId) {
 			String sqlSelectRecipeByUserAndRecipe = "SELECT * "+
-					   								" FROM recipe"+
-					   								" WHERE recipe_id IN (SELECT app_user_recipe.recipe_id FROM app_user_recipe"+
-					   								" WHERE app_user_recipe.user_id = ? AND app_user_recipe.recipe_id = ?)";
+					   								"FROM recipe "+
+					   								"WHERE recipe_id IN (SELECT app_user_recipe.recipe_id FROM app_user_recipe "+
+					   								"WHERE app_user_recipe.user_id = ? AND app_user_recipe.recipe_id = ?)";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeByUserAndRecipe, userId, recipeId);
 			Recipe recipeByUserAndId = new Recipe();
 			while(results.next()) { 
@@ -71,9 +58,14 @@ public class JDBCRecipeDAO implements RecipeDAO {
 						id, recipe.getRecipeName(), recipe.getInstructions());
 				jdbcTemplate.update("INSERT INTO app_user_recipe(user_id, recipe_id) VALUES (?, ?)", 
 						userId, recipe.getRecipeId());
-				
 		}
 
+		@Override
+		public void addIngredientsToRecipe(int recipeId, int ingredientId, int unitId, int quantityId) {
+			jdbcTemplate.update("INSERT INTO recipe_ingredient(recipe_id, ingredient_id, unit_id, quantity_id) VALUES (?, ?, ?, ?)", 
+					recipeId, ingredientId, unitId, quantityId);			
+		}
+		
 		@Override
 		public List<Recipe> getAllRecipes() {
 			return null;
@@ -98,11 +90,4 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			int id = result.getInt(1);
 			return id;
 		}
-
-		@Override
-		public void addIngredientsToRecipe(int recipeId, int ingredientId, int unitId, int quantityId) {
-			jdbcTemplate.update("INSERT INTO recipe_ingredient(recipe_id, ingredient_id, unit_id, quantity_id) VALUES (?, ?, ?, ?)", 
-					recipeId, ingredientId, unitId, quantityId);			
-		}
-
 }
