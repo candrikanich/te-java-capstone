@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Ingredient;
+import com.techelevator.model.MealPlan;
 import com.techelevator.model.Recipe;
 import com.techelevator.model.RecipeIngredientRecord;
 import com.techelevator.model.DAO.IngredientDAO;
+import com.techelevator.model.DAO.MealPlanDAO;
 import com.techelevator.model.DAO.QuantityDAO;
 import com.techelevator.model.DAO.RecipeDAO;
 import com.techelevator.model.DAO.RecipeIngredientDAO;
@@ -31,6 +33,7 @@ public class UserController {
 	private UnitDAO unitDAO;
 	private QuantityDAO quantityDAO;
 	private RecipeIngredientDAO recipeIngredientDAO;
+	private MealPlanDAO mealPlanDAO;
 	
 	@Autowired
 	public UserController(UserDAO userDAO, 
@@ -38,13 +41,15 @@ public class UserController {
 						  IngredientDAO ingredientDAO, 
 						  UnitDAO unitDAO, 
 						  QuantityDAO quantityDAO,
-						  RecipeIngredientDAO recipeIngredientDAO) {
+						  RecipeIngredientDAO recipeIngredientDAO,
+						  MealPlanDAO mealPlanDAO) {
 		this.userDAO = userDAO;
 		this.recipeDAO = recipeDAO; 
 		this.ingredientDAO = ingredientDAO;
 		this.unitDAO = unitDAO;
 		this.quantityDAO = quantityDAO;
 		this.recipeIngredientDAO = recipeIngredientDAO;
+		this.mealPlanDAO = mealPlanDAO;
 	}
 	
 	@RequestMapping(path="/users/{userName}/recipeList", method=RequestMethod.GET)
@@ -157,6 +162,13 @@ public class UserController {
 		
 		String query = "?userId=" + userId;
 		return "redirect:/users/{userName}/recipeList" + query;
+	}
+	
+	@RequestMapping(path="/users/{userName}/mealPlanList", method=RequestMethod.GET)
+	public String displayMealPlanListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
+		List<MealPlan> mealPlans = mealPlanDAO.getMealPlansByUserId(userId);
+		model.put("mealPlans", mealPlans);
+		return "mealPlanList";
 	}
 	
 	
