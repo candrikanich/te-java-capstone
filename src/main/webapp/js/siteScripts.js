@@ -39,12 +39,20 @@ $(document).ready(function (e) {
 	
 //	DYNAMICALLY ADD NEW INGREDIENT OPTIONS
 	
+	var num = 1;
+	
 	$(".btn-add").click(function(){
-		$(".recipeIngredientRow").clone().appendTo(".groupRows").addClass(function(i) { return 'ingredient' + (i + 1) }).removeClass("recipeIngredientRow");
+		var rowCount = num;
+		$(".recipeIngredientRow").clone().appendTo(".groupRows").removeClass("recipeIngredientRow").addClass(function() {return 'rowNum' + rowCount});
+		$("#ingredient").attr("name", function() {return 'ingredientId' + rowCount});
+		$("#quantity").attr("name", function() {return 'quantityId' + rowCount});
+		$("#unit").attr("name", function() {return 'unitId' + rowCount});
+		$(".btn-remove").addClass(function() {return 'rowNum' + rowCount});
+		num = num + 1;
 	});
 	
 	$(".btn-remove").click(function(){
-		$(this).remove(".rowRemove");
+		$(".rowNum").remove();
 	});
 			
 });

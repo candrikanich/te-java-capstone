@@ -33,11 +33,11 @@
 				<div class="groupRows">
 				
 					<!-- INGREDIENT ROW 1 -->
-					<div class="form-group row recipeIngredientRow rowRemove">
+					<div class="form-group row recipeIngredientRow">
 					
 						<div class="col-md-5">
 							<label for="ingredient">Ingredient </label>	
-							<select class="form-control input-sm" name="ingredientId1" id="ingredient">
+							<select class="form-control input-sm" name="ingredientId" id="ingredient">
 									<option value="#">Choose an ingredient</option>
 								<c:forEach items="${allIngredients}" var="ingredient">
 									<option value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
@@ -47,7 +47,7 @@
 						
 						<div class="col-md-3">
 							<label for="quantity">Quantity: </label>
-							<select class="form-control input-sm" name="quantityId1" id="quantity">	
+							<select class="form-control input-sm" name="quantityId" id="quantity">	
 								<option value="#">Choose...</option>
 								<c:forEach items="${allQuantities}" var="quantity">
 									<option value="${quantity.quantityId}">${quantity.quantityName}</option>
@@ -57,7 +57,7 @@
 						
 						<div class="col-md-3">
 							<label for="unit">Unit:</label>
-							<select class="form-control input-sm" name="unitId1" id="unit">
+							<select class="form-control input-sm" name="unitId" id="unit">
 								<option value="#">Choose...</option>
 								<c:forEach items="${allUnits}" var="unit">
 									<option value="${unit.unitId}">${unit.unitName}</option>
