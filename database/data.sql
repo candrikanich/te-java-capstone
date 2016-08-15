@@ -100,4 +100,21 @@ INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) V
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(13,5,1,1);
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(14,5,1,1);
 
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-15', '2016-08-22', 1);
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-23', '2016-08-30', 1);
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-09-15', '2016-09-22', 1);
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-16', '2016-08-20', 2);
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-10-01', '2016-10-10', 2);
+INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-10-12', '2016-10-14', 2);
+
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 1);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 2);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 3);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 1);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 2);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 3);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 4);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(4, 4);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(4, 5);
+
 COMMIT;

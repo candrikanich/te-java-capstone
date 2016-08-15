@@ -98,6 +98,7 @@ CREATE TABLE meal_plan (
 	meal_plan_id integer DEFAULT NEXTVAL('meal_plan_meal_plan_id_seq':: regclass) NOT NULL,
 	meal_plan_start_date date NOT NULL,
 	meal_plan_end_date date NOT NULL,
+	user_id integer NOT NULL,
 	CONSTRAINT pk_meal_plan_meal_plan_id PRIMARY KEY (meal_plan_id)
 );
 
@@ -108,6 +109,6 @@ ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (meal_plan_id) REFERENCES meal_plan
 ALTER TABLE meal_plan_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE app_user_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id);
 ALTER TABLE app_user_recipe ADD FOREIGN KEY (user_id) REFERENCES app_user(user_id);
-
+ALTER TABLE meal_plan ADD FOREIGN KEY (user_id) REFERENCES app_user(user_id);
 
 COMMIT;
