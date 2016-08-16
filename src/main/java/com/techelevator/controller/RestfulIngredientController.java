@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.model.Ingredient;
 import com.techelevator.model.DAO.IngredientDAO;
 
-
 // BE CAREFUL, this was copied/borrowed/inspired from the uncompleted Tic-Tac-Toe game
 
 @RestController
@@ -23,7 +22,7 @@ public class RestfulIngredientController {
 		this.ingredientDAO = ingredientDAO;
 	}
 	
-	@RequestMapping(path="/ingredients", method=RequestMethod.GET)
+	@RequestMapping(path="/addIngredientsToRecipe", method=RequestMethod.GET)
 	public List<Ingredient> listIngredients() {
 		return ingredientDAO.getAllIngredients();
 	}

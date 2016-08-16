@@ -4,7 +4,7 @@
 
 <!-- PAGE HEADER - BOOTSTRAP -->
 <div class="page-header">
-	<h2>Add a Meal Plan</h2>
+	<h2>Create a Meal Plan</h2>
 	<p>Use this form to add Meal Plans to your library for meal planning.</p>
 </div>
 
@@ -19,11 +19,19 @@
 			<form role="form" action="${formAction}" method="POST">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 				
-				<!-- GIVE IT A NAME -->
-				<div class="form-group form-group-lg">
-					<label for="mealPlanStartDate">Meal plan for the week of: </label>
-					<input type="date" id="mealPlanStartDate" name="mealPlanStartDate" class="form-control" />	
+				<!-- PICK A START DATE -->
+				<div class="form-group form-group row">
+					<div class="col-xs-9">
+						<label for="mealPlanStartDate">Meal plan for the week of: </label>
+						<input type="text" id="mealPlanStartDate" name="mealPlanStartDate" class="form-control" />	
+					</div>
 					
+					<div class="col-xs-3">
+						<label for="createMealPlanDateList">Create Plan</label>
+						<button type="button" class="btn btn-default btn-block btn-add" id="submitMealPlanStartDate">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</button>	
+					</div>
 					<!-- <label for="mealPlanEndDate">Meal Plan End Date: </label>
 					<input type="date" id="mealPlanEndDate" name="mealPlanEndDate" class="form-control" />	 -->
 				</div>
