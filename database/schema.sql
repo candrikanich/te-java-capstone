@@ -53,7 +53,7 @@ CREATE SEQUENCE ingredient_ingredient_id_seq
 	
 CREATE TABLE ingredient (
 	ingredient_id integer DEFAULT NEXTVAL('ingredient_ingredient_id_seq'::regclass) NOT NULL,
-	ingredient_name varchar(32) NOT NULL,
+	ingredient_name varchar(64) NOT NULL,
 	CONSTRAINT pk_ingredient_ingredient_id PRIMARY KEY (ingredient_id)
 );
 
