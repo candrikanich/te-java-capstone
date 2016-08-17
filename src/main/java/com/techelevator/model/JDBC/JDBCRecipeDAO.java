@@ -90,4 +90,9 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			int id = result.getInt(1);
 			return id;
 		}
+		public void updateRecipeName(int recipeId, Recipe recipe) {
+			jdbcTemplate.update("UPDATE recipe "+
+								"SET recipe_name = ?"+
+								"WHERE recipe_id = ?", recipe.getRecipeName(), recipeId);
+		}
 }

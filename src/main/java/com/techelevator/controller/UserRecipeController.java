@@ -110,18 +110,38 @@ public class UserRecipeController {
 //		return "viewName";
 //	}
 	
-	@RequestMapping(path="/user/{userName}/editRecipe", method=RequestMethod.GET)
-	public String displayEditRecipe(){
-//			ModelMap model, @RequestParam int recipeId, 
-//									@RequestParam int userId, @PathVariable String userName) {
-//		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
-//		model.put("recipe", r);
-//		List<Ingredient> recipeIngredients = ingredientDAO.getIngredientDetailsByRecipeId(r.getRecipeId());
-//		model.put("recipeIngredients", recipeIngredients);
-//		model.put("allIngredients", ingredientDAO.getAllIngredients());
-//		model.put("allUnits", unitDAO.getAllUnits());
-//		model.put("allQuantities", quantityDAO.getAllQuantities());
+	@RequestMapping(path="/users/{userName}/editRecipe", method=RequestMethod.GET)
+	public String displayEditRecipe(
+			ModelMap model, @RequestParam int recipeId, 
+									@RequestParam int userId, @PathVariable String userName) {
+		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
+		model.put("recipe", r);
+		List<Ingredient> recipeIngredients = ingredientDAO.getIngredientDetailsByRecipeId(r.getRecipeId());
+		model.put("recipeIngredients", recipeIngredients);
+		model.put("allIngredients", ingredientDAO.getAllIngredients());
+		model.put("allUnits", unitDAO.getAllUnits());
+		model.put("allQuantities", quantityDAO.getAllQuantities());
 		return "editRecipe";
 	}
-	
+	@RequestMapping(path="users/{username}/editRecipe", method=RequestMethod.POST)
+	public String addEditedRecipe(@RequestParam Map<String, String> allRequestParams, ModelMap model) {
+		String recipeName = allRequestParams.get("recipeName");
+		String instructions = allRequestParams.get("instructions");
+		int userId = Integer.valueOf(allRequestParams.get("userId"));
+		int recipeId = Integer.valueOf(allRequestParams.get("recipeId"));
+		
+		Recipe recipe = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
+		if( !recipe.getRecipeName().equals(recipeName)){
+			recipe.setRecipeName(recipeName);
+		} if(!recipe.getInstructions().equals(instructions)) {
+			recipe.setInstructions(instructions);
+			
+		}
+		recipe.setRecipeName(recipeName);
+		recipe.setInstructions(instructions);
+		recipeId = recipe.getRecipeId();
+		
+		String query = "?userId="+userId;
+		return "redirect:/users/{username}/recipeList"+query;
+	}
 }

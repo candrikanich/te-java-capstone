@@ -9,6 +9,7 @@
 
 <c:url var="formAction" value="/users/${userName}/editRecipe">
 <c:param name="userId" value="${param.userId}" />
+<c:param name="recipeId" value="${param.recipeId}"/>
 </c:url>
 
 <!-- RECIPE FORM: 1 ROW / 8 COL -->
@@ -134,11 +135,11 @@
             </div>
             <!-- End GroupRow -->
             
+		    <div class="col-md-2">
+		        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add Recipe</button>
+		    </div>  
             
         </form>
 
-    <div class="col-md-2">
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add Recipe</button>
-    </div>  
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

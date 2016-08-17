@@ -10,4 +10,5 @@ public interface RecipeIngredientDAO {
 	public void addRecipeIngredientRecordToRecipe(RecipeIngredientRecord record, int recipeId);
 	void saveRecipeIngredientRecord(int recipeId, int ingredientId);
 	public void removeIngredientFromRecipe(int recipeId, int ingredientId, int unitId);
+	public void updateRecipe(int ingredientId, String ingredientName);
 }
