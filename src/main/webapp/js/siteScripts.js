@@ -111,6 +111,25 @@ $(document).ready(function (e) {
 	
 	$(".btn-remove").click(function(){
 		$(this).parent().parent().remove();
+//		var userName = 4
+		var recipeId = $(this).parent().parent().attr("#recipeId");
+		var ingredientId = $(this).parent().parent().attr("#ingredient");
+		var unitId = $(this).parent().parent().attr("#unit");
+		deleteIngredientFromRecipe(recipeId, ingredientId, unitId);
 	});
+	
+	function deleteIngredientFromRecipe(userName, recipeId, ingredientId, unitId) {
+		$.ajax("/removeIngredient", {
+			type : "POST",
+			dataType : "json",
+			data : { 
+				recipeId : recipeId,
+				ingredientId : ingredientId,
+				unitId : unitId,
+			}.success(function(result) {
+				alert("Ingredient has been removed");
+			}).fail("Unable to remove ingredient") 
+		});
+	}
 			
 });

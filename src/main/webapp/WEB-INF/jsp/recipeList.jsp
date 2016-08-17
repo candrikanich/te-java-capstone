@@ -21,6 +21,13 @@
 			<a class="recipe list-group-item" href="${recipeHref}">
 				<c:out value="${recipe.recipeName}"/>
 			</a>
+			<c:url var="editRecipeHref" value="/users/${currentUser.userName}/editRecipe">
+				<c:param name="recipeId">${recipe.recipeId}</c:param>
+				<c:param name="userId">${currentUser.userId}</c:param>
+			</c:url>
+			<a href="${editRecipeHref}">
+				<button type="button" class="btn btn-sm">Edit recipe</button>
+			</a>
 		</c:forEach>
 	</div>
   

@@ -110,4 +110,18 @@ public class UserRecipeController {
 //		return "viewName";
 //	}
 	
+	@RequestMapping(path="/user/{userName}/editRecipe", method=RequestMethod.GET)
+	public String displayEditRecipe(){
+//			ModelMap model, @RequestParam int recipeId, 
+//									@RequestParam int userId, @PathVariable String userName) {
+//		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
+//		model.put("recipe", r);
+//		List<Ingredient> recipeIngredients = ingredientDAO.getIngredientDetailsByRecipeId(r.getRecipeId());
+//		model.put("recipeIngredients", recipeIngredients);
+//		model.put("allIngredients", ingredientDAO.getAllIngredients());
+//		model.put("allUnits", unitDAO.getAllUnits());
+//		model.put("allQuantities", quantityDAO.getAllQuantities());
+		return "editRecipe";
+	}
+	
 }
