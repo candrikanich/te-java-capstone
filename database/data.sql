@@ -10,6 +10,8 @@ INSERT INTO app_user (user_name, password, salt) VALUES ('woz', '3OVAF52wRJaH34J
 INSERT INTO app_user (user_name, password, salt) VALUES ('ellison', 'xdtB3l+U+XLK7L4qemdL4w==', 'L6bgOH3ffWWGWv0S5Rtudu7FtGXn/I4hYksEEmO8vjTVh74zbvsYQtC58gWO4VvopGfE1CScD3VPLMxCgeaIpWy4WJW1bicjgA5mW8AKWYoMudYSDciNrWbjxH41JgIbWtz3mXo7JTQXU7sGyqTZRw7lghbaSrW09jovEfSc63U=');
 INSERT INTO app_user (user_name, password, salt) VALUES ('kildall', 'Dy9UfeLCtUW2PrJlMVhfJw==', 'jrojMvgS+XDQq7NZqF/gXaDTzlR8/bLbLvg4q/TeerQqL/V1/8qt4WN8zQTZCttuwJ78JY4TJSgAbq50MKDD85pzLQ1XbZtWWc8nqV+IzNaKExNcPIbXY8Ol5EGkW4RY0zbv/QAJm0u9+z41NQOY4/ctm4YBSVV+aoOGMkgE7ME=');
 
+INSERT INTO recipe (recipe_id, recipe_name) VALUES(-1, 'Eat Out');
+INSERT INTO recipe (recipe_id, recipe_name) VALUES(0, 'Leftovers');
 INSERT INTO recipe (recipe_name, instructions) VALUES ('mac n cheese', 'Preheat the oven to 350 degrees F. \n
 Cook the macaroni until still slightly firm. Drain and set aside.
 In a small bowl, beat the egg. In a large pot, melt the butter and sprinkle in the flour. Whisk together over medium-low heat. Cook for a couple of minutes, whisking constantly. Don\''t let it burn. Pour in the milk, add the mustard and whisk until smooth. Cook until very thick, about 5 minutes. Reduce the heat to low. \n
@@ -1423,21 +1425,21 @@ INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) V
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(13,5,1,1);
 INSERT INTO recipe_ingredient (ingredient_id, recipe_id, unit_id, quantity_id) VALUES(14,5,1,1);
 
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-15', '2016-08-22', 1);
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-23', '2016-08-30', 1);
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-09-15', '2016-09-22', 1);
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-08-16', '2016-08-20', 2);
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-10-01', '2016-10-10', 2);
-INSERT INTO meal_plan (meal_plan_start_date, meal_plan_end_date, user_id) VALUES('2016-10-12', '2016-10-14', 2);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-08-15', 1);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-08-23', 1);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-09-15', 1);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-08-16', 2);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-10-01', 2);
+INSERT INTO meal_plan (meal_plan_start_date, user_id) VALUES('2016-10-12', 2);
 
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 1);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 2);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(1, 3);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 1);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 2);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 3);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(2, 4);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(4, 4);
-INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id) VALUES(4, 5);
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(1, 1, '2016-08-15', 'Monday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(1, 2, '2016-09-15', 'Tuesday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(1, 3, '2016-10-15', 'Wednesday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(2, 1, '2016-11-15', 'Thursday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(2, 2, '2016-08-16', 'Friday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(2, 3, '2016-08-17', 'Saturday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(2, 4, '2016-08-18', 'Sunday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(4, 4, '2016-08-19', 'Monday');
+INSERT INTO meal_plan_recipe (meal_plan_id, recipe_id, meal_date, meal_day_of_week) VALUES(4, 5, '2016-08-20', 'Tuesday');
 
 COMMIT;
