@@ -11,15 +11,15 @@
 
  	<h3>Meals</h3>
  	<div class="list-group">
-	 	<c:forEach items="${mealPlanRecipes}" var="recipe">
+	 	<c:forEach items="${joinedRecipeRecords}" var="recipeRecord">
 		 	<c:url var="mealPlanRecipeHref" value="/users/${currentUser.userName}/recipeDetails">
-				<c:param name="recipeId">${recipe.recipeId}</c:param>
+				<c:param name="recipeId">${recipeRecord.recipeId}</c:param>
 				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 		 	
 		 	<a href="${mealPlanRecipeHref}" class="list-group-item">
-		 		<h4 class="list-group-item-heading">Monday</h4>
-		 		<p class="list-group-item-text"><c:out value="${recipe.recipeName}"/></p>
+		 		<h4 class="list-group-item-heading"><c:out value="${recipeRecord.mealDayOfWeek}"/></h4>
+		 		<p class="list-group-item-text"><c:out value="${recipeRecord.recipeName}"/></p>
 		 	</a>
 	 	</c:forEach>
  	</div>

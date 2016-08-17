@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.model.JoinedMealPlanRecipeRecord;
 import com.techelevator.model.MealPlan;
-import com.techelevator.model.MealPlanRecipeRecord;
 import com.techelevator.model.Recipe;
+import com.techelevator.model.DAO.JoinedMealPlanRecipeDAO;
 import com.techelevator.model.DAO.MealPlanDAO;
 import com.techelevator.model.DAO.MealPlanRecipeDAO;
 import com.techelevator.model.DAO.RecipeDAO;
@@ -26,15 +27,18 @@ public class UserMealPlanController {
 	private RecipeDAO recipeDAO;
 	private MealPlanDAO mealPlanDAO;
 	private MealPlanRecipeDAO mealPlanRecipeDAO;
+	private JoinedMealPlanRecipeDAO joinedMealPlanRecipeDAO;
 	private static final int NUMBER_ALLOWABLE_MEAL_PLANS = 7;
 	
 	@Autowired
 	public UserMealPlanController(RecipeDAO recipeDAO, 
 						  		MealPlanDAO mealPlanDAO,
-						  		MealPlanRecipeDAO mealPlanRecipeDAO) {
+						  		MealPlanRecipeDAO mealPlanRecipeDAO,
+						  		JoinedMealPlanRecipeDAO joinedMealPlanRecipeDAO) {
 		this.recipeDAO = recipeDAO; 
 		this.mealPlanDAO = mealPlanDAO;
 		this.mealPlanRecipeDAO = mealPlanRecipeDAO;
+		this.joinedMealPlanRecipeDAO = joinedMealPlanRecipeDAO;
 	}
 	
 	@RequestMapping(path="/users/{userName}/mealPlanList", method=RequestMethod.GET)
@@ -53,8 +57,8 @@ public class UserMealPlanController {
 		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(m.getMealPlanId());
 		model.put("mealPlanRecipes", recipes);
 		
-		List<MealPlanRecipeRecord> mealPlanRecipeRecords = mealPlanRecipeDAO.getMealPlanRecipeRecordsByMealPlanId(m.getMealPlanId());
-		model.put("mealPlanRecipeRecords", mealPlanRecipeRecords);
+		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanId(m.getMealPlanId());
+		model.put("joinedRecipeRecords", joinedRecipeRecords);
 		
 		return "mealPlanDetails";
 	}
