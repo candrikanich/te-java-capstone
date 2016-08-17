@@ -1,12 +1,9 @@
 package com.techelevator.model;
 
-import java.time.LocalDate;
-
 public class MealPlan {
 
 	private int mealPlanId;
-	private LocalDate mealPlanStartDate;
-	private LocalDate mealPlanEndDate;
+	private String mealPlanStartDate;
 	private int userId;
 	
 	public int getMealPlanId() {
@@ -15,17 +12,11 @@ public class MealPlan {
 	public void setMealPlanId(int mealPlanId) {
 		this.mealPlanId = mealPlanId;
 	}
-	public LocalDate getMealPlanStartDate() {
+	public String getMealPlanStartDate() {
 		return mealPlanStartDate;
 	}
-	public void setMealPlanStartDate(LocalDate mealPlanStartDate) {
+	public void setMealPlanStartDate(String mealPlanStartDate) {
 		this.mealPlanStartDate = mealPlanStartDate;
-	}
-	public LocalDate getMealPlanEndDate() {
-		return mealPlanEndDate;
-	}
-	public void setMealPlanEndDate(LocalDate mealPlanEndDate) {
-		this.mealPlanEndDate = mealPlanEndDate;
 	}
 	public int getUserId() {
 		return userId;

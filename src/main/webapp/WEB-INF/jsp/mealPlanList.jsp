@@ -18,7 +18,7 @@
 			<c:param name="userId">${currentUser.userId}</c:param>
 		</c:url>
 		<a class="mealPlan list-group-item" href="${mealPlanHref}">
-			Meal Plan for <c:out value="${mealPlan.mealPlanStartDate}"/> &ndash; <c:out value="${mealPlan.mealPlanEndDate}"/>
+			Meal Plan starting <c:out value="${mealPlan.mealPlanStartDate}"/>
 		</a>
   	</c:forEach>
   </div>

@@ -36,7 +36,7 @@
 					<div class="form-group row recipeIngredientRow">
 					
 						<div class="col-md-5">
-							<label for="ingredient">Ingredient </label>	
+							<label for="ingredient">Ingredient: </label>	
 							<select class="form-control input-sm" name="ingredientId0" id="ingredient">
 									<option value="#">Choose an ingredient</option>
 								<c:forEach items="${allIngredients}" var="ingredient">

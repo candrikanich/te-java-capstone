@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.MealPlan;
+import com.techelevator.model.MealPlanRecipeRecord;
 import com.techelevator.model.Recipe;
 import com.techelevator.model.DAO.MealPlanDAO;
+import com.techelevator.model.DAO.MealPlanRecipeDAO;
 import com.techelevator.model.DAO.RecipeDAO;
 
 @Transactional
@@ -22,12 +25,16 @@ public class UserMealPlanController {
 
 	private RecipeDAO recipeDAO;
 	private MealPlanDAO mealPlanDAO;
+	private MealPlanRecipeDAO mealPlanRecipeDAO;
+	private static final int NUMBER_ALLOWABLE_MEAL_PLANS = 7;
 	
 	@Autowired
 	public UserMealPlanController(RecipeDAO recipeDAO, 
-						  		MealPlanDAO mealPlanDAO) {
+						  		MealPlanDAO mealPlanDAO,
+						  		MealPlanRecipeDAO mealPlanRecipeDAO) {
 		this.recipeDAO = recipeDAO; 
 		this.mealPlanDAO = mealPlanDAO;
+		this.mealPlanRecipeDAO = mealPlanRecipeDAO;
 	}
 	
 	@RequestMapping(path="/users/{userName}/mealPlanList", method=RequestMethod.GET)
@@ -42,8 +49,13 @@ public class UserMealPlanController {
 										@PathVariable String userName){
 		MealPlan m = mealPlanDAO.getMealPlanByUserIdAndMealPlanId(userId, mealPlanId);
 		model.put("mealPlan", m);
+		
 		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(m.getMealPlanId());
 		model.put("mealPlanRecipes", recipes);
+		
+		List<MealPlanRecipeRecord> mealPlanRecipeRecords = mealPlanRecipeDAO.getMealPlanRecipeRecordsByMealPlanId(m.getMealPlanId());
+		model.put("mealPlanRecipeRecords", mealPlanRecipeRecords);
+		
 		return "mealPlanDetails";
 	}
 	
@@ -52,5 +64,32 @@ public class UserMealPlanController {
 		List<Recipe> userRecipes = recipeDAO.getRecipesByUserId(userId);
 		model.put("userRecipes", userRecipes);
 		return "createNewMealPlan";
+	}
+	
+	@RequestMapping(path="/users/{userName}/createNewMealPlan", method=RequestMethod.POST)
+	public String addMealPlan(@PathVariable String userName, 
+							  @RequestParam Map<String, String> allRequestParams) {
+		
+		int userId = Integer.valueOf(allRequestParams.get("userId"));
+		String startDate = allRequestParams.get("mealPlanStartDate");
+		
+		MealPlan mealPlan = new MealPlan();
+		mealPlan.setMealPlanStartDate(startDate);
+		mealPlan.setUserId(userId);
+		mealPlanDAO.addNewMealPlan(mealPlan);
+		
+		for(int i = 0; i < NUMBER_ALLOWABLE_MEAL_PLANS; i++) {
+			boolean mealPlanDayExists = allRequestParams.containsKey("mealPlanDay" + i);
+			
+			if (mealPlanDayExists) {
+				int mealPlanId = mealPlan.getMealPlanId();
+				int recipeId = Integer.valueOf(allRequestParams.get("mealPlanDay" + i));
+				String mealDate = allRequestParams.get("mealDate" + i);
+				String mealDayOfWeek = allRequestParams.get("mealDayOfWeek" + i);
+				mealPlanRecipeDAO.addRecipeToMealPlan(mealPlanId, recipeId, mealDate, mealDayOfWeek);
+			}
+		}
+		String query = "?userId=" + userId;
+		return "redirect:/users/{userName}/mealPlanList" + query;
 	}
 }

@@ -85,7 +85,9 @@ CREATE TABLE quantity (
 CREATE TABLE meal_plan_recipe (
 	meal_plan_id integer NOT NULL,
 	recipe_id integer NOT NULL,
-	CONSTRAINT pk_meal_plan_recipe_meal_plan_id_recipe_id PRIMARY KEY (meal_plan_id, recipe_id)
+	meal_date varchar(64) NOT NULL,
+	meal_day_of_week varchar(64),
+	CONSTRAINT pk_meal_plan_recipe_meal_plan_id_recipe_id PRIMARY KEY (meal_plan_id, recipe_id, meal_date)
 );
 
 CREATE SEQUENCE meal_plan_meal_plan_id_seq 
@@ -96,8 +98,7 @@ CREATE SEQUENCE meal_plan_meal_plan_id_seq
 
 CREATE TABLE meal_plan (
 	meal_plan_id integer DEFAULT NEXTVAL('meal_plan_meal_plan_id_seq':: regclass) NOT NULL,
-	meal_plan_start_date date NOT NULL,
-	meal_plan_end_date date NOT NULL,
+	meal_plan_start_date varchar(64) NOT NULL,
 	user_id integer NOT NULL,
 	CONSTRAINT pk_meal_plan_meal_plan_id PRIMARY KEY (meal_plan_id)
 );

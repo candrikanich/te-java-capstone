@@ -32,55 +32,34 @@
 							<span class="glyphicon glyphicon-calendar"></span>
 						</button>	
 					</div>
-					<!-- <label for="mealPlanEndDate">Meal Plan End Date: </label>
-					<input type="date" id="mealPlanEndDate" name="mealPlanEndDate" class="form-control" />	 -->
 				</div>
-				
+			
+			<div class="mealPlanRows">	
 				<!-- ROW FOR EACH MEAL DAY -->
-				<div class="form-group row">
-				
-					<!-- MEAL TYPE: IF EAT OUT THEN DISABLE MEAL SELECT FIELD -->
-					<!-- <div class="col-md-4">
-						<label>Meal Type:</label>
-						<div class="radio">
-						  <label><input type="radio" name="eatInOut">Eat-In</label>
-						</div>
-						<div class="radio">
-						  <label><input type="radio" name="eatInOut">Eat-Out</label>
-						</div>
-					</div> -->
+				<div class="form-group row mealContainer">
 				
 					<!-- CHOOSE FROM A LIST OF MEALS -->
 					<div class="col-md-6">
-						<div id="mealContainer">
-						
-						</div>
-							<label for="recipeId1">Day 1 Meal:</label>	
-							<select class="form-control input-sm" name="recipeId1" id="recipeId1">
-									<option value="#" disabled selected="selected">Choose Meal Option</option>
-									<option value="#" disabled>--------------------------</option>
-									<option value="eatOut">Eat Out</option>
-									<option value="leftovers">Leftovers</option>
-									<option value="#" disabled>----- Your Recipes -----</option>
-								<c:forEach items="${userRecipes}" var="recipe">
-									<option value="${recipe.recipeId}">${recipe.recipeName}</option>	
-								</c:forEach>
-							</select>
+						<label id="mealPlanRecipeLabel"></label>
+						<input id="mealDate" type="hidden" />
+						<input id="mealDayOfWeek" type="hidden" />
 					</div>
 					
-					<!-- COPIED OVER FROM RECIPES, NOT SURE IF APPLICABLE HERE -->
-					<!-- <div class="col-md-2">
-						<label>Add/Remove:</label>
-						<div class="btn-group">
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
-						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign"></span></button>
-						</div>	
-					</div> -->
-					
+					<div class="col-md-6" id="mealPlanRecipeList">
+						<select class="form-control input-sm recipeSelector" style="display: none;">
+								<option value="#" disabled selected="selected">Choose Meal Option</option>
+								<option value="#" disabled>--------------------------</option>
+								<option value="-1">Eat Out</option>
+								<option value="0">Leftovers</option>
+								<option value="#" disabled>----- Your Recipes -----</option>
+							<c:forEach items="${userRecipes}" var="recipe">
+								<option value="${recipe.recipeId}">${recipe.recipeName}</option>	
+							</c:forEach>
+						</select>
+					</div>
 				</div>
-				
+				</div>
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Create Meal Plan</button>
-			
 			</form>
 		</div>
 		

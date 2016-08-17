@@ -70,23 +70,20 @@ public class JDBCMealPlanDAO implements MealPlanDAO {
 			return recipesByMealPlanId;
 		}
 		
-//		@Override
-//		public void addNewMealPlan(MealPlan MealPlan, int userId) {
-//				int id = getNextMealPlanId();
-//				MealPlan.setMealPlanId(id);
-//				jdbcTemplate.update("INSERT INTO MealPlan(MealPlan_id, MealPlan_name, instructions) VALUES (?, ?, ?)", 
-//						id, MealPlan.getMealPlanName(), MealPlan.getInstructions());
-//				jdbcTemplate.update("INSERT INTO app_user_MealPlan(user_id, MealPlan_id) VALUES (?, ?)", 
-//						userId, MealPlan.getMealPlanId());
-//		}
+		@Override
+		public void addNewMealPlan(MealPlan mealPlan) {
+				int id = getNextMealPlanId();
+				mealPlan.setMealPlanId(id);
+				
+				jdbcTemplate.update("INSERT INTO meal_plan(meal_plan_id, meal_plan_start_date, user_id) VALUES (?, ?, ?)", 
+						id, mealPlan.getMealPlanStartDate(), mealPlan.getUserId());
+		}
 
 		private MealPlan mapRowToMealPlan(SqlRowSet result) {
 			MealPlan m = new MealPlan();
 				m.setMealPlanId(result.getInt("meal_plan_id"));
-				LocalDate startDate = result.getDate("meal_plan_start_date").toLocalDate();
+				String startDate = result.getString("meal_plan_start_date");
 				m.setMealPlanStartDate(startDate);
-				LocalDate endDate = result.getDate("meal_plan_end_date").toLocalDate();
-				m.setMealPlanEndDate(endDate);
 				m.setUserId(result.getInt("user_id"));
 			return m;
 		}
