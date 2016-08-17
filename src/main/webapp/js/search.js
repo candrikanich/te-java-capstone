@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 $( function() {
     var availableIngredients = [
       "ActionScript",
@@ -29,45 +31,23 @@ $( function() {
   } );
 
 
-// from Tic-Tac_Toe
-//$(function listOfIngredients() {
-//	$.ajax("addiIngredientsToRecipe", {
-//		type : "GET",
-//		dataType : "json"
-//	}).success(function(result) {
-//		response(result) // what to do with success??
-//	}).fail(logRequestFailure);	
-//	
-//	$( "#addIngredientSearch" ).autocomplete({
-//	      source: listOfIngredients
-//	});
-//	
-//});
-
+$("#addIngredientSearch2").autocomplete({
+	source : function(request, response) {
+	$.ajax("/addIngredientsToRecipe", {
+		type : "GET",
+		dataType : "json"
+	}).success(function(result) {
+		response(result)
+		console.log("Hooray!");
+	}).fail(logRequestFailure);
+	}
+});
 	
-// From the inter-webs
-//$(document).ready(function() {
-//    $(function() {
-//            $("#addIngredientSearch").autocomplete({     
-//            source : function(request, response) {
-//            $.ajax({
-//                    url : "ingredients",
-//                    type : "GET",
-//                    data : {
-//                            ingredientName : ingredientName,
-//                            ingredientId : ingredientId
-//                    },
-//                    dataType : "json",
-//                        success : function(data) {
-//                                response(data);
-//                        }
-//                });
-//        }
-//});
-//});
-//});	
-
-//$( "#addIngredientSearch" ).autocomplete({
-//      source: listOfIngredients
-//    });
+function logRequestFailure(xhr, status, errorMessage) {
+	console.log("BOO! Hiss!");
+}
 	
+
+
+
+});

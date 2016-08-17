@@ -89,13 +89,14 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
 			<form action="###" method="GET">
-				<label for="addIngredientSearch">[test] Search to Add an Ingredient:</label>
+				<label for="addIngredientSearch">[test] Search Autocomplete Proof of Concept:</label>
 				<input type="text" name="addIngredientSearch" id="addIngredientSearch" class="form-control" />
 				<span class="help-block">You should be able to use this field to search for an ingredient to add to the recipe.</span>
 			</form>
 			<div class="search-container">
         		<div class="ui-widget">
-					<input type="text" id="search" name="search" class="search" />
+        			<label for="addIngredientSearch2">[test] Search Autocomplete from Ingredients:</label>
+					<input type="text" id="addIngredientSearch2" name="addIngredientSearch2" class="form-control" />
         		</div>
 			</div>
 

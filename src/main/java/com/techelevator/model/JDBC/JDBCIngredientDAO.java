@@ -2,16 +2,14 @@ package com.techelevator.model.JDBC;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import com.techelevator.model.Ingredient;
 import com.techelevator.model.DAO.IngredientDAO;
+
 
 @Component
 public class JDBCIngredientDAO implements IngredientDAO {
@@ -59,9 +57,15 @@ public class JDBCIngredientDAO implements IngredientDAO {
 				  					  	 "FROM ingredient";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllIngredients);
 		List<Ingredient> allIngredients = new ArrayList<>();
-		allIngredients = mapRowSetToIngredients(results);
+		while(results.next()) {
+			Ingredient i = new Ingredient();
+			i.setIngredientId(results.getInt("ingredient_id"));
+			i.setIngredientName(results.getString("ingredient_name"));
+			allIngredients.add(i);
+		}
 		return allIngredients;
 	}
+	
 	@Override
 	public List<Ingredient> getAllUnits() {
 		String sqlForAllUnits = "SELECT unit_name"+
