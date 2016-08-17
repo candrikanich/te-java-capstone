@@ -38,4 +38,10 @@ public class JDBCRecipeIngredientDAO implements RecipeIngredientDAO {
 		jdbcTemplate.update("INSERT INTO recipe_ingredient) VALUES (?, ?)", recipeId, ingredientId);
 		
 	}
+
+	@Override
+	public void removeIngredientFromRecipe(int recipeId, int ingredientId, int unitId) {
+		jdbcTemplate.update("DELETE FROM recipe_ingredient WHERE recipe_ingredient.recipe_id = ? AND "
+				+ "recipe_ingredient.ingredient_id = ? AND recipe_ingredient.unit_id = ?", recipeId, ingredientId, unitId);		
+	}
 }
