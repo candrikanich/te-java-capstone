@@ -1,5 +1,9 @@
 package com.techelevator.model.DAO;
 
-public interface GroceryListDAO {
+import java.util.List;
 
+import com.techelevator.model.Ingredient;
+
+public interface GroceryListDAO {
+	public List<Ingredient> getAllIngredientsByMealPlan(int mealPlanId);
 }
