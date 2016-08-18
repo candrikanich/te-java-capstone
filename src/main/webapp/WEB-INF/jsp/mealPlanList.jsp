@@ -25,10 +25,6 @@
 		<a href="${editMealPlanHref}">
 			<button type="button" class="btn btn-sm">Edit Meal Plan</button>
 		</a>
-		<c:url var="myGroceryListHref" value="/users/${currentUser.userName}/groceryList"></c:url>
-			<a id="btn-groceryList" href="${myGroceryListHref}">
-				<button type="button" class="btn btn-sm">Create Shopping List</button>
-			</a>
   	</c:forEach>
   </div>
   

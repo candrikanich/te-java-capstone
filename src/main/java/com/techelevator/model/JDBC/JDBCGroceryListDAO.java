@@ -29,10 +29,9 @@ public class JDBCGroceryListDAO implements GroceryListDAO {
 									  "JOIN ingredient "+
 									  		"ON recipe_ingredient.ingredient_id = ingredient.ingredient_id "+
 									  "WHERE recipe_id IN (SELECT recipe_id "+
-									  					"FROM meal_plan_recipe, meal_plan "+
-									  					"WHERE meal_plan.meal_plan_id = meal_plan_recipe.meal_plan_id "+
-									  					"AND meal_plan.meal_plan_id = ? " +
-									  					"ORDER BY ingredient_name";
+									  					"FROM meal_plan_recipe "+
+									  					"WHERE meal_plan_recipe.meal_plan_id = ? "+
+									  					"ORDER BY ingredient_name)";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForAllIngredients, mealPlanId);
 		ArrayList<Ingredient> allIngredients = new ArrayList<>();
 		while(results.next() ) {

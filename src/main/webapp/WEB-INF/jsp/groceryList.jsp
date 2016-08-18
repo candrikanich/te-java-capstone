@@ -21,9 +21,9 @@
 				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 			
-			<li class="list-group-item">
+			<%-- <li class="list-group-item">
 				<c:out value="${grocery.ingredient_name}"/>
-			</li>
+			</li> --%>
 	
 	  	</c:forEach>
   	

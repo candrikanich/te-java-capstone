@@ -21,6 +21,12 @@
 		 		<p class="list-group-item-text"><c:out value="${recipeRecord.recipeName}"/></p>
 		 	</a>
 	 	</c:forEach>
+	 	<c:url var="myGroceryListHref" value="/users/${currentUser.userName}/groceryList">
+	 		<c:param name="mealPlanId">${mealPlan.mealPlanId}</c:param>
+	 	</c:url>
+			<a id="btn-groceryList" href="${myGroceryListHref}">
+				<button type="button" class="btn btn-sm">Create Shopping List</button>
+			</a>
  	</div>
  	
 <c:import url="/WEB-INF/jsp/footer.jsp" />
