@@ -27,6 +27,7 @@
 				<button type="button" class="btn btn-sm">Edit recipe</button>
 			</a>
 		</c:forEach>
+		
 	</div>
   
   	<!-- TESTING IDEA TO GET RECIPE DETAILS TO APPEAR HERE -->
