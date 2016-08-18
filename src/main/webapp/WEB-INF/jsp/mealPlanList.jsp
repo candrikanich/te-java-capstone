@@ -15,14 +15,12 @@
   	<c:forEach items="${mealPlans}" var="mealPlan">
 		<c:url var="mealPlanHref" value="/users/${currentUser.userName}/mealPlanDetails">
 			<c:param name="mealPlanId">${mealPlan.mealPlanId}</c:param>
-			<c:param name="userId">${currentUser.userId}</c:param>
 		</c:url>
 		<a class="mealPlan list-group-item" href="${mealPlanHref}">
 			Meal Plan starting <c:out value="${mealPlan.mealPlanStartDate}"/>
 		</a>
 		<c:url var="editMealPlanHref" value="/users/${currentUser.userName}/editMealPlan">
 			<c:param name="mealPlanId">${mealPlan.mealPlanId}</c:param>
-			<c:param name="userId">${currentUser.userId}</c:param>
 		</c:url>
 		<a href="${editMealPlanHref}">
 			<button type="button" class="btn btn-sm">Edit Meal Plan</button>
@@ -32,11 +30,9 @@
   
  </div> 
 	
-	<c:url var="addMealPlanHref" value="/users/${currentUser.userName}/createNewMealPlan" >
-		<c:param name="userId">${currentUser.userId}</c:param>
-	</c:url>
+	<c:url var="addMealPlanHref" value="/users/${currentUser.userName}/createNewMealPlan" ></c:url>
 	<a href="${addMealPlanHref}">
-		<button type="submit" class="btn btn-lg">Add a New Meal Plan <span class="badge">Coming Soon!</span></button>
+		<button type="submit" class="btn btn-lg">Add a New Meal Plan </button>
 	</a>
  
 <c:import url="/WEB-INF/jsp/footer.jsp" />

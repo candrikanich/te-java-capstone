@@ -6,7 +6,7 @@ import com.techelevator.model.RecipeIngredientRecord;
 
 public interface RecipeIngredientDAO {
 
-	public List<RecipeIngredientRecord> getAllRecipeIngredientRecordsByRecipeId(int recipeId);
+	public List<RecipeIngredientRecord> getAllRecipeIngredientRecordsByRecipeIdAndUserId(int recipeId, int userId);
 	
 	public void addRecipeIngredientRecordToRecipe(RecipeIngredientRecord record, int recipeId);
 	
@@ -15,4 +15,5 @@ public interface RecipeIngredientDAO {
 	public void removeIngredientsFromRecipe(int recipeId);
 	
 	public void updateRecipe(int ingredientId, String ingredientName);
+
 }

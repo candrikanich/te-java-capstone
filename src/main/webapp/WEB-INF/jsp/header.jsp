@@ -62,18 +62,14 @@
 						
 						<c:if test="${not empty currentUser}">
 						
-							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList">
-								<c:param name="userId">${currentUser.userId}</c:param>
-							</c:url>
+							<c:url var="myRecipesHref" value="/users/${currentUser.userName}/recipeList"></c:url>
 							<li data-toggle="collapse" data-target=".navbar-collapse" class="myRecipes">
 								<a id="btn-myRecipes" href="${myRecipesHref}">
 									<span class="glyphicon glyphicon-th-list">&nbsp;</span>My Recipes <!-- <span class="badge">5</span>-->
 								</a>
 							</li> 
 							
-							<c:url var="myMealPlanHref" value="/users/${currentUser.userName}/mealPlanList">
-								<c:param name="userId">${currentUser.userId}</c:param>
-							</c:url>
+							<c:url var="myMealPlanHref" value="/users/${currentUser.userName}/mealPlanList"></c:url>
 							<li data-toggle="collapse" data-target=".navbar-collapse" class="myMealPlan">
 								<a id="btn-myMealPlan" href="${myMealPlanHref}">
 									<span class="glyphicon glyphicon-calendar">&nbsp;</span>My Meal Plan<!-- <span class="badge">3</span> -->

@@ -9,7 +9,6 @@
 </div>
 
 <c:url var="formAction" value="/users/${userName}/editRecipe">
-	<c:param name="userId" value="${param.userId}" />
 	<c:param name="recipeId" value="${param.recipeId }"/>
 </c:url>
 
@@ -139,7 +138,7 @@
 			</form>
 		</div>
 		
-		<!-- TESTING SEARCH TO ADD INGREDIENT -->
+		<!-- 
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
 			<form action="###" method="GET">
@@ -154,7 +153,7 @@
         		</div>
 			</div>
 
-		</div>
+		</div> -->
 	</div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

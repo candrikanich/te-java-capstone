@@ -24,7 +24,7 @@ public class JDBCRecipeIngredientDAO implements RecipeIngredientDAO {
 	}
 	
 	@Override
-	public List<RecipeIngredientRecord> getAllRecipeIngredientRecordsByRecipeId(int recipeId) {
+	public List<RecipeIngredientRecord> getAllRecipeIngredientRecordsByRecipeIdAndUserId(int recipeId, int userId) {
 		String sqlSelectRecipeIngredientsByRecipe = "(SELECT recipe_ingredient.recipe_id, recipe.recipe_name, "
 				+ "recipe_ingredient.ingredient_id, ingredient.ingredient_name, recipe_ingredient.unit_id, "
 				+ "unit.unit_name, recipe_ingredient.quantity_id, quantity.quantity_name "
@@ -32,9 +32,11 @@ public class JDBCRecipeIngredientDAO implements RecipeIngredientDAO {
 				+ "JOIN ingredient ON recipe_ingredient.ingredient_id = ingredient.ingredient_id "
 				+ "JOIN unit ON recipe_ingredient.unit_id = unit.unit_id "
 				+ "JOIN quantity ON recipe_ingredient.quantity_id = quantity.quantity_id "
-				+ "WHERE recipe_ingredient.recipe_id = ?)";
+				+ "JOIN app_user_recipe ON app_user_recipe.recipe_id = recipe.recipe_id "
+				+ "WHERE recipe_ingredient.recipe_id = ? "
+				+ "AND app_user_recipe.user_id = ?)";
 		List<RecipeIngredientRecord> recipeIngrdientsList = new ArrayList<>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeIngredientsByRecipe, recipeId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeIngredientsByRecipe, recipeId, userId);
 		while (results.next()) {
 			RecipeIngredientRecord record = new RecipeIngredientRecord();
 			record.setRecipeId(results.getInt("recipe_id"));

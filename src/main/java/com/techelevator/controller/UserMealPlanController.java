@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.JoinedMealPlanRecipeRecord;
 import com.techelevator.model.MealPlan;
 import com.techelevator.model.Recipe;
+import com.techelevator.model.User;
 import com.techelevator.model.DAO.JoinedMealPlanRecipeDAO;
 import com.techelevator.model.DAO.MealPlanDAO;
 import com.techelevator.model.DAO.MealPlanRecipeDAO;
@@ -22,6 +24,7 @@ import com.techelevator.model.DAO.RecipeDAO;
 
 @Transactional
 @Controller
+@SessionAttributes("currentUser")
 public class UserMealPlanController {
 
 	private RecipeDAO recipeDAO;
@@ -42,29 +45,38 @@ public class UserMealPlanController {
 	}
 	
 	@RequestMapping(path="/users/{userName}/mealPlanList", method=RequestMethod.GET)
-	public String displayMealPlanListByUser(ModelMap model, @PathVariable String userName, @RequestParam int userId) {
+	public String displayMealPlanListByUser(ModelMap model, @PathVariable String userName) {
+		User currentUser = (User) model.get("currentUser");
+		int userId = currentUser.getUserId();
+		
 		List<MealPlan> mealPlans = mealPlanDAO.getMealPlansByUserId(userId);
 		model.put("mealPlans", mealPlans);
 		return "mealPlanList";
 	}
 	
 	@RequestMapping(path="/users/{userName}/mealPlanDetails", method=RequestMethod.GET)
-	public String displayMealPlanDetails(ModelMap model, @RequestParam int mealPlanId, @RequestParam int userId, 
+	public String displayMealPlanDetails(ModelMap model, @RequestParam int mealPlanId,  
 										@PathVariable String userName){
+		User currentUser = (User) model.get("currentUser");
+		int userId = currentUser.getUserId();
+		
 		MealPlan m = mealPlanDAO.getMealPlanByUserIdAndMealPlanId(userId, mealPlanId);
 		model.put("mealPlan", m);
 		
 		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(m.getMealPlanId());
 		model.put("mealPlanRecipes", recipes);
 		
-		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanId(m.getMealPlanId());
+		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanIdAndUserId(userId, m.getMealPlanId());
 		model.put("joinedRecipeRecords", joinedRecipeRecords);
 		
 		return "mealPlanDetails";
 	}
 	
 	@RequestMapping(path="/users/{userName}/createNewMealPlan", method=RequestMethod.GET)
-	public String displayCreateMealPlanForm(@PathVariable String userName, ModelMap model, @RequestParam int userId) {
+	public String displayCreateMealPlanForm(@PathVariable String userName, ModelMap model) {
+		User currentUser = (User)model.get("currentUser");
+		int userId = currentUser.getUserId();
+		
 		List<Recipe> userRecipes = recipeDAO.getRecipesByUserId(userId);
 		model.put("userRecipes", userRecipes);
 		return "createNewMealPlan";
@@ -72,9 +84,11 @@ public class UserMealPlanController {
 	
 	@RequestMapping(path="/users/{userName}/createNewMealPlan", method=RequestMethod.POST)
 	public String addMealPlan(@PathVariable String userName, 
+							  ModelMap model,
 							  @RequestParam Map<String, String> allRequestParams) {
 		
-		int userId = Integer.valueOf(allRequestParams.get("userId"));
+		User currentUser = (User)model.get("currentUser");
+		int userId = currentUser.getUserId();
 		String startDate = allRequestParams.get("mealPlanStartDate");
 		
 		MealPlan mealPlan = new MealPlan();
@@ -93,19 +107,20 @@ public class UserMealPlanController {
 				mealPlanRecipeDAO.addRecipeToMealPlan(mealPlanId, recipeId, mealDate, mealDayOfWeek);
 			}
 		}
-		String query = "?userId=" + userId;
-		return "redirect:/users/{userName}/mealPlanList" + query;
+		return "redirect:/users/{userName}/mealPlanList";
 	}
 	
 	@RequestMapping(path="/users/{userName}/editMealPlan", method=RequestMethod.GET) 
 	public String displayEditMealPlan(ModelMap model,
 									  @RequestParam int mealPlanId,
-									  @RequestParam int userId,
 									  @PathVariable String userName) {
+		User currentUser = (User) model.get("currentUser");
+		int userId = currentUser.getUserId();
+		
 		MealPlan mp = mealPlanDAO.getMealPlanByUserIdAndMealPlanId(userId, mealPlanId);
 		model.put("mealPlan", mp);
 		
-		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanId(mealPlanId);
+		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanIdAndUserId(mealPlanId, userId);
 		model.put("joinedRecipeRecords", joinedRecipeRecords);
 		
 		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(mealPlanId);
@@ -119,7 +134,6 @@ public class UserMealPlanController {
 								@RequestParam Map<String, String> allRequestParams,
 								ModelMap model) {
 		
-		int userId = Integer.valueOf(allRequestParams.get("userId"));
 		int mealPlanId = Integer.valueOf(allRequestParams.get("mealPlanId"));
 		
 		joinedMealPlanRecipeDAO.removeRecipesFromMealPlan(mealPlanId);
@@ -135,8 +149,7 @@ public class UserMealPlanController {
 			}
 		}
 		
-		String query = "?userId=" + userId;
-		return "redirect:/users/{userName}/mealPlanList" + query;
+		return "redirect:/users/{userName}/mealPlanList";
 	}
 	
 }

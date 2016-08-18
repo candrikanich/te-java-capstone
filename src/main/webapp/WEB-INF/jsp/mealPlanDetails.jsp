@@ -14,7 +14,6 @@
 	 	<c:forEach items="${joinedRecipeRecords}" var="recipeRecord">
 		 	<c:url var="mealPlanRecipeHref" value="/users/${currentUser.userName}/recipeDetails">
 				<c:param name="recipeId">${recipeRecord.recipeId}</c:param>
-				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 		 	
 		 	<a href="${mealPlanRecipeHref}" class="list-group-item">
