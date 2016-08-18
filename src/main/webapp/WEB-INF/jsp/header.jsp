@@ -76,7 +76,7 @@
 								</a>
 							</li>  		        
 							
-							<c:url var="myGroceryListHref" value="#"/>
+							<c:url var="myGroceryListHref" value="/users/${currentUser.userName}/groceryList"></c:url>
 							<li data-toggle="collapse" data-target=".navbar-collapse" class="myGroceryList">
 								<a id="btn-groceryList" href="${myGroceryListHref}"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>My Grocery List<span class="badge">Coming Soon!</span></a></li>
 							</ul>

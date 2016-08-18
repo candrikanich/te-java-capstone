@@ -18,7 +18,6 @@
 	  	<c:forEach items="${groceryList}" var="grocery">
 	  	
 			<c:url var="mealPlanHref" value="/users/${currentUser.userName}/groceryList">
-				<c:param name="mealPlanId">${grocery.ingredient_id}</c:param>
 				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 			
