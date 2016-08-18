@@ -20,14 +20,14 @@ $(document).ready(function (e) {
 	$("#submitMealPlanStartDate").click(function() {
 		var planDate = selectedDate; 
 		
-		for(var i = 0; i < 7; i++) {
-			var mealPlanDay = i + 1;
+		for(var i = 1; i <= 7; i++) {
+			var mealPlanDay = i;
 			var startDateDay = dayNames[planDate.datepicker('getDate').getDay()];
 			var startDateMonth = monthNames[planDate.datepicker('getDate').getMonth()];
 			var startDateDate = planDate.datepicker('getDate').getDate();
 			var startDateYear = planDate.datepicker('getDate').getFullYear();
 			
-			var mealDate =  startDateYear + "-" + planDate.datepicker('getDate').getMonth() + "-" + startDateDate;
+			var mealDate =  startDateYear + "-" + (planDate.datepicker('getDate').getMonth() + 1) + "-" + startDateDate;
 			var str_output = "Meal #" + mealPlanDay + ": " + startDateDay + ", " + startDateMonth + " " + startDateDate + ", " + startDateYear;
 			var forLabel = "mealPlanDay" + mealPlanDay;
 			

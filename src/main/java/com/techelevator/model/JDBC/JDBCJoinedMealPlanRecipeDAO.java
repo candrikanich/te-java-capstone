@@ -29,7 +29,8 @@ public class JDBCJoinedMealPlanRecipeDAO implements JoinedMealPlanRecipeDAO {
 												 "FROM recipe " +
 												 "JOIN meal_plan_recipe " +
 												 "ON recipe.recipe_id = meal_plan_recipe.recipe_id " +
-												 "WHERE meal_plan_recipe.meal_plan_id = ?";
+												 "WHERE meal_plan_recipe.meal_plan_id = ? " +
+												 "ORDER BY meal_plan_recipe.meal_date";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeInfoByMealPlanId, mealPlanId);
 		
 		List <JoinedMealPlanRecipeRecord> recipeRecords = new ArrayList<>();
@@ -44,5 +45,10 @@ public class JDBCJoinedMealPlanRecipeDAO implements JoinedMealPlanRecipeDAO {
 			recipeRecords.add(record);
 			
 		} return recipeRecords; 
+	}
+	
+	@Override
+	public void removeRecipesFromMealPlan(int mealPlanId) {
+		jdbcTemplate.update("DELETE FROM meal_plan_recipe WHERE meal_plan_id = ?", mealPlanId);		
 	}
 }

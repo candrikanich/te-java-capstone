@@ -20,6 +20,13 @@
 		<a class="mealPlan list-group-item" href="${mealPlanHref}">
 			Meal Plan starting <c:out value="${mealPlan.mealPlanStartDate}"/>
 		</a>
+		<c:url var="editMealPlanHref" value="/users/${currentUser.userName}/editMealPlan">
+			<c:param name="mealPlanId">${mealPlan.mealPlanId}</c:param>
+			<c:param name="userId">${currentUser.userId}</c:param>
+		</c:url>
+		<a href="${editMealPlanHref}">
+			<button type="button" class="btn btn-sm">Edit Meal Plan</button>
+		</a>
   	</c:forEach>
   </div>
   

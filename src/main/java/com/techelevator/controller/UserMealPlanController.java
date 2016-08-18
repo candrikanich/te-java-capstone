@@ -82,7 +82,7 @@ public class UserMealPlanController {
 		mealPlan.setUserId(userId);
 		mealPlanDAO.addNewMealPlan(mealPlan);
 		
-		for(int i = 0; i < NUMBER_ALLOWABLE_MEAL_PLANS; i++) {
+		for(int i = 1; i <= NUMBER_ALLOWABLE_MEAL_PLANS; i++) {
 			boolean mealPlanDayExists = allRequestParams.containsKey("mealPlanDay" + i);
 			
 			if (mealPlanDayExists) {
@@ -96,4 +96,47 @@ public class UserMealPlanController {
 		String query = "?userId=" + userId;
 		return "redirect:/users/{userName}/mealPlanList" + query;
 	}
+	
+	@RequestMapping(path="/users/{userName}/editMealPlan", method=RequestMethod.GET) 
+	public String displayEditMealPlan(ModelMap model,
+									  @RequestParam int mealPlanId,
+									  @RequestParam int userId,
+									  @PathVariable String userName) {
+		MealPlan mp = mealPlanDAO.getMealPlanByUserIdAndMealPlanId(userId, mealPlanId);
+		model.put("mealPlan", mp);
+		
+		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanId(mealPlanId);
+		model.put("joinedRecipeRecords", joinedRecipeRecords);
+		
+		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(mealPlanId);
+		model.put("recipes", recipes);
+		
+		return "editMealPlan";
+	}
+	
+	@RequestMapping(path="/users/{userName}/editMealPlan", method=RequestMethod.POST)
+	public String addEditedMealPlan(@PathVariable String userName,
+								@RequestParam Map<String, String> allRequestParams,
+								ModelMap model) {
+		
+		int userId = Integer.valueOf(allRequestParams.get("userId"));
+		int mealPlanId = Integer.valueOf(allRequestParams.get("mealPlanId"));
+		
+		joinedMealPlanRecipeDAO.removeRecipesFromMealPlan(mealPlanId);
+		
+		for(int i = 1; i <= NUMBER_ALLOWABLE_MEAL_PLANS; i++) {
+			boolean mealPlanDayExists = allRequestParams.containsKey("mealPlanDay" + i);
+			
+			if (mealPlanDayExists) {
+				int recipeId = Integer.valueOf(allRequestParams.get("mealPlanDay" + i));
+				String mealDate = allRequestParams.get("mealDate" + i);
+				String mealDayOfWeek = allRequestParams.get("mealDayOfWeek" + i);
+				mealPlanRecipeDAO.addRecipeToMealPlan(mealPlanId, recipeId, mealDate, mealDayOfWeek);
+			}
+		}
+		
+		String query = "?userId=" + userId;
+		return "redirect:/users/{userName}/mealPlanList" + query;
+	}
+	
 }
