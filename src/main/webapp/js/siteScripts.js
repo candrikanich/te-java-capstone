@@ -8,33 +8,33 @@ $(document).ready(function (e) {
 			
 //	MENU ACTIVE STATUS CHANGE
 	
-	$("#btn-home").click(home);
-	$("#btn-myRecipes").click(myRecipes);
-	$("#btn-myMealPlan").click(myMealPlan);
-	$("#btn-groceryList").click(groceryList);
+	$("#btn-home").click(activeHome);
+	$("#btn-myRecipes").click(activeMyRecipes);
+	$("#btn-myMealPlan").click(activeMyMealPlan);
+	$("#btn-groceryList").click(activeGroceryList);
 	
-	function home() {
+	function activeHome() {
 		removeActive();
 		$("li.home").addClass("active");
 	};
 	
-	function myRecipes() {
+	function activateMyRecipes() {
 		removeActive();
 		$("li.myRecipes").addClass("active");
 	};
 	
-	function myMealPlan() {
+	function activateMyMealPlan() {
 		removeActive();
 		$("li.myMealPlan").addClass("active");
 	};
 	
-	function groceryList() {
+	function activeGroceryList() {
 		removeActive();
 		$("li.groceryList").addClass("active");
 	};
 	
 	function removeActive() {
-		$("li.active").removeClass();
+		$("li.active").removeClass("active");
 	}
 	
 	function checkRowCount() {
