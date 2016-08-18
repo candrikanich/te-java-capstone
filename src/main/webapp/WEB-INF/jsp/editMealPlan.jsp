@@ -9,8 +9,7 @@
 </div>
 
 <c:url var="formAction" value="/users/${userName}/editMealPlan">
-	<c:param name="userId" value="${param.userId}" />
-	<c:param name="recipeId" value="${param.recipeId }"/>
+	<c:param name="mealPlanId" value="${param.mealPlanId}"/>
 </c:url>
 
 	<h3>Meal plan for the week of: <c:out value="${mealPlan.mealPlanStartDate}"/></h3>
@@ -33,7 +32,7 @@
 					
 					<div class="col-md-6" id="mealPlanRecipeList">
 						<select class="form-control input-sm recipeSelector" name="mealPlanDay${loops.count}">
-								<option value="#" disabled selected="selected">Choose Meal Option</option>
+								<option selected="selected" value="${recipeRecord.recipeId}"><c:out value="${recipeRecord.recipeName}"/></option>
 								<option value="#" disabled>--------------------------</option>
 								<option value="-1">Eat Out</option>
 								<option value="0">Leftovers</option>

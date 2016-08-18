@@ -7,9 +7,7 @@
 	<p>Use this form to add recipes to your library for meal planning.</p>
 </div>
 
-<c:url var="formAction" value="/users/${userName}/addNewRecipe">
-	<c:param name="userId" value="${param.userId}" />
-</c:url>
+<c:url var="formAction" value="/users/${userName}/addNewRecipe"></c:url>
 
 	<!-- RECIPE FORM: 1 ROW / 8 COL -->
 	<div class="row">
@@ -85,7 +83,7 @@
 			</form>
 		</div>
 		
-		<!-- TESTING SEARCH TO ADD INGREDIENT -->
+		<!-- 
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
 			<form action="###" method="GET">
@@ -99,8 +97,7 @@
 					<input type="text" id="addIngredientSearch2" name="addIngredientSearch2" class="form-control" />
         		</div>
 			</div>
-
-		</div>
+		</div> -->
 	</div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

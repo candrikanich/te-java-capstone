@@ -8,9 +8,7 @@
 	<p>Use this form to add Meal Plans to your library for meal planning.</p>
 </div>
 
-<c:url var="formAction" value="/users/${userName}/createNewMealPlan">
-	<c:param name="userId" value="${currentUser.userId}" />
-</c:url>
+<c:url var="formAction" value="/users/${currentUser.userName}/createNewMealPlan"></c:url>
 
 	<!-- ROW FOR FORM -->
 	<div class="row">

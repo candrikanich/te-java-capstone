@@ -24,14 +24,16 @@ public class JDBCJoinedMealPlanRecipeDAO implements JoinedMealPlanRecipeDAO {
 	}
 	
 	@Override
-	public List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanId(int mealPlanId) {
+	public List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanIdAndUserId(int userId, int mealPlanId) {
 		String sqlSelectRecipeInfoByMealPlanId = "SELECT * " +
 												 "FROM recipe " +
 												 "JOIN meal_plan_recipe " +
 												 "ON recipe.recipe_id = meal_plan_recipe.recipe_id " +
+												 "JOIN app_user_recipe ON app_user_recipe.recipe_id = recipe.recipe_id " +
 												 "WHERE meal_plan_recipe.meal_plan_id = ? " +
+												 "AND app_user_recipe.user_id = ? " +
 												 "ORDER BY meal_plan_recipe.meal_date";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeInfoByMealPlanId, mealPlanId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectRecipeInfoByMealPlanId, mealPlanId, userId);
 		
 		List <JoinedMealPlanRecipeRecord> recipeRecords = new ArrayList<>();
 		while(results.next()) { 

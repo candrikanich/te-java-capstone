@@ -6,6 +6,6 @@ import com.techelevator.model.JoinedMealPlanRecipeRecord;
 
 public interface JoinedMealPlanRecipeDAO {
 
-	public List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanId(int mealPlanId);
+	List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanIdAndUserId(int userId, int mealPlanId);
 	public void removeRecipesFromMealPlan(int mealPlanId);
 }

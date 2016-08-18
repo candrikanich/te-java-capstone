@@ -16,14 +16,12 @@
 		<c:forEach items="${recipes}" var="recipe">
 			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
-				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 			<a class="recipe list-group-item" href="${recipeHref}">
 				<c:out value="${recipe.recipeName}"/>
 			</a>
 			<c:url var="editRecipeHref" value="/users/${currentUser.userName}/editRecipe">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
-				<c:param name="userId">${currentUser.userId}</c:param>
 			</c:url>
 			<a href="${editRecipeHref}">
 				<button type="button" class="btn btn-sm">Edit recipe</button>
@@ -42,9 +40,7 @@
  </div> 
 	
 	<!-- ADD NEW RECIPE TO LIST/LIBRARY -->
-	<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" >
-		<c:param name="userId">${currentUser.userId}</c:param>
-	</c:url>
+	<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" ></c:url>
 	<a href="${addNewRecipeHref}">
 		<button type="submit" class="btn btn-lg">Add a New Recipe</button>
 	</a>
