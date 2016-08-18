@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="form-group form-group col-md-10">
 						<label for="recipeName">Recipe Name: </label>
-						<input type="text" id="recipeName" name="recipeName" class="form-control" />	
+						<input type="text" id="recipeName" name="recipeName" class="form-control" required/>	
 					</div>
 					<div class="col-md-2">
 						<label>+ Ingredient:</label>
@@ -38,7 +38,7 @@
 						<div class="col-md-5">
 							<label for="ingredient">Ingredient: </label>	
 							<select class="form-control input-sm" name="ingredientId0" id="ingredient">
-									<option value="#">Choose an ingredient</option>
+									<option value="0">Choose an ingredient</option>
 								<c:forEach items="${allIngredients}" var="ingredient">
 									<option id="addIngredient" value="${ingredient.ingredientId}">${ingredient.ingredientName}</option>	
 								</c:forEach>
@@ -48,7 +48,7 @@
 						<div class="col-md-3">
 							<label for="quantity">Quantity: </label>
 							<select class="form-control input-sm" name="quantityId0" id="quantity">	
-								<option value="#">Choose...</option>
+								<option value="0">Choose...</option>
 								<c:forEach items="${allQuantities}" var="quantity">
 									<option value="${quantity.quantityId}">${quantity.quantityName}</option>
 								</c:forEach>
@@ -58,7 +58,7 @@
 						<div class="col-md-3">
 							<label for="unit">Unit:</label>
 							<select class="form-control input-sm" name="unitId0" id="unit">
-								<option value="#">Choose...</option>
+								<option value="0">Choose...</option>
 								<c:forEach items="${allUnits}" var="unit">
 									<option value="${unit.unitId}">${unit.unitName}</option>
 								</c:forEach>
@@ -78,7 +78,7 @@
 				
 				<div class="form-group form-group-lg">
 					<label for="instructions">Instructions: </label>
-					<textarea id="instructions" name="instructions" class="form-control"></textarea>	
+					<textarea id="instructions" name="instructions" class="form-control" required></textarea>	
 				</div>
 				
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add Recipe</button>

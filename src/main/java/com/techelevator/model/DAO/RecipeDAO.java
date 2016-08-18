@@ -17,5 +17,9 @@ public interface RecipeDAO {
 	public List<Recipe> getRecipeByType();
 	
 	public Recipe getRecipeByUserIdAndRecipeId(int userId, int recipeId);
+	
+	public void updateRecipe(Recipe recipe, String recipeName, String instructions);
+	
+	public void deleteRecipe(int recipeId);
 		
 }

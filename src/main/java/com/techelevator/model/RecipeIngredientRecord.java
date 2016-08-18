@@ -6,6 +6,37 @@ public class RecipeIngredientRecord {
 	private int ingredientId;
 	private int unitId;
 	private int quantityId;
+	//additional items for edit recipe jsp
+	private String recipeName;
+	private String ingredientName;
+	private String unitName;
+	private String quantityName;
+	
+	
+	public String getRecipeName() {
+		return recipeName;
+	}
+	public String getIngredientName() {
+		return ingredientName;
+	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public String getQuantityName() {
+		return quantityName;
+	}
+	public void setRecipeName(String recipeName) {
+		this.recipeName = recipeName;
+	}
+	public void setIngredientName(String ingredientName) {
+		this.ingredientName = ingredientName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
+	public void setQuantityName(String quantityName) {
+		this.quantityName = quantityName;
+	}
 	
 	public int getRecipeId() {
 		return recipeId;

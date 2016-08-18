@@ -62,25 +62,32 @@ $(document).ready(function (e) {
 	
 	$(".btn-remove").click(function(){
 		$(this).parent().parent().remove();
-//		var userName = 4
-		var recipeId = $(this).parent().parent().attr("#recipeId");
-		var ingredientId = $(this).parent().parent().attr("#ingredient");
-		var unitId = $(this).parent().parent().attr("#unit");
-		deleteIngredientFromRecipe(recipeId, ingredientId, unitId);
 	});
 	
-	function deleteIngredientFromRecipe(userName, recipeId, ingredientId, unitId) {
-		$.ajax("/removeIngredient", {
-			type : "POST",
-			dataType : "json",
-			data : { 
-				recipeId : recipeId,
-				ingredientId : ingredientId,
-				unitId : unitId,
-			}.success(function(result) {
-				alert("Ingredient has been removed");
-			}).fail("Unable to remove ingredient") 
-		});
-	}
+	//	DYNAMICALLY ADD NEW INGREDIENT OPTIONS for edit recipe JSP
+	
+	var numRecipeEdit = parseInt(document.getElementById("counter").value) + 1;
+	
+	$(".btn-edit-add").click(function(){
+		var rowCount = numRecipeEdit;
+		
+		var clone = $(".recipeIngredientRow").clone(true, true);
+		$(clone).find("#hidden").show();
+		$(clone).find("#ingredient").attr("name", function() {return 'ingredientId' + rowCount});
+		$(clone).find("#quantity").attr("name", function() {return 'quantityId' + rowCount});
+		$(clone).find("#unit").attr("name", function() {return 'unitId' + rowCount});
+		$(clone).find(".btn-remove").addClass(function() {return 'btnNum' + rowCount});
+		$(clone).find(".btnNum"+rowCount).attr("style", function() {return 'display: inline'});
+		$(clone).find(".rowNum"+rowCount).attr('rowId', function() {return rowCount});
+		$(clone).appendTo(".groupRows").removeClass("recipeIngredientRow").addClass(function() {return 'rowNum' + rowCount});
+		num = num + 1;
+	});
+	
+	$(".btn-edit-remove").click(function(){
+		$(this).parent().parent().parent().remove();
+	});
+	
+	$("#hidden").hide();
+	
 			
 });

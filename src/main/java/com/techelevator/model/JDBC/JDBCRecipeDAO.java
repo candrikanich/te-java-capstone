@@ -76,6 +76,21 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			return null;
 		}
 		
+		@Override
+		public void updateRecipe(Recipe recipe, String recipeName, String instructions){
+			if (!recipe.getRecipeName().equals(recipeName)) {
+				jdbcTemplate.update("UPDATE recipe SET recipe_name = ? WHERE recipe_id = ?", recipeName, recipe.getRecipeId());
+			}
+			if (!recipe.getInstructions().equals(instructions)) {
+				jdbcTemplate.update("UPDATE recipe SET instructions = ? WHERE recipe_id = ?", instructions, recipe.getRecipeId());
+			}
+		}
+		
+		@Override
+		public void deleteRecipe(int recipeId) {
+			
+		}
+		
 		private Recipe mapRowToRecipe(SqlRowSet results) {
 			Recipe r = new Recipe();
 				r.setRecipeId(results.getInt("recipe_id"));
@@ -90,9 +105,5 @@ public class JDBCRecipeDAO implements RecipeDAO {
 			int id = result.getInt(1);
 			return id;
 		}
-		public void updateRecipeName(int recipeId, Recipe recipe) {
-			jdbcTemplate.update("UPDATE recipe "+
-								"SET recipe_name = ?"+
-								"WHERE recipe_id = ?", recipe.getRecipeName(), recipeId);
-		}
+	
 }

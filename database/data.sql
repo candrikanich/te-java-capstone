@@ -12,11 +12,11 @@ INSERT INTO app_user (user_name, password, salt) VALUES ('kildall', 'Dy9UfeLCtUW
 
 INSERT INTO recipe (recipe_id, recipe_name) VALUES(-1, 'Eat Out');
 INSERT INTO recipe (recipe_id, recipe_name) VALUES(0, 'Leftovers');
-INSERT INTO recipe (recipe_name, instructions) VALUES ('mac n cheese', 'Preheat the oven to 350 degrees F. \n
+INSERT INTO recipe (recipe_name, instructions) VALUES ('mac n cheese', E'Preheat the oven to 350 degrees F. \n
 Cook the macaroni until still slightly firm. Drain and set aside.
-In a small bowl, beat the egg. In a large pot, melt the butter and sprinkle in the flour. Whisk together over medium-low heat. Cook for a couple of minutes, whisking constantly. Don\''t let it burn. Pour in the milk, add the mustard and whisk until smooth. Cook until very thick, about 5 minutes. Reduce the heat to low. \n
+In a small bowl, beat the egg. In a large pot, melt the butter and sprinkle in the flour. Whisk together over medium-low heat. Cook for a couple of minutes, whisking constantly. Don''t let it burn. Pour in the milk, add the mustard and whisk until smooth. Cook until very thick, about 5 minutes. Reduce the heat to low. \n
 Take 1/4 cup of the sauce and slowly pour it into the beaten egg, whisking constantly to avoid cooking the eggs. Whisk together until smooth. Pour the egg into the sauce, whisking constantly. Stir until smooth. Add in the cheese and stir to melt. Add 1/2 teaspoon salt, 1/2 teaspoon seasoned salt and the pepper. Add any additional spices if desired. Taste the sauce and add more salt and seasoned salt as needed! DO NOT UNDERSALT.\n);
-Pour in the drained, cooked macaroni and stir to combine. Serve immediately (while it\''s still very creamy) or pour into a buttered baking dish, top with extra cheese and bake until bubbly and golden on top, 20 to 25 minutes.');
+Pour in the drained, cooked macaroni and stir to combine. Serve immediately (while it''s still very creamy) or pour into a buttered baking dish, top with extra cheese and bake until bubbly and golden on top, 20 to 25 minutes.');
 INSERT INTO recipe (recipe_name, instructions) VALUES ('roast beef', 'Preheat oven to 375 degrees F (190 degrees C). If roast is untied, tie at 3 inch intervals with cotton twine. Place roast in pan, and season with salt, garlic powder, and pepper. Add more or less seasonings to taste.\n
 Roast in oven for 60 minutes (20 minutes per pound). Remove from oven, cover loosely with foil, and let rest for 15 to 20 minutes.');
 INSERT INTO recipe (recipe_name, instructions) VALUES ('pork loin', 'Dissolve steak seasoning in balsamic vinegar, then stir in olive oil. Place pork into a resealable plastic bag and pour marinade overtop. Squeeze out air and seal bag; marinate 2 hours to overnight.\n

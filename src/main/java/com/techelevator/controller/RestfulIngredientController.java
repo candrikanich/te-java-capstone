@@ -33,7 +33,7 @@ public class RestfulIngredientController {
 	public void removeIngredientFromRecipe(@RequestParam int recipeId, 
 											@RequestParam int ingredientId, 
 											@RequestParam int unitId) {
-		recipeIngredientDAO.removeIngredientFromRecipe(recipeId, ingredientId, unitId);
+		//recipeIngredientDAO.removeIngredientsFromRecipe(recipeId, ingredientId, unitId);
 	}
 	
 }

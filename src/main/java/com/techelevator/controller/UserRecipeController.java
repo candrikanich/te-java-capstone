@@ -98,50 +98,67 @@ public class UserRecipeController {
 					int quantityId = Integer.valueOf(allRequestParams.get("quantityId" + i));
 					record.setQuantityId(quantityId);
 				}
-				recipeIngredientDAO.addRecipeIngredientRecordToRecipe(record, recipeId);
+				if (ingredientId != 0 && unitId != 0) {
+					recipeIngredientDAO.addRecipeIngredientRecordToRecipe(record, recipeId);	
+				}
 			}
 		}
 		String query = "?userId=" + userId;
 		return "redirect:/users/{userName}/recipeList" + query;
 	}
 	
-//	@RequestMapping(value = {"/search/", "/search"}, method = RequestMethod.GET)
-//	public String search(@RequestParam Map<String,String> allRequestParams, ModelMap model) {
-//		return "viewName";
-//	}
-	
 	@RequestMapping(path="/users/{userName}/editRecipe", method=RequestMethod.GET)
-	public String displayEditRecipe(
-			ModelMap model, @RequestParam int recipeId, 
+	public String displayEditRecipe(ModelMap model, @RequestParam int recipeId, 
 									@RequestParam int userId, @PathVariable String userName) {
 		Recipe r = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
 		model.put("recipe", r);
-		List<Ingredient> recipeIngredients = ingredientDAO.getIngredientDetailsByRecipeId(r.getRecipeId());
+		List<RecipeIngredientRecord> recipeIngredients = 
+				recipeIngredientDAO.getAllRecipeIngredientRecordsByRecipeId(recipeId);
 		model.put("recipeIngredients", recipeIngredients);
 		model.put("allIngredients", ingredientDAO.getAllIngredients());
 		model.put("allUnits", unitDAO.getAllUnits());
 		model.put("allQuantities", quantityDAO.getAllQuantities());
 		return "editRecipe";
 	}
-	@RequestMapping(path="users/{username}/editRecipe", method=RequestMethod.POST)
-	public String addEditedRecipe(@RequestParam Map<String, String> allRequestParams, ModelMap model) {
+	
+	@RequestMapping(path="users/{userName}/editRecipe", method=RequestMethod.POST)
+	public String addEditedRecipe(@RequestParam Map<String, String> allRequestParams, 
+								ModelMap model, @PathVariable String userName) {
+	
 		String recipeName = allRequestParams.get("recipeName");
 		String instructions = allRequestParams.get("instructions");
 		int userId = Integer.valueOf(allRequestParams.get("userId"));
 		int recipeId = Integer.valueOf(allRequestParams.get("recipeId"));
 		
 		Recipe recipe = recipeDAO.getRecipeByUserIdAndRecipeId(userId, recipeId);
-		if( !recipe.getRecipeName().equals(recipeName)){
-			recipe.setRecipeName(recipeName);
-		} if(!recipe.getInstructions().equals(instructions)) {
-			recipe.setInstructions(instructions);
-			
-		}
-		recipe.setRecipeName(recipeName);
-		recipe.setInstructions(instructions);
-		recipeId = recipe.getRecipeId();
+		recipeDAO.updateRecipe(recipe, recipeName, instructions);
 		
-		String query = "?userId="+userId;
-		return "redirect:/users/{username}/recipeList"+query;
+		
+		recipeIngredientDAO.removeIngredientsFromRecipe(recipeId);
+		
+		for(int i = 0; i < NUMBER_ALLOWABLE_INGREDIENTS; i++) {  
+			RecipeIngredientRecord record = new RecipeIngredientRecord();
+			boolean recordExists = allRequestParams.containsKey("ingredientId" + i) &&
+								   allRequestParams.containsKey("unitId" + i);
+			boolean quantityExists = allRequestParams.containsKey("quantityId" + i);
+			
+			if(recordExists) {
+				int ingredientId = Integer.valueOf(allRequestParams.get("ingredientId" + i));
+				int unitId = Integer.valueOf(allRequestParams.get("unitId" + i));
+				record.setIngredientId(ingredientId);
+				record.setUnitId(unitId);
+				
+				if(quantityExists) {
+					int quantityId = Integer.valueOf(allRequestParams.get("quantityId" + i));
+					record.setQuantityId(quantityId);
+				}
+				
+				if(ingredientId != 0 && unitId != 0) {
+					recipeIngredientDAO.addRecipeIngredientRecordToRecipe(record, recipeId);
+				}
+			}
+		}
+		String query = "?userId=" + userId;
+		return "redirect:/users/{userName}/recipeList" + query;
 	}
 }
