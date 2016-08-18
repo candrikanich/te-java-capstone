@@ -66,7 +66,11 @@ $(document).ready(function (e) {
 	
 	//	DYNAMICALLY ADD NEW INGREDIENT OPTIONS for edit recipe JSP
 	
-	var numRecipeEdit = parseInt(document.getElementById("counter").value) + 1;
+	var numRecipeEdit = 0;
+	var checkElementExists = document.getElementById("counter")
+	if(checkElementExists != null) {
+		numRecipeEdit = parseInt(document.getElementById("counter").value) + 1;
+	}
 	
 	$(".btn-edit-add").click(function(){
 		var rowCount = numRecipeEdit;
