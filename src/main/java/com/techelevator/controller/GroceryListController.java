@@ -9,10 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> e338ea12bea6a7498b711cf26237e68db74d7758
+
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.GroceryList;
