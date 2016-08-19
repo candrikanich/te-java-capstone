@@ -16,7 +16,8 @@ h3,
 ol li,
 ul.user_recipe_list,
 select option,
-a.recipe {
+a.recipe,
+.list-group-item {
 	text-transform: capitalize;
 }
 

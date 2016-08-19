@@ -11,6 +11,7 @@
 
 	<!-- RECIPE FORM: 1 ROW / 8 COL -->
 	<div class="row">
+		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		
 			<!-- FORM -->
@@ -18,11 +19,11 @@
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 				
 				<div class="row">
-					<div class="form-group form-group col-md-10">
+					<div class="form-group form-group col-md-9">
 						<label for="recipeName">Recipe Name: </label>
 						<input type="text" id="recipeName" name="recipeName" class="form-control" required/>	
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<label>+ Ingredient:</label>
 						<button type="button" class="btn btn-default btn-block btn-add"><span class="glyphicon glyphicon-plus-sign"></span></button>	
 					</div>
@@ -82,6 +83,7 @@
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add Recipe</button>
 			</form>
 		</div>
+		<div class="col-md-2"></div>
 		
 		<!-- 
 		<div class="col-md-1"></div>

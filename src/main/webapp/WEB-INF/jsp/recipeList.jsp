@@ -8,42 +8,41 @@
 <div class="page-header">
 	<h2>${currentUser.userName}'s Recipes</h2>
 </div>
-
-<div class="row">
 	
-	<!-- LIST GROUP OF USER RECIPES -->
-	<div class="user_recipe_list list-group col-md-5">
-		<c:forEach items="${recipes}" var="recipe">
+<c:forEach items="${recipes}" var="recipe">
+	<div class="row">
+		<div class="col-md-2"></div>		
+			
+		<div class="user_recipe_list list-group col-md-5">
 			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
 			</c:url>
 			<a class="recipe list-group-item" href="${recipeHref}">
 				<c:out value="${recipe.recipeName}"/>
 			</a>
+		</div>
+		
+		<div class="col-md-3">
 			<c:url var="editRecipeHref" value="/users/${currentUser.userName}/editRecipe">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
 			</c:url>
 			<a href="${editRecipeHref}">
-				<button type="button" class="btn btn-sm">Edit recipe</button>
+				<button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit recipe</button>
 			</a>
-		</c:forEach>
-		
-	</div>
-  
-  	<!-- TESTING IDEA TO GET RECIPE DETAILS TO APPEAR HERE -->
-	<!-- <div class="col-md-7">
-		<p>TESTING IDEA: when user clicks on recipe link on left, details appear here:</p>
-		<iframe id="recipeDetail">
-			Click for recipe detail
-		</iframe>
-	</div> -->
-  
- </div> 
+		</div>
+		<div class="col-md-2"></div>
+	 </div> 	
+</c:forEach>
 	
-	<!-- ADD NEW RECIPE TO LIST/LIBRARY -->
-	<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" ></c:url>
-	<a href="${addNewRecipeHref}">
-		<button type="submit" class="btn btn-lg">Add a New Recipe</button>
-	</a>
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-5">
+				<!-- ADD NEW RECIPE TO LIST/LIBRARY -->
+				<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" ></c:url>
+				<a href="${addNewRecipeHref}">
+					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add a New Recipe</button>
+				</a>
+			</div>
+	</div>
  
 <c:import url="/WEB-INF/jsp/footer.jsp" />
