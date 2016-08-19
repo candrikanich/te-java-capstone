@@ -1385,7 +1385,6 @@ INSERT INTO ingredient (ingredient_name) VALUES ('ACEROLA');
 INSERT INTO ingredient (ingredient_name) VALUES ('ABIYUCH');
 INSERT INTO ingredient (ingredient_name) VALUES ('ABALONE');
 
-INSERT INTO unit (unit_id, unit_name) VALUES(0, 'item');
 INSERT INTO unit (unit_id, unit_name) VALUES(1, 'teaspoon');
 INSERT INTO unit (unit_id, unit_name) VALUES(2, 'tablespoon');
 INSERT INTO unit (unit_id, unit_name) VALUES(3, 'ounce');
@@ -1395,6 +1394,7 @@ INSERT INTO unit (unit_id, unit_name) VALUES(6, 'quart');
 INSERT INTO unit (unit_id, unit_name) VALUES(7, 'pint');
 INSERT INTO unit (unit_id, unit_name) VALUES(8, 'pinch');
 INSERT INTO unit (unit_id, unit_name) VALUES(9, 'dash');
+INSERT INTO unit (unit_id, unit_name) VALUES(10, 'item');
 
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(1, '1/4', .25);
 INSERT INTO quantity (quantity_id, quantity_name, quantity_value) VALUES(2, '1/3', .33);
