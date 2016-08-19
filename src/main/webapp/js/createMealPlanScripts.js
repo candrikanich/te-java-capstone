@@ -19,6 +19,7 @@ $(document).ready(function (e) {
 	
 	$("#submitMealPlanStartDate").click(function() {
 		var planDate = selectedDate; 
+		var newDate = new Date(planDate.datepicker('getDate'));
 		
 		for(var i = 1; i <= 7; i++) {
 			var mealPlanDay = i;
@@ -57,9 +58,11 @@ $(document).ready(function (e) {
 			
 			
 //			INCREMENTS DATE BY 1
-			var newDate = new Date(planDate.datepicker('getDate'));
 			newDate.setDate(newDate.getDate()+1);
 			planDate.datepicker('setDate', newDate);
 		}
+		//Reset start date to original
+		newDate.setDate(newDate.getDate()-7);
+		planDate.datepicker('setDate', newDate);
 	});
 });
