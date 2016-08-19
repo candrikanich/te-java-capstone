@@ -10,8 +10,8 @@ INSERT INTO app_user (user_name, password, salt) VALUES ('woz', '3OVAF52wRJaH34J
 INSERT INTO app_user (user_name, password, salt) VALUES ('ellison', 'xdtB3l+U+XLK7L4qemdL4w==', 'L6bgOH3ffWWGWv0S5Rtudu7FtGXn/I4hYksEEmO8vjTVh74zbvsYQtC58gWO4VvopGfE1CScD3VPLMxCgeaIpWy4WJW1bicjgA5mW8AKWYoMudYSDciNrWbjxH41JgIbWtz3mXo7JTQXU7sGyqTZRw7lghbaSrW09jovEfSc63U=');
 INSERT INTO app_user (user_name, password, salt) VALUES ('kildall', 'Dy9UfeLCtUW2PrJlMVhfJw==', 'jrojMvgS+XDQq7NZqF/gXaDTzlR8/bLbLvg4q/TeerQqL/V1/8qt4WN8zQTZCttuwJ78JY4TJSgAbq50MKDD85pzLQ1XbZtWWc8nqV+IzNaKExNcPIbXY8Ol5EGkW4RY0zbv/QAJm0u9+z41NQOY4/ctm4YBSVV+aoOGMkgE7ME=');
 
-INSERT INTO recipe (recipe_id, recipe_name) VALUES(-1, 'Eat Out');
-INSERT INTO recipe (recipe_id, recipe_name) VALUES(0, 'Leftovers');
+INSERT INTO recipe (recipe_id, recipe_name) VALUES(998, 'Eat Out');
+INSERT INTO recipe (recipe_id, recipe_name) VALUES(999, 'Leftovers');
 INSERT INTO recipe (recipe_name, instructions) VALUES ('mac n cheese', E'Preheat the oven to 350 degrees F. \n
 Cook the macaroni until still slightly firm. Drain and set aside.
 In a small bowl, beat the egg. In a large pot, melt the butter and sprinkle in the flour. Whisk together over medium-low heat. Cook for a couple of minutes, whisking constantly. Don''t let it burn. Pour in the milk, add the mustard and whisk until smooth. Cook until very thick, about 5 minutes. Reduce the heat to low. \n

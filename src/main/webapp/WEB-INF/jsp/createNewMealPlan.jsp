@@ -47,8 +47,8 @@
 						<select class="form-control input-sm recipeSelector" style="display: none;">
 								<option value="#" disabled selected="selected">Choose Meal Option</option>
 								<option value="#" disabled>--------------------------</option>
-								<option value="-1">Eat Out</option>
-								<option value="0">Leftovers</option>
+								<option value="998">Eat Out</option>
+								<option value="999">Leftovers</option>
 								<option value="#" disabled>----- Your Recipes -----</option>
 							<c:forEach items="${userRecipes}" var="recipe">
 								<option value="${recipe.recipeId}">${recipe.recipeName}</option>	

@@ -4,8 +4,8 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="page-header">
-	<h2>Add a Recipe</h2>
-	<p>Use this form to add recipes to your library for meal planning.</p>
+	<h2>Edit a Recipe</h2>
+	<p>Use this form to edit your recipe.</p>
 </div>
 
 <c:url var="formAction" value="/users/${userName}/editRecipe">

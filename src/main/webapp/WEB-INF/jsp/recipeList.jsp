@@ -11,9 +11,9 @@
 	
 <c:forEach items="${recipes}" var="recipe">
 	<div class="row">
-		<div class="col-md-2"></div>		
+		<div class="col-sm-1"></div>		
 			
-		<div class="user_recipe_list list-group col-md-5">
+		<div class="user_recipe_list list-group col-sm-7 col-xs-7">
 			<c:url var="recipeHref" value="/users/${currentUser.userName}/recipeDetails">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
 			</c:url>
@@ -22,7 +22,7 @@
 			</a>
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-sm-3 col-xs-5">
 			<c:url var="editRecipeHref" value="/users/${currentUser.userName}/editRecipe">
 				<c:param name="recipeId">${recipe.recipeId}</c:param>
 			</c:url>
@@ -30,13 +30,13 @@
 				<button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit recipe</button>
 			</a>
 		</div>
-		<div class="col-md-2"></div>
+		<div class="col-sm-1"></div>
 	 </div> 	
 </c:forEach>
 	
 	<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md-5">
+		<div class="col-sm-2"></div>
+			<div class="col-sm-5 col-xs-12">
 				<!-- ADD NEW RECIPE TO LIST/LIBRARY -->
 				<c:url var="addNewRecipeHref" value="/users/${currentUser.userName}/addNewRecipe" ></c:url>
 				<a href="${addNewRecipeHref}">
