@@ -66,7 +66,7 @@ public class UserMealPlanController {
 		List<Recipe> recipes = mealPlanDAO.getRecipesByMealPlanId(m.getMealPlanId());
 		model.put("mealPlanRecipes", recipes);
 		
-		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanIdAndUserId(userId, m.getMealPlanId());
+		List<JoinedMealPlanRecipeRecord> joinedRecipeRecords = joinedMealPlanRecipeDAO.getJoinedRecipeInfoByMealPlanIdAndUserId(m.getMealPlanId(), userId);
 		model.put("joinedRecipeRecords", joinedRecipeRecords);
 		
 		return "mealPlanDetails";

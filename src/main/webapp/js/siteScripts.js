@@ -18,12 +18,12 @@ $(document).ready(function (e) {
 		$("li.home").addClass("active");
 	};
 	
-	function activateMyRecipes() {
+	function activeMyRecipes() {
 		removeActive();
 		$("li.myRecipes").addClass("active");
 	};
 	
-	function activateMyMealPlan() {
+	function activeMyMealPlan() {
 		removeActive();
 		$("li.myMealPlan").addClass("active");
 	};

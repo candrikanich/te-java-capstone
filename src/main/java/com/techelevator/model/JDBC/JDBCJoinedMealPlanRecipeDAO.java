@@ -24,7 +24,7 @@ public class JDBCJoinedMealPlanRecipeDAO implements JoinedMealPlanRecipeDAO {
 	}
 	
 	@Override
-	public List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanIdAndUserId(int userId, int mealPlanId) {
+	public List<JoinedMealPlanRecipeRecord> getJoinedRecipeInfoByMealPlanIdAndUserId(int mealPlanId, int userId) {
 		String sqlSelectRecipeInfoByMealPlanId = "SELECT * " +
 												 "FROM recipe " +
 												 "JOIN meal_plan_recipe " +
